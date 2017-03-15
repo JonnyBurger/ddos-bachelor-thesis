@@ -1,0 +1,23 @@
+{
+  "name": "ddos-blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "estimate-gas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonnyBurger/ddos-bachelor-thesis.git"
+  },
+  "author": "Jonathan Burger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonnyBurger/ddos-bachelor-thesis/issues"
+  },
+  "homepage": "https://github.com/JonnyBurger/ddos-bachelor-thesis#readme",
+  "dependencies": {
+    "solc": "^0.4.8",
+    "web3": "^0.18.2"
+  }
+}
