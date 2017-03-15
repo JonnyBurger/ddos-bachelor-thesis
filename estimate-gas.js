@@ -15,6 +15,7 @@ contract DdosMitigation {
 
     address public owner;
     Report[] public reports;
+
     function DdosMitigation() {
         owner = msg.sender;
     }
