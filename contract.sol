@@ -1,9 +1,12 @@
 pragma solidity 0.4.8;
 
 contract DdosMitigation {
+    struct Ipv6Address {
+        uint128 ip;
+    }
     struct Report {
         address reporter;
-        string url;
+        Ipv6Address url;
     }
 
     address public owner;
