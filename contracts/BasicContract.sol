@@ -1,12 +1,9 @@
 pragma solidity 0.4.8;
 
 contract DdosMitigation {
-    struct Ipv6Address {
-        uint128 ip;
-    }
     struct Report {
         address reporter;
-        Ipv6Address url;
+        uint128 ip;
     }
 
     address public owner;
@@ -16,10 +13,10 @@ contract DdosMitigation {
         owner = msg.sender;
     }
 
-    function report(string url) {
+    function report(uint128 ip) {
         reports.push(Report({
             reporter: msg.sender,
-            url: url
+            ip: ip
         }));
     }
 }

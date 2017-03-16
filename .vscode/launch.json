@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/estimate-gas.js"
+            "program": "${workspaceRoot}/deploy-contract.js"
         },
         {
             "type": "node",
