@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/JonnyBurger/ddos-bachelor-thesis#readme",
   "dependencies": {
+    "ava": "^0.18.2",
     "es6-promisify": "^5.0.0",
     "ethereumjs-testrpc": "^3.0.3",
     "meow": "^3.7.0",
-    "solc": "^0.4.8",
+    "solc": "^0.4.9",
     "web3": "^0.18.2"
   },
   "devDependencies": {
@@ -30,7 +31,7 @@
     "space": true,
     "rules": {
       "camelcase": "off",
-      "indent": "off" 
+      "indent": "off"
     }
   }
 }
