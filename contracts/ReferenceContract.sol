@@ -1,15 +1,15 @@
 pragma solidity 0.4.9;
 
 library Util {
-    struct DstIPv4 {
-        uint32 dst_ipv4;
-        uint8 dst_mask;
+    struct DstV4 {
+        uint32 ip;
+        uint8 mask;
     }
 
     struct DropIPv4 {
-        uint32 expiringBlock;
+        uint expiringDate;
         uint32 src_ip;
-        DstIPv4 dst_ip;
+        DstV4 dst_ip;
     }
 
     function filter(DropIPv4[] memory self, function (DropIPv4 memory) returns (bool) f) internal returns (DropIPv4[] memory r) {
@@ -30,56 +30,65 @@ library Util {
         return newArray;
     }
 
-    function isExpired(DropIPv4 self) internal returns (bool) {
-        return self.expiringBlock > block.number;
+    function isNotExpired(DropIPv4 self) internal returns (bool) {
+        return self.expiringDate >= now;
     }
 
     function getUnexpired(DropIPv4[] memory list) internal returns (DropIPv4[] memory) {
-        return filter(list, isExpired);
+        return filter(list, isNotExpired);
     }
 }
 
 contract SDNRulesAS {
     using Util for *;
     Util.DropIPv4[] drop_src_ipv4;
-    Util.DstIPv4 dstIPv4;
+    Util.DstV4 ipBoundary;
     bytes certOwnerIPv4;
     address owner;
 
-    mapping (address => Util.DstIPv4) customerIPv4;
+    mapping (address => Util.DstV4) customerIPv4;
 
-    function SDNRulesAS(uint32 dst_ipv4, uint8 dst_ipv4_mask, bytes _certOwnerIPv4) {
+    function SDNRulesAS(uint32 ip, uint8 mask, bytes _certOwnerIPv4) {
         owner = msg.sender;
         certOwnerIPv4 = _certOwnerIPv4;
-        dstIPv4 = Util.DstIPv4(dst_ipv4, dst_ipv4_mask);
+        ipBoundary = Util.DstV4({
+            ip: ip,
+            mask: mask
+        });
     }
 
-    function createCustomerIPv4(address customer, uint32 dst_ipv4, uint8 dst_ipv4_mask) {
-        if (msg.sender == owner && isInSameIPv4Subnet(dst_ipv4, dst_ipv4_mask)) {
-            customerIPv4[customer] = Util.DstIPv4(dst_ipv4, dst_ipv4_mask);
+    function createCustomerIPv4(address customer, uint32 ip, uint8 mask) {
+        if (msg.sender != owner) {
+            throw;
         }
+        if (!isInSameIPv4Subnet(ip, mask)) {
+            throw;
+        }
+        customerIPv4[customer] = Util.DstV4(ip, mask);
     }
 
-    function isInSameIPv4Subnet(uint32 dst_ipv4, uint8 dst_mask) constant returns (bool) {
-        // TODO: calculate
-        return true;
+    function isInSameIPv4Subnet(uint32 ip, uint8 mask) constant returns (bool) {
+        if (mask < ipBoundary.mask) {
+            return false;
+        }
+        return int32(ip) & -1<<(32-ipBoundary.mask) == int32(ipBoundary.ip) & (-1<<(32-ipBoundary.mask));
     }
 
-    function blockIPv4(uint32[] src, uint32 expiringBlock) {
+    function blockIPv4(uint32[] src, uint expiringDate) {
         if (msg.sender == owner) {
             for (uint i = 0; i < src.length; i++) {
                 drop_src_ipv4.push(Util.DropIPv4({
-                    expiringBlock: expiringBlock,
+                    expiringDate: expiringDate,
                     src_ip: src[i],
-                    dst_ip: dstIPv4
+                    dst_ip: ipBoundary
                 }));
             }
         }
-        Util.DstIPv4 customer = customerIPv4[msg.sender];
-        if (customer.dst_ipv4 != 0) {
+        Util.DstV4 customer = customerIPv4[msg.sender];
+        if (customer.ip != 0) {
             for (uint j = 0; j < src.length; j++) {
                 drop_src_ipv4.push(Util.DropIPv4({
-                    expiringBlock: expiringBlock,
+                    expiringDate: expiringDate,
                     src_ip: src[j],
                     dst_ip: customer
                 }));
@@ -87,7 +96,7 @@ contract SDNRulesAS {
         }        
     }
 
-    function blockedIPv4() constant returns (uint32[] src_ipv4, uint32[] dst_ipv4, uint8[] mask) {
+    function blockedIPv4() constant returns (uint32[] src_ipv4, uint32[] ip, uint8[] mask) {
         Util.DropIPv4[] memory unexpired = drop_src_ipv4.getUnexpired();
         
         uint32[] memory src = new uint32[](unexpired.length);
@@ -96,8 +105,8 @@ contract SDNRulesAS {
 
         for (uint i = 0; i < unexpired.length; i++) {
             src[i] = unexpired[i].src_ip;
-            dst[i] = unexpired[i].dst_ip.dst_ipv4;
-            msk[i] = unexpired[i].dst_ip.dst_mask;
+            dst[i] = unexpired[i].dst_ip.ip;
+            msk[i] = unexpired[i].dst_ip.mask;
         }
         return (src, dst, msk);
     }
