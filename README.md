@@ -1,15 +1,22 @@
-## Running the examples
+# Installation
 
-You need `node` installed, probably a pretty new version.  
-In this folder, run `npm install` to fetch the dependencies. (You have `npm` if you have `node`)  
-Start the `geth` server. I had to do the following:
+You need `node` installed: https://nodejs.org/en/. At least v7.7, which is brand new, so make sure it's up to date (`node -v`).
+
+In this folder, run `npm install` to fetch the dependencies. (You also have `npm` if you have `node`). That should be all.
+
+## Run examples
+
+Run the tests (which you can edit in the `test` folder):
 
 ```
-geth console
+npm test
 ```
 
-and then enter
+## CLI
 
-```js
-> admin.startRPC("127.0.0.1", 8545, "*", "web3,db,net,eth")
+I'm building a CLI.
+
+```sh
+> node index.js estimate-gas BasicContract
+> node index.js deploy-contract ReferenceContract
 ```
