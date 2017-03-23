@@ -29,19 +29,36 @@ test.failing('Should not be able to deploy with wrong parameter types', async t 
     }
 });
 
-test('Should be able to get blocked IPs', async t => {
-    const parameters = [1234, 123456, 'abc'];
+test.only('Should be able to get blocked IPs', async t => {
+    const HOW_MANY_IP_ADDRESSES = 10;
+    const input = new Array(HOW_MANY_IP_ADDRESSES)
+        .fill(null)
+        .map((a, i) => `127.0.0.${i + 1}`)
+        .map(ip.toLong);
+
+    const parameters = [ip.toLong('127.0.0.1'), 0, 'abc'];
     const contract = await deployContract(t.context.web3, t.context.accounts[0], ReferenceContract, parameters);
-    await promisify(contract.blockIPv4)(
-        [ip.toLong('123.45.67.89')],
-        parseInt(Date.now() / 1000, 10),
+    await promisify(contract.createCustomerIPv4)(
+        t.context.accounts[1].address,
+        ip.toLong('127.0.0.0'),
+        28,
         {
             from: t.context.accounts[0].address,
             gas: 1000000
         }
     );
+    const hash = await promisify(contract.blockIPv4)(
+        input,
+        parseInt(Date.now() / 1000, 10),
+        {
+            from: t.context.accounts[1].address,
+            gas: 1000000
+        }
+    );
+    const result = await promisify(t.context.web3.eth.getTransactionReceipt)(hash);
     const ips = await promisify(contract.blockedIPv4)();
-    t.is(ip.fromLong(parseInt(ips[0][0], 10)), '123.45.67.89');
+    t.is(ip.fromLong(parseInt(ips[0][0], 10)), '127.0.0.1');
+    t.is(ips[0].length, HOW_MANY_IP_ADDRESSES)
 });
 
 test('Should be to create customer IPv4 if in same subnet', async t => {
