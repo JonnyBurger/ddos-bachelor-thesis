@@ -28,5 +28,5 @@ For more configuration, you need to open the file `lib/gas-benchmark`.
 The return value is the gas estimate for the transaction cost without the deploy cost.
 
 ```sh
-node index.js gas-benchmark --count=x # (default x = 100)
+node index.js gas-benchmark --count=x # (default x = 10)
 ```

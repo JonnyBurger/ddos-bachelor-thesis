@@ -9,7 +9,7 @@ const cli = meow(`
     Commands:
         estimate-gas [contract]
         deploy-contract [contract]
-        gas-benchmark --count=x (default x = 100)
+        gas-benchmark --count=x (default x = 10)
 `);
 
 const {web3, accounts} = getProvider();
