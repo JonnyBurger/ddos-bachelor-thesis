@@ -21,10 +21,10 @@ const {web3, accounts} = getProvider();
         case 'deploy-contract':
             return deployContract(web3, accounts[0], contracts[cli.input[1]]);
         case 'gas-benchmark':
-            if (!cli.flags.count) {
+            if (!cli.flags.count && cli.flags.count !== 0) {
                 throw new Error('--count flag mandatory');
             }
-            return gasBenchmark(web3, accounts, parseInt(cli.flags.count));
+            return gasBenchmark(web3, accounts, cli.flags.count);
         default:
             return Promise.resolve(cli.help);
     }
