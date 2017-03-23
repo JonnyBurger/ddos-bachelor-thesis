@@ -3,11 +3,13 @@ const deployContract = require('./lib/deploy-contract');
 const estimateGas = require('./lib/estimate-gas');
 const contracts = require('./lib/get-contracts');
 const getProvider = require('./lib/get-provider');
+const gasBenchmark = require('./lib/gas-benchmark');
 
 const cli = meow(`
     Commands:
         estimate-gas [contract]
         deploy-contract [contract]
+        gas-benchmark --count=x (default x = 100)
 `);
 
 const {web3, accounts} = getProvider();
@@ -18,6 +20,11 @@ const {web3, accounts} = getProvider();
             return estimateGas(web3, contracts[cli.input[1]]);
         case 'deploy-contract':
             return deployContract(web3, accounts[0], contracts[cli.input[1]]);
+        case 'gas-benchmark':
+            if (!cli.flags.count) {
+                throw new Error('--count flag mandatory');
+            }
+            return gasBenchmark(web3, accounts, parseInt(cli.flags.count));
         default:
             return Promise.resolve(cli.help);
     }
