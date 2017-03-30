@@ -1,7 +1,14 @@
 pragma solidity 0.4.9;
 
-library Util {
-    struct DstV4 {
+contract SDNRulesAS {
+    DropIPv4[] drop_src_ipv4;
+    DstV4 ipBoundary;
+    bytes certOwnerIPv4;
+    address owner;
+
+    mapping (address => DstV4) customerIPv4;
+    
+    struct DstV4  {
         uint32 ip;
         uint8 mask;
     }
@@ -37,21 +44,11 @@ library Util {
     function getUnexpired(DropIPv4[] memory list) internal returns (DropIPv4[] memory) {
         return filter(list, isNotExpired);
     }
-}
-
-contract SDNRulesAS {
-    using Util for *;
-    Util.DropIPv4[] drop_src_ipv4;
-    Util.DstV4 ipBoundary;
-    bytes certOwnerIPv4;
-    address owner;
-
-    mapping (address => Util.DstV4) customerIPv4;
 
     function SDNRulesAS(uint32 ip, uint8 mask, bytes _certOwnerIPv4) {
         owner = msg.sender;
         certOwnerIPv4 = _certOwnerIPv4;
-        ipBoundary = Util.DstV4({
+        ipBoundary = DstV4({
             ip: ip,
             mask: mask
         });
@@ -64,7 +61,7 @@ contract SDNRulesAS {
         if (!isInSameIPv4Subnet(ip, mask)) {
             throw;
         }
-        customerIPv4[customer] = Util.DstV4(ip, mask);
+        customerIPv4[customer] = DstV4(ip, mask);
     }
 
     function isInSameIPv4Subnet(uint32 ip, uint8 mask) constant returns (bool) {
@@ -77,17 +74,17 @@ contract SDNRulesAS {
     function blockIPv4(uint32[] src, uint expiringDate) {
         if (msg.sender == owner) {
             for (uint i = 0; i < src.length; i++) {
-                drop_src_ipv4.push(Util.DropIPv4({
+                drop_src_ipv4.push(DropIPv4({
                     expiringDate: expiringDate,
                     src_ip: src[i],
                     dst_ip: ipBoundary
                 }));
             }
         }
-        Util.DstV4 customer = customerIPv4[msg.sender];
+        DstV4 customer = customerIPv4[msg.sender];
         if (customer.ip != 0) {
             for (uint j = 0; j < src.length; j++) {
-                drop_src_ipv4.push(Util.DropIPv4({
+                drop_src_ipv4.push(DropIPv4({
                     expiringDate: expiringDate,
                     src_ip: src[j],
                     dst_ip: customer
@@ -97,7 +94,7 @@ contract SDNRulesAS {
     }
 
     function blockedIPv4() constant returns (uint32[] src_ipv4, uint32[] ip, uint8[] mask) {
-        Util.DropIPv4[] memory unexpired = drop_src_ipv4.getUnexpired();
+        DropIPv4[] memory unexpired = getUnexpired(drop_src_ipv4);
         
         uint32[] memory src = new uint32[](unexpired.length);
         uint32[] memory dst = new uint32[](unexpired.length);
