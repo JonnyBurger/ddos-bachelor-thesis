@@ -55,10 +55,10 @@ test('Should be able to get blocked IPs', async t => {
             gas: 1000000
         }
     );
-    const result = await promisify(t.context.web3.eth.getTransactionReceipt)(hash);
+    await promisify(t.context.web3.eth.getTransactionReceipt)(hash);
     const ips = await promisify(contract.blockedIPv4)();
     t.is(ip.fromLong(parseInt(ips[0][0], 10)), '127.0.0.1');
-    t.is(ips[0].length, HOW_MANY_IP_ADDRESSES)
+    t.is(ips[0].length, HOW_MANY_IP_ADDRESSES);
 });
 
 test('Should be to create customer IPv4 if in same subnet', async t => {

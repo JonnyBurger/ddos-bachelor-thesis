@@ -5,7 +5,6 @@ contract SDNRulesAS {
     DstV4 ipBoundary;
     bytes certOwnerIPv4;
     address owner;
-
     mapping (address => DstV4) customerIPv4;
     
     struct DstV4  {
