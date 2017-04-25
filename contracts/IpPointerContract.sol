@@ -14,17 +14,12 @@ contract IpPointerContract {
 
     string cache;
 
-    function isNotExpired(Drop self) internal returns (bool) {
-        return self.expiringDate >= now;
-    }
-
-
     function IpPointerContract(uint32 ip, uint8 mask) {
         owner = msg.sender;
         ipBoundary = 1234567890;
     }
 
-    function createCustomerIPv4(address customer, uint32 ip, uint8 mask) {
+    function createCustomer(address customer, uint32 ip, uint8 mask) {
         if (msg.sender != owner) {
             throw;
         }

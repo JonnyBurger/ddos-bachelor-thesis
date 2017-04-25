@@ -44,7 +44,7 @@ test('Should be able to get blocked URLs', async t => {
   );
 
   await makeTransaction({
-    name: 'createCustomerIPv4',
+    name: 'createCustomer',
     args: [t.context.accounts[1].address, ip.toLong('123.45.67.89'), 28],
     from: t.context.accounts[0].address,
     contract
