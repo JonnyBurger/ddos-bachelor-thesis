@@ -1,0 +1,8 @@
+function blockedIPv4() {
+    uint32[] memory src;
+-    for (uint i = 0; i < drop_src_ipv4.length; i++) {
++    for (var i = 0; i < drop_src_ipv4.length; i++) {
+        src[src.length] = drop_src_ipv4[i].src_ip;
+    }
+    return src;
+}
