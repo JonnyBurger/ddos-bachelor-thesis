@@ -2,12 +2,12 @@
 Computing costs occur for blockchain applications, and because the blockchain is decentralized, there needs to be a reward system for the people that provide the service of confirming the transactions.
 Therefore, a blockchain application can be significantly more expensive than a comparable centralized service. The costs of a single transaction on the Ethereum blockchain is dependant on at least 5 variable factors: 1. The operations being done 2. The gas costs assigned to those operations 3. The desired speed of which transactions are executed 4. The value of ether 5. The compiler being used.
 
-When a node wants to submit a transaction to the blockchain or create a new contract, a certain amount of {'}gas{'} has to be offered to so called {'}block miners{'}. For our purpose, we model gas as a real money cost and treat it as a currency. We just care about the conversion rates and the amount we have to pay.
+When a node wants to submit a transaction to the blockchain or create a new contract, a certain amount of {'}gas{'} has to be offered to so called {'}block miners{'}. For the purpose of a cost model, gas is as a real money cost and should be treated as a currency.
 
 \textbf{1 The operations being done}: The amount of gas that has to be paid is determined by the assembly code of the transaction. There are currently 31 possible operations, each one has a gas price tag attached to it.
 
 \par
-\textbf{2 The gas costs assigned to those operations}: Gavin Wood has created a list of 31 operations and their prices, and these are in use today. For example, a transaction costs 21000 gas and a SHA3 hash operation costs 30 gas. In general, we can state that more complicated contracts and transactions cost more gas. Interestingly, the different gas prices for operations are not necessarily proportional of the actual computational work needed, but were set by the Ethereum core team and accepted by the majority Ethereum users. Because of the non-proportionality, some gas costs will change in the future for rebalancing purposes when the majority of nodes upgrade to the Metropolis hard fork, which will likely happen as this hard fork is pushed by Ethereum inventor Vitalik Buterin. For example, the cost of a CALL operation will be increased from 700 to 4000 gas in the foreseeable time.
+\textbf{2 The gas costs assigned to those operations}: Gavin Wood has created a list of 31 operations and their prices, and these are in use today. For example, a transaction costs 21000 gas and a SHA3 hash operation costs 30 gas. In general, it can be stated that more complicated contracts and transactions cost more gas. Interestingly, the different gas prices for operations are not necessarily proportional of the actual computational work needed, but were set by the Ethereum core team and accepted by the majority Ethereum users. Because of the non-proportionality, some gas costs will change in the future for rebalancing purposes when the majority of nodes upgrade to the Metropolis hard fork, which will likely happen as this hard fork is pushed by Ethereum inventor Vitalik Buterin. For example, the cost of a CALL operation will be increased from 700 to 4000 gas in the foreseeable time.
 In summary, gas prices are determined by the community and are heavily influenced by the Ethereum Foundation. Gas prices can change over time, so that the very same transaction can cost more or less gas depending on the time when it is committed.
 
 \par
@@ -23,11 +23,11 @@ On May 7th 2017, ethgasstation.info announced\footnote{https://medium.com/@ethga
 \label{fig:gas}
 \end{figure}
 
-In Figure ~\ref{fig:gas}, we can see that a node that offers a higher reward for a transaction will get confirmed 4 times faster on average. The user has to decide based on that information, how much he wants to pay.
+In Figure ~\ref{fig:gas}, it can be seen that a node that offers a higher reward for a transaction will get confirmed 4 times faster on average. The user has to decide based on that information, how much he wants to pay.
 
 \textbf{4 Price of Ether}: Ether can either be mined or can be purchased on an exchange. The Ether price on exchanges is highly volatile. On January 1st 2017, the price of an ether was \$8.22. on May 7th 2017, it was \$96.24, according to Coinbase. Ether has also already seen a price drop of over \% when a smart contract called "TheDAO" was hacked.
 
-\textbf{5 The compiler being used}: The final variable is the deviation of gas estimates when using different compilers. This was discovered when we received different gas estimates for the same contract when upgrading the compiler. To illustration the effect, let's consider the following smart contract:
+\textbf{5 The compiler being used}: The final variable is the deviation of gas estimates when using different compilers. This was discovered when receiving different gas estimates for the same contract when upgrading the compiler. To illustration the effect, let's consider the following smart contract:
 
 \input{snippets/compiler-deviation.tex}
 
@@ -58,4 +58,4 @@ Even when removing just whitespace from the contract, sometimes the gas cost can
   \end{tabular}
 \end{center}
 
-Given that all the deviations that we have discovered skewed the total gas cost by not more than 4\%, we are omitting this variable from our cost model for simplicity.
+Given that all the deviations discovered skewed the total gas cost by not more than 4\%, this variable is omitted from our cost model for simplicity.

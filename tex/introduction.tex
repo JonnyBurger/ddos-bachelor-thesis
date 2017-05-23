@@ -7,16 +7,16 @@ The amount of DDoS attacks globally is on the rise and mitigation is happening o
 \section{Description of Work}
 
 The paper {"}A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN{"} \cite{OriginalPaper} proposes to use the Ethereum blockchain as a registry for IP addresses from which attacks are originating from. The data can then be read by ISPs who can filter out the malicious packets before they even reach the victim of the attack. This eliminates the need for additional architecture.
-We develop three variants of a smart contract and compare them to each other. Each smart contract serves the same purpose, the storage of a list of IP addresses. In some way, all variants accept the input of IP addresses and allow to read from it.
+Three variants of a smart contract will be developed and compared to each other. Each smart contract serves the same purpose, the storage of a list of IP addresses. In some way, all variants accept the input of IP addresses and allow to read from it.
 Our main objective is to eliminate the need to set up and maintain a database for this purpose.
 The three variants are: 1. A smart contract that stores a list of all IP addresses on the blockchain, similar to the contract shown in the proposal. 2. A contract that points to a web resource containing the list of all IP addresses. 3. A contract that implements a bloom filter.
-All contracts should support both whitelists and blacklists. Both IPv4 and IPv6 addresses should be insertable. Furthermore, we would like to make it as easy as possible to modify the list. To round it off, our contract should make it possible to easily verify the identity of the reporter and prevent unauthorized modifications of entries on behalf of others. 
+All contracts should support both whitelists and blacklists. Both IPv4 and IPv6 addresses should be insertable. Furthermore, it should be made as easy as possible to modify the list. To round it off, our contract should make it possible to easily verify the identity of the reporter and prevent unauthorized modifications of entries on behalf of others. 
 
 \section{Thesis Outline}
 
-In chapter 2, we discuss the characteristics of Ethereum smart contracts and their implications on our implementation. We discuss the properties and mechanics of our solution and look at security risks.
+In chapter 2, the characteristics of Ethereum smart contracts and their implications on our implementation are discussed, as well as the properties and mechanics of our solution and look at security risks.
 
-In chapter X, we start implementing the smart contracts based on the planning in chapter 1. The chapter describes the implementation technique, testing strategy and documents the established protocols.
+In chapter X, the smart contracts based on the planning in chapter 1 are being implemented. The chapter describes the implementation technique, testing strategy and documents the established protocols.
 
-In chapter 3, we benchmark the developed smart contracts for cost and speed and we compare. In addition, a generic cost model for smart contracts is being introduced and optimization possibilities are being explored.
-In chapter X, we make a recommendation for a smart contract variant and make a statement whether the developed approach based on our research is suitable for real-world use.
+In chapter 3, the developed smart contracts for cost and speed are benchmarked and compared. In addition, a generic cost model for smart contracts is being introduced and optimization possibilities are being explored.
+In chapter X, a recommendation is made for a smart contract variant and make a statement whether the developed approach based on our research is suitable for real-world use.
