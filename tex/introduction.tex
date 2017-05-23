@@ -2,10 +2,11 @@
 
 \section{Motivation}
 
+The amount of DDoS attacks globally is on the rise and mitigation is happening only with limited success. With Ethereum, a programmable blockchain, a new opportunity emerges for signaling DDoS attacks collaboratively with little infrastructure. 
 
 \section{Description of Work}
 
-The paper {"}A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN{"} proposes to use the Ethereum blockchain as a registry for IP addresses from which attacks are originating from. The data can then be read by ISPs who can filter out the malicious packets before they even reach the victim of the attack. This eliminates the need for additional architecture.
+The paper {"}A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN{"} \cite{OriginalPaper} proposes to use the Ethereum blockchain as a registry for IP addresses from which attacks are originating from. The data can then be read by ISPs who can filter out the malicious packets before they even reach the victim of the attack. This eliminates the need for additional architecture.
 We develop three variants of a smart contract and compare them to each other. Each smart contract serves the same purpose, the storage of a list of IP addresses. In some way, all variants accept the input of IP addresses and allow to read from it.
 Our main objective is to eliminate the need to set up and maintain a database for this purpose.
 The three variants are: 1. A smart contract that stores a list of all IP addresses on the blockchain, similar to the contract shown in the proposal. 2. A contract that points to a web resource containing the list of all IP addresses. 3. A contract that implements a bloom filter.
