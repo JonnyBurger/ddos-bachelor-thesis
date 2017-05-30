@@ -2,12 +2,45 @@
 
 Define the set of operations that a transaction executes as $ \sigma = (\sigma_1, ..., \sigma_n) $.
 
-The corresponding fees are $ f = (f_1, ..., f_n), \forall f_i \in G $, where $ G $ is the fee schedule defined in the Ethereum Yellow paper. The amount of gas a transaction consumes is: \[ C = \sum_{i = 1}^n \sigma_i \cdot f_i \] The value of $ C $ is best determined by using the \texttt{estimateGas()} function made available by Ethereum clients.
+The corresponding fees are $ f = (f_1, ..., f_n), \forall f_i \in G $, where $ G $ is the fee schedule defined in the Ethereum Yellow paper. The amount of gas a transaction consumes is shown in Equation \ref{eq:TransactionGasConsumption}:
 
-A transaction uses at least 21'000 gas and the maximum amount of gas that can be used in a transaction is 3'141'592 (set to be raised to 5'500'000\footnote{https://github.com/ethereum/EIPs/issues/150} in the next fork). At the moment, this means that $ C = [21000, 3141592] $ is always fulfilled.
+\begin{equation}
+C = \sum_{i = 1}^n \sigma_i \cdot f_i
+\label{eq:TransactionGasConsumption}
+\end{equation}
 
-The price is denoted as the variable $ \alpha $. Since, according to ethgasstation.info, there are 3 possible speeds, define constants representing the minimum cost  to pay in order to get that speed: $ \alpha_{cheap} = 2 \cdot 10^{-9} Ether $, $ \alpha_{average} = 20 \cdot 10^{-9} Ether $, $ \alpha_{fast} = 28 \cdot 10^{-9} Ether $
+The value of $ C $ is best determined by using the \texttt{estimateGas()} function made available by Ethereum clients.
+
+A transaction uses at least 21'000 gas and the maximum amount of gas that can be used in a transaction is 3'141'592 (set to be raised to 5'500'000 in the next fork \cite{EIP150}). At the moment, this means that the condition in Equation \ref{eq:CostCondition} is always fulfilled.
+
+\begin{equation}
+    C = [21000, 3141592]
+    \label{eq:CostCondition}
+\end{equation}
+
+The price is denoted as the variable $ \alpha $. Since according to ethgasstation.info, there are 3 possible speeds, we define constants representing the minimum cost to pay in order to get that speed (Equations \ref{eq:GasPriceCheap} - \ref{eq:GasPriceFast}).
+\begin{equation}
+    \alpha_{cheap} = 2 \cdot 10^{-9} Ether
+    \label{eq:GasPriceCheap}
+\end{equation}
+\begin{equation}
+    \alpha_{average} = 20 \cdot 10^{-9} Ether
+    \label{eq:GasPriceAverage}
+\end{equation}
+\begin{equation}
+    \alpha_{fast} = 28 \cdot 10^{-9} Ether
+    \label{eq:GasPriceFast}
+\end{equation}
 
 The price of an ether is noted as $ ETH $. As mentioned previously, the deviations of different compiler are negligible.
 
-Putting these values together gives the total cost of $ C \cdot \alpha \cdot ETH $. For example, a contract that costs 500'000 gas to deploy and $ \alpha = \alpha_{average} $ per gas, and the price for Ether is \$50, the price to deploy that contract is $ 500'000 \cdot 10^{-9} \cdot \$50 = \$0.025 $.
+Multiplying these values together results in the total cost (Equation \ref{eq:TotalCost}). 
+\begin{equation}
+ C \cdot \alpha \cdot ETH
+ \label{eq:TotalCost}
+\end{equation}  For example, a contract that costs 500'000 gas to deploy and is priced at $ \alpha = \alpha_{average} $ per gas, with the price for Ether being \$50, the cost to deploy that contract is \$0.025 (Equation \ref{eq:CostExample}).
+
+\begin{equation}
+    500'000 \cdot 10^{-9} \cdot \$50 = \$0.025
+    \label{eq:CostExample}
+\end{equation}

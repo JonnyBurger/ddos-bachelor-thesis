@@ -7,9 +7,12 @@ The amount of DDoS attacks globally is on the rise and mitigation is happening o
 \section{Description of Work}
 
 The paper {"}A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN{"} \cite{OriginalPaper} proposes to use the Ethereum blockchain as a registry for IP addresses from which attacks are originating from. The data can then be read by ISPs who can filter out the malicious packets before they even reach the victim of the attack. This eliminates the need for additional architecture.
+
 Three variants of a smart contract will be developed and compared to each other. Each smart contract serves the same purpose, the storage of a list of IP addresses. All variants accept the input of IP addresses and allow to read from it, although in different ways.
 Our main objective is to eliminate the need to set up and maintain a database for this purpose.
+
 The three variants are: 1. A smart contract that stores a list of all IP addresses on the blockchain, similar to the contract shown in the proposal. 2. A contract that points to a web resource containing the list of all IP addresses. 3. A contract that implements a bloom filter.
+
 All contracts should support both whitelists and blacklists. Both IPv4 and IPv6 addresses should be insertable. Furthermore, it should be made as easy as possible to modify the list. Additionally, the contract should make it possible to easily verify the identity of the reporter and prevent unauthorized modifications of entries on behalf of others. 
 
 \section{Thesis Outline}
