@@ -7,7 +7,7 @@ When a node wants to submit a transaction to the blockchain or create a new cont
 \textbf{1 The operations being done}: The amount of gas that has to be paid is determined by the assembly code of the transaction. There are currently 31 possible operations, each one has a gas price tag attached to it.
 
 \par
-\textbf{2 The gas costs assigned to those operations}: Gavin Wood has created a list of 31 operations and their prices, and these are in use today. For example, a transaction costs 21000 gas and a SHA3 hash operation costs 30 gas. In general, it can be stated that more complicated contracts and transactions cost more gas. Interestingly, the different gas prices for operations are not necessarily proportional of the actual computational work needed, but were set by the Ethereum core team and accepted by the majority Ethereum users. Because of the non-proportionality, some gas costs will change in the future for rebalancing purposes when the majority of nodes upgrade to the Metropolis hard fork, which will likely happen as this hard fork is pushed by Ethereum inventor Vitalik Buterin. For example, the cost of a CALL operation will be increased from 700 to 4000 gas in the foreseeable time.
+\textbf{2 The gas costs assigned to those operations}: Gavin Wood has created a list of 31 operations and their prices, and these are in use today. For example, a transaction costs 21000 gas and a SHA3 hash operation costs 30 gas. In general, it can be stated that more complicated contracts and transactions cost more gas. Interestingly, the different gas prices for operations are not necessarily proportional of the actual computational work needed, but were set by the Ethereum core team and accepted by the majority Ethereum users. Because of the non-proportionality, some assembly instructions will change their gas prices in the future for rebalancing purposes when the majority of nodes upgrade to the Metropolis hard fork. This hark fork is not yet certain to happen, but will likely do so as this hard fork is pushed by Ethereum inventor Vitalik Buterin. For example, the cost of a CALL operation will be increased from 700 to 4000 gas with the Metropolis upgrade.
 In summary, gas prices are determined by the community and are heavily influenced by the Ethereum Foundation. Gas prices can change over time, so that the very same transaction can cost more or less gas depending on the time when it is committed.
 
 \par
@@ -45,7 +45,7 @@ The gas estimate was 318'552 gas when compiled with Version 0.4.8 of the Solidit
   \end{tabular}
 \end{center}
 
-Even when removing just whitespace from the contract, sometimes the gas cost can change:
+Even when removing just whitespace from the contract, the gas cost can, but does not have to change:
 
 \begin{center}
   \begin{tabular}{ l | r }
