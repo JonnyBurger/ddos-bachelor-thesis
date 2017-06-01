@@ -1,8 +1,21 @@
 \chapter{Introduction}
 
+\section{Blockchains and Ethereum}
+
+A Blockchain is a decentralized database consisting of a chain of cryptographically secured units, called 'blocks'. Each block references the previous block and cannot be modified without breaking the subsequent blocks.
+Blockchain technology had it's breakthrough with Bitcoin, a cryptocurrency.
+
+Ethereum \cite{Ethereum} is a further development of the Bitcoin technology, with added support for scriptable 'smart contracts'. A smart contract is a protocol that automatically enforces the terms of a contract.
+
+\section{Denial of Service and DDoS}
+
+A Denial of Service (DoS) is when a machine or network resource is disrupted. An attacker can force a DoS by crafting a request payload causing a lot of computational work on the target machine or by flooding the target with requests.
+
+A Distributed Denial of Service (DDoS) attack is a DoS attack where the requests are coming from many different sources.
+
 \section{Motivation}
 
-The amount of 'Distributed Denial of Service' (DDoS) attacks globally is on the rise \cite{DDoSRise} and mitigation is happening only with limited success. With Ethereum, a programmable blockchain, a new opportunity emerges for signaling DDoS attacks collaboratively with no additional infrastructure. 
+The amount of DDoS attacks globally is on the rise \cite{DDoSRise} and mitigation is happening only with limited success. With Ethereum, a programmable blockchain, a new opportunity emerges for signaling DDoS attacks collaboratively with no additional infrastructure. 
 
 \section{Description of Work}
 
@@ -11,9 +24,11 @@ The paper {"}A Blockchain-based Architecture for Collaborative DDoS Mitigation w
 Three variants of a smart contract will be developed and compared to each other. Each smart contract serves the same purpose, the storage of a list of IP addresses. All variants accept the input of IP addresses and allow to read from it, although in different ways.
 Our main objective is to eliminate the need to set up and maintain a database for this purpose.
 
-The three variants are: 1. A smart contract that stores a list of all IP addresses on the blockchain, similar to the contract shown in the proposal. 2. A contract that points to a web resource containing the list of all IP addresses. 3. A contract that implements a bloom filter.
+The three variants are: 1. A smart contract that stores a list of all IP addresses on the blockchain, similar to the contract shown in the original paper \cite{OriginalPaper} (Listing 1-3). 2. A contract that points to a web resource containing the list of all IP addresses. 3. A contract that implements a bloom filter.
 
-All contracts should support both whitelists and blacklists. Both IPv4 and IPv6 addresses should be insertable. Furthermore, it should be made as easy as possible to modify the list. Additionally, the contract should make it possible to easily verify the identity of the reporter and prevent unauthorized modifications of entries on behalf of others. 
+All contracts should support both whitelists and blacklists.
+A whitelist, in this case, is a list of IP addresses that are explicitly allowed to access the server, while a blacklist is a list of IP addresses that are explicitly disallowed to access the service.
+Both IPv4 and IPv6 addresses should be insertable. Furthermore, it should be made as easy as possible to modify the list. Additionally, the contract should make it possible to easily verify the identity of the reporter and prevent unauthorized modifications of entries on behalf of others. 
 
 \section{Thesis Outline}
 

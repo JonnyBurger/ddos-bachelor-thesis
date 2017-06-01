@@ -9,37 +9,44 @@ The second variant of the smart contract works around the space constraints and 
 \subsection{Web resource}
 When pointing to a web resource, the design of the architecture that is not on the blockchain needs to be considered. By storing a URL in the blockchain, it is already implied that the connection to the resource is made using HTTP(S), which is a suitable protocol for our needs.
 
-The format of the web resource pointed to could be in any format imaginable. Among the desirable properties that are:
+The format of the web resource pointed to could be in any format imaginable. A syntax and a data structure has to be settled on. In this section, various aspects of the web resource format are discussed and a format will be developed.
 
-\textbf{1. Portability:} To increase the adoption of our solution, use an already existing format like XML, CSV or JSON.
+Among the desirable properties that are:
 
-\textbf{2. Upgradeability:} The format should be able to be developed further in the future to enable more features, with backwards compatibility (which is hard if the format is CSV-like).
+\textbf{1. Portability:} An already common syntax like XML, CSV or JSON is desired because client libraries are already available and no further specifications are needed.
+
+\textbf{2. Upgradeability:} The format of the web resource should be able to be developed further in the future to enable more features, with backwards compatibility. This is more difficult with a two-dimensional design like CSV, because the format can only be extended by adding more rows.
 
 \textbf{3. Streamability:} As one can expect these lists to become very large, it is beneficiary to have the format in a way where it can already be partially evaluated while not yet fully loaded. Downloading a resource fully will take time and it is desirable to not have to load the full list into memory. This is easy with CSV, as the file can be read line by line, but hard with XML or JSON, which needs to be fully loaded in order to be valid.
 
 
 These properties are conflicting with each other, as no mentioned format supports upgradeability or streamability at the same time.
 
-Finally, it needs to be decided whether the web resource should be immutable or not. Immutable means that the content of the web page can never change. Additions or deletions to the list are not supported, if the list had to be updated, it would have to move to a different URL and the entry in the blockchain has to be updated as well. This is not only a bad thing, as otherwise the client who accesses the resource has to worry about checking for updates.
+Additionally, it needs to be decided whether the web resource should be immutable or not. Immutable means that the content of the web page can never change. Additions or deletions to the list are not supported, if the list had to be updated, it would have to move to a different URL and the entry in the blockchain has to be updated as well. This is not only a bad thing, as otherwise the client who accesses the resource has to worry about checking for updates.
 
-A hash can be generated for an immutable file, which could be stored in the blockchain as well and allow the clients to verify that the list has not been altered since it was registered in the smart contract, which is more in the spirit of the blockchain. If an asset is immutable, it can be easily outsourced to a CDN, which are harder to take down using a DDoS attack.
-In summary, immutability makes it slower (and potentially more expensive) to register changes, but also has advantages.
+A hash can be generated for an immutable file, which could be stored in the blockchain as well and allow the clients to verify that the list has not been altered since it was registered in the smart contract, which is more inline with the rest of architecture that resides in the blockchain. If an asset is immutable, it can be easily outsourced to a CDN, which is harder to deny using a DDoS attack.
+In summary, immutability makes it slower and more expensive to register changes, but has the advantage of making it easy to manage changes.
 
 \section{Contract 3: Bloom filter}
-The third variant of the smart contract is a standalone contract that solves the scalability issue by storing not the whole list of IP addresses but only limited information from which it can only be said with a likelihood whether an IP address was blocked. The bloom filter contract is a nice balance between leveraging the blockchain and using little space, however it gives up perfect accuracy.
+
+The third variant of the smart contract is a standalone contract that solves the scalability issue by using a bloom filter.
+
+A bloom filter is a probabilistic data structure that is very space efficient. In the context of large amounts of IP addresses, it can be tested if an IP address has been inserted into the bloom filter beforehand with constant space requirements. False positives are possible, false negatives are not.
+
+The bloom filter contract is a balance between leveraging the blockchain and using little space, however perfect accuracy cannot be guaranteed anymore.
 
 \section{IPv6 support}
 
-With IPv4 addresses being 32 bits long, only 232 combinations possible and the amount of free addresses is almost exhausted, we are currently in a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
+With IPv4 addresses being 32 bits long, only $ 2^{32} $ combinations possible and the amount of free addresses is almost exhausted \cite{IPv4Exhaustion}, there currently is a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
 
 Two ways of supporting both IPv4 and IPv6 could be considered.
-The first is to represent IPv4 addresses as IPv6 addresses. The most widespread format is defined in RFC 3493: 80 bits of zeros, 16 bits of ones and then the IPv4 address. For example: The IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. In fact, this notation is supported by the Linux kernel and macOS natively, in a web browser \texttt{http://[::ffff:2e65:6095]} will display the same website as \texttt{http://46.101.96.149}.
+The first is to represent IPv4 addresses as IPv6 addresses. The most widespread format is defined in RFC 3493: 80 bits of zeros, 16 bits of ones, followed the IPv4 address. For example, the IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. In fact, this notation is supported by the Linux kernel and macOS natively, in a web browser \texttt{http://[::ffff:2e65:6095]} will display the same website as \texttt{http://46.101.96.149}.
 
 The other option would be to use a flag indicating whether an address is IPv4 or IPv6. If mainly IPv4 addresses are stored in a contract, this would yield a space benefit.
 Given that there is already a standardized notation for IPv4 in IPv6 format,this thesis is proceeding with the first option.
 
-\section{IP verification}
-IP verification in all variants of the smart contract, owners of destination IP addresses can store source IP addresses they want to be blocked in the smart contract. In order to establish trust, there should be a way to automatically verify the ownership of the destination IP addresses. This is a challenging task, as is explained in this section. Using certificates to validate IP ownerships in Solidity is currently not practical for at least two reasons.
+\section{IP address ownership verification}
+In all variants of the smart contract, owners of destination IP addresses can store source IP addresses they want to be blocked in the smart contract. In order to establish trust, there should be a way to automatically verify the ownership of the destination IP addresses. This is a challenging task, as is explained in this section. Using certificates to validate IP ownerships in Solidity is currently not practical for at least two reasons.
 
 It is a computationally expensive task that would require more gas than the gas limit allows and there is no implementation of certificate verification in Solidity. Certificate verification, as it is most commonly done with OpenSSL, would have to be ported ported to Solidity, which is complex.
 There is however a proposal to add certificate validation on a language-level \cite{EIP74}. As of writing, the exact implementation is not clear, with parts of the community vouching for direct RSA signature verification, and other parts wanting BigInt Support which could then enable certificate validation.
