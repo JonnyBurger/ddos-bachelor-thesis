@@ -74,6 +74,7 @@ test('Should be to create customer IPv4 if in same subnet', async t => {
         }
     );
     const result = await promisify(t.context.web3.eth.getTransaction)(hash);
+    // TODO: Do something
 });
 
 test('Should not be able to create customer IPv4 if not owner', async t => {
