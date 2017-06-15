@@ -1,10 +1,11 @@
 pragma solidity 0.4.9;
 
-contract HashFunction {
+contract BloomFilter {
     uint length = 0;
     uint k1 = 0;
     uint h1 = 0;
     uint rem = 0;
+    // Hash Function
     function stringToUint(string s) constant returns (uint result) {
         bytes memory b = bytes(s);
         uint i;
@@ -19,10 +20,13 @@ contract HashFunction {
     function getSolidityByte(string s) constant returns (uint result) {
         return uint(bytes(s)[0]);
     }
-    function HashFunction(string key, uint seed) {
+
+    function hashFn(string key, uint seed) constant returns (uint ret) {
         reset(seed);
         hash(key);
+        return result();
     }
+
     function hash(string key) {
         uint top;
         uint len = bytes(key).length;
@@ -82,10 +86,10 @@ contract HashFunction {
 
         k1 = _k1;
     }
+
     function result() constant returns (uint ret) {
         uint _k1 = k1;
         uint _h1 = h1;
-        return _k1;
         if (_k1 > 0) {
             _k1 = (_k1 * 0x2d51 + (_k1 & 0xffff) * 0xcc9e0000) & 0xffffffff;
             _k1 = (_k1 << 15) | (_k1 >> 17);
@@ -102,10 +106,71 @@ contract HashFunction {
 
         return _h1 >> 0;
     }
+
     function reset(uint seed) {
         h1 = seed;
         rem = 0;
         k1 = 0;
         length = 0;
+    }
+
+    uint hashes = 7;
+    uint[] seeds = [145,844,423,111,333,7111,9];
+    uint bits = 128;
+    uint[] buffer;
+
+    function BloomFilter() {
+        buffer = new uint[](bits);
+    }
+    
+    function clear() {
+        for (uint i = 0; i < bits; i++) {
+            buffer[i] = 0;
+        }
+    }
+    
+    function setbit(uint bit) {
+        var pos = 0;
+        var shift = bit;
+        while (shift > 7) {
+            pos++;
+            shift -= 8;
+        }
+
+        var bitfield = buffer[pos];
+        bitfield |= (0x1 << shift);
+        buffer[pos] = bitfield;
+    }
+    
+    function getbit(uint bit) constant returns (bool truthy){
+        var pos = 0;
+        var shift = bit;
+        while (shift > 7) {
+            pos++;
+            shift -= 8;
+        }
+
+        var bitfield = buffer[pos];
+        return (bitfield & (0x1 << shift)) != 0;
+    }
+
+    function addOne(string str) {
+        for (uint i = 0; i < hashes; i++) {
+            var _hash = hashFn(str, seeds[i]);
+            var bit = _hash % bits;
+            setbit(bit);
+        }
+    }
+
+    function has(string str) constant returns (bool truthy) {
+        for (uint i = 0; i < hashes; i++) {
+            var _hash = hashFn(str, seeds[i]);
+            var bit = _hash % bits;
+            var isSet = getbit(bit);
+            if (!isSet) {
+                return false;
+            }
+        }
+        return true;
     }
 }
