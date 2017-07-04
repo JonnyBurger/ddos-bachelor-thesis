@@ -2,20 +2,25 @@
 
 \section{Blockchains and Ethereum}
 
-A Blockchain is a decentralized database consisting of a chain of cryptographically secured units, called 'blocks'. Each block references the previous block and cannot be modified without breaking the subsequent blocks.
-Blockchain technology had it's breakthrough with Bitcoin, a cryptocurrency.
-
-Ethereum \cite{Ethereum} is a further development of the Bitcoin technology, with added support for scriptable 'smart contracts'. A smart contract is a protocol that automatically enforces the terms of a contract.
+A Blockchain is a decentralized database consisting of a chain of cryptographically secured units, called 'blocks'. Each block references the previous block and cannot be modified without breaking the subsequent blocks. A blockchain is continuously growing, as new data is inserted at the end of the chain.
+The most popular application for blockchains are digital crypto currencies, the most widely used implementation is Bitcoin. With Bitcoin, which had it's breakthrough in 2008, network users can exchange tokens securely over a completely decentralized protocol. Because of this usefulness, these tokens are valued with real money, the total market capitalization of Bitcoin is several dozen millions.
+ 
+Ethereum \cite{Ethereum} is blockchain protocol that is inspired by Bitcoin, but not only allows for sending and receiving of tokens, but also offers a scripting language called Solidity, which allows anyone to write programs which can be run on the blockchain. Examples for applications that could run on Ethereum are games like Tic-Tac-Toe or Poker, finance applications like venture capital funds and Initial Coin Offerings (a company raising funds by selling shares of it to investors).
+An application is also called a smart contract and allows for storage of arbitrary information and allows for users to send transactions that mutate the storage. The creator of the smart contract controls with code the permissions of the users, the conditions and behaviors of the mutations. This enables a wide variety of possible applications, including a collaborative DDoS mitigation solution, which this thesis is about.
 
 \section{Denial of Service and DDoS}
 
-A Denial of Service (DoS) is when a machine or network resource is disrupted. An attacker can force a DoS by crafting a request payload causing a lot of computational work on the target machine or by flooding the target with requests.
+A Denial of Service (DoS) is when a machine or network resource that should be online is being disrupted. An attacker can either force a DoS by crafting a request payload causing a lot of computational work on the target machine or by flooding the target with requests. The motivation behind a DoS attack is that the attacker sees benefit in the victim's service being disrupted, be that disagreement with the service offered (activist attack), that the service is from a competitor, or that taking down a service brings pleasure to the victim.
 
-A Distributed Denial of Service (DDoS) attack is a DoS attack where the requests are coming from many different sources.
+A Distributed Denial of Service (DDoS) attack is a DoS attack where the requests are coming from many different sources. By distributing the requests, a denial of service attack can reach much higher magnitudes in terms of traffic and can become much harder to control.
+Usually, an attacker takes control of as many internet-connected devices as possible by spreading malware, and then directing these devices to attack the victim.
+
 
 \section{Motivation}
 
-The amount of DDoS attacks globally is on the rise \cite{DDoSRise} and mitigation is happening only with limited success. With Ethereum, a programmable blockchain, a new opportunity emerges for signaling DDoS attacks collaboratively with no additional infrastructure. 
+The amount of DDoS attacks globally is on the rise \cite{DDoSRise} and mitigation is happening only with limited success. 
+DDoS protection is a burden for most services and requires human and financial resources. A standard tool for signaling DDoS attacks that can be used collaboratively would lower the investment needed to prepare for DDoS attacks.
+The Ethereum blockchain is a database that is already available and that can not be taken down. With Solidity, the blockchain is scriptable and interfaces for storing and retrieving IP addresses can be programmed. With Ethereum being an readily available infrastructure independent from web services, it opens up an opportunity for storing signals of IP addresses.
 
 \section{Description of Work}
 
