@@ -10,7 +10,7 @@ An application is also called a smart contract and allows for storage of arbitra
 
 \section{Denial of Service and DDoS}
 
-A Denial of Service (DoS) is when a machine or network resource that should be online is being disrupted. An attacker can either force a DoS by crafting a request payload causing a lot of computational work on the target machine or by flooding the target with requests. The motivation behind a DoS attack is that the attacker sees benefit in the victim's service being disrupted, be that disagreement with the service offered (activist attack), that the service is from a competitor, or that taking down a service brings pleasure to the victim.
+A Denial of Service (DoS) is when a machine or network resource that should be online is being disrupted \cite{USCERT}. An attacker can either force a DoS by crafting a request payload causing a lot of computational work on the target machine or by flooding the target with requests. The motivation behind a DoS attack is that the attacker sees benefit in the victim's service being disrupted, be that disagreement with the service offered (activist attack), that the service is from a competitor, or that taking down a service brings pleasure to the victim \cite{DDoSOverview}.
 
 A Distributed Denial of Service (DDoS) attack is a DoS attack where the requests are coming from many different sources. By distributing the requests, a denial of service attack can reach much higher magnitudes in terms of traffic and can become much harder to control.
 Usually, an attacker takes control of as many internet-connected devices as possible by spreading malware, and then directing these devices to attack the victim.
@@ -19,8 +19,10 @@ Usually, an attacker takes control of as many internet-connected devices as poss
 \section{Motivation}
 
 The amount of DDoS attacks globally is on the rise \cite{DDoSRise} and mitigation is happening only with limited success. 
-DDoS protection is a burden for most services and requires human and financial resources. A standard tool for signaling DDoS attacks that can be used collaboratively would lower the investment needed to prepare for DDoS attacks.
-The Ethereum blockchain is a database that is already available and that can not be taken down. With Solidity, the blockchain is scriptable and interfaces for storing and retrieving IP addresses can be programmed. With Ethereum being an readily available infrastructure independent from web services, it opens up an opportunity for storing signals of IP addresses.
+DDoS protection is a burden for most services and requires a lot of human and financial resources, such that it is hard to justify for many services to invest in DDoS protection. A standard tool for signaling DDoS attacks that can be used collaboratively would lower the investment needed to prepare for DDoS attacks.
+The Ethereum blockchain is a database that is already available and that can not be taken down \cite{Ethereum}. With Solidity, the blockchain is scriptable and interfaces for storing and retrieving IP addresses can be programmed. With Ethereum being an readily available infrastructure independent from web services, it opens up an opportunity for storing signals of IP addresses.
+
+Existing DDoS signaling systems such as described in \cite{IETFDraft} send messages about attack information in key-value form using server infrastructure. The Ethereum blockchain allows to signal messages that have a similar format. This presents a chance to decrease the infrastructure
 
 \section{Description of Work}
 

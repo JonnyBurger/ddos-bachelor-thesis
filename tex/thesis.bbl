@@ -28,6 +28,26 @@
       \verb https://ethereum.org/
       \endverb
     \endentry
+    \entry{USCERT}{online}{}
+      \name{author}{1}{}{%
+        {{hash=68a43a14afa6973a1781d4aba55f1691}{%
+           family={US-CERT},
+           family_i={U\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{68a43a14afa6973a1781d4aba55f1691}
+      \strng{fullhash}{68a43a14afa6973a1781d4aba55f1691}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{04}
+      \field{month}{11}
+      \field{title}{Understanding Denial-of-Service Attacks}
+      \field{year}{2009}
+      \verb{url}
+      \verb https://www.us-cert.gov/ncas/tips/ST04-015
+      \endverb
+    \endentry
     \entry{DDoSRise}{article}{}
       \name{author}{1}{}{%
         {{hash=eeb4981be436cd3154408ddf34a9eb4c}{%
