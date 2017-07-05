@@ -1,9 +1,9 @@
 \chapter{Related Work}
 
-There is a wide range of articles discussing DDoS mitigation. Osanaiya et al. \cite{DDoSOverview} show that the majority of proposed solutions need to be deployed on the access point and are not distributed.
+There is a wide range of articles discussing DDoS mitigation. Osanaiya et al. \cite{DDoSOverview} have analyzed 96 publications about DDoS. Out of 36 DDoS attack defenses described in the publications, 6 of them are distributed, while 26 of them are installed on the access point.
 
-DefCOM \cite{DefCOM} is a peer-to-peer framework for collaborative DDoS Defense that is being installed on multiple nodes in one network. The workload is distributed between the peers where each peer can have up to 3 tasks: Classifying, Rate Limiting and Alert Generation.
+DefCOM \cite{DefCOM} is a peer-to-peer framework for collaborative DDoS Defense that is being installed on multiple nodes in one network. The workload is distributed between the peers where each peer can have up to 3 tasks: Classifying, Rate Limiting and Alert Generation. DefCOM does not contain a new kind of DDoS response mechanism, but builds a lightweight framework for communication between nodes that allows prioritizing.
 
-A proposal submitted to the Internet Engineering Task Force (IETF) \cite{IETFDraft} describes a peer-to-peer protocol for signaling source IP addresses of DDoS attacks which also works on a inter-organization level.
+A proposal submitted to the Internet Engineering Task Force (IETF) \cite{IETFDraft} describes a peer-to-peer protocol called "DDoS Open Threat Signaling" for signaling source IP addresses of DDoS attacks. The protocol that the authors propose is over HTTPS and REST-API-based. The communication can be intra- or  inter-organizational. DOTS implements handshake calls, sending mitigation requests with various parameters, and reporting on the efficacy. The draft expired on June 30th 2017 because of inactivity according to IETF guidelines.
 
-This thesis aims to further explore the idea laid out by the paper "A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN" \cite{OriginalPaper}.
+This thesis aims to further develop the idea laid out by the paper "A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN" \cite{OriginalPaper} (further called 'Original Paper'). The original paper proposes to use the Ethereum blockchain to signal DDoS attacks and demonstrates a proof of concept smart contract that allows storage of IP addresses. 

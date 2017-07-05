@@ -1,0 +1,386 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{none/global/}
+    \entry{Ethereum}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{Ethereum: Blockchain App Platform}
+      \verb{url}
+      \verb https://ethereum.org/
+      \endverb
+    \endentry
+    \entry{DDoSRise}{article}{}
+      \name{author}{1}{}{%
+        {{hash=eeb4981be436cd3154408ddf34a9eb4c}{%
+           family={Mansfield-Devine},
+           family_i={M\bibinithyphendelim D\bibinitperiod},
+           given={Steve},
+           given_i={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{eeb4981be436cd3154408ddf34a9eb4c}
+      \strng{fullhash}{eeb4981be436cd3154408ddf34a9eb4c}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1353-4858}
+      \field{journaltitle}{Network Security}
+      \field{number}{10}
+      \field{title}{The growth and evolution of DDoS}
+      \field{volume}{2015}
+      \field{year}{2015}
+      \field{pages}{13\bibrangedash 20}
+      \range{pages}{8}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/S1353-4858(15)30092-1
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S1353485815300921
+      \endverb
+    \endentry
+    \entry{OriginalPaper}{article}{}
+      \name{author}{6}{}{%
+        {{hash=5c15a063ed161b173a59c0381ee9a1ab}{%
+           family={Rodriguez},
+           family_i={R\bibinitperiod},
+           given={B.},
+           given_i={B\bibinitperiod}}}%
+        {{hash=064391a746a3a80e139782c8263544ec}{%
+           family={Bocek},
+           family_i={B\bibinitperiod},
+           given={T.},
+           given_i={T\bibinitperiod}}}%
+        {{hash=eaa2eb571243e2a8a138a11e3c448a7b}{%
+           family={Lareida},
+           family_i={L\bibinitperiod},
+           given={A.},
+           given_i={A\bibinitperiod}}}%
+        {{hash=939b9672f7979272a77ff0113faf9146}{%
+           family={Hausheer},
+           family_i={H\bibinitperiod},
+           given={D.},
+           given_i={D\bibinitperiod}}}%
+        {{hash=d2dd6b4439f5f153d78c2c5ffe47cdc4}{%
+           family={Rafati},
+           family_i={R\bibinitperiod},
+           given={S.},
+           given_i={S\bibinitperiod}}}%
+        {{hash=7afe3995f2e832c47afd5a3a415ad9bd}{%
+           family={Stiller},
+           family_i={S\bibinitperiod},
+           given={B.},
+           given_i={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{ce3888c5f5ecd5857d8cf635adc56018}
+      \strng{fullhash}{e1a0a579a4cf950faea50ecb2cb3ed1d}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN}
+      \field{year}{2017}
+    \endentry
+    \entry{DDoSOverview}{article}{}
+      \name{author}{3}{}{%
+        {{hash=2b5d15db6ca6c5534037203c7e68b957}{%
+           family={Osanaiye},
+           family_i={O\bibinitperiod},
+           given={Opeyemi},
+           given_i={O\bibinitperiod}}}%
+        {{hash=36fd080baa49e91a3752659a8f2505dc}{%
+           family={Choo},
+           family_i={C\bibinitperiod},
+           given={Kim-Kwang\bibnamedelima Raymond},
+           given_i={K\bibinithyphendelim K\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=ff76a3061751563306222a2542e2e4b0}{%
+           family={Dlodlo},
+           family_i={D\bibinitperiod},
+           given={Mqhele},
+           given_i={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3e0c99ff0b1b0e1c463c713f4f6f43a8}
+      \strng{fullhash}{3e0c99ff0b1b0e1c463c713f4f6f43a8}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1084-8045}
+      \field{journaltitle}{Journal of Network and Computer Applications}
+      \field{title}{Distributed denial of service (DDoS) resilience in cloud: Review and conceptual cloud DDoS mitigation framework}
+      \field{volume}{67}
+      \field{year}{2016}
+      \field{pages}{147\bibrangedash 165}
+      \range{pages}{19}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/j.jnca.2016.01.001
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S1084804516000023
+      \endverb
+      \keyw{Flooding attacks}
+    \endentry
+    \entry{DefCOM}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=c3aaf2ed6dc1f280998734aafc2196a5}{%
+           family={Oikonomou},
+           family_i={O\bibinitperiod},
+           given={George},
+           given_i={G\bibinitperiod}}}%
+        {{hash=03b7274a86dbf5ea13d3abde794916cb}{%
+           family={Mirkovic},
+           family_i={M\bibinitperiod},
+           given={Jelena},
+           given_i={J\bibinitperiod}}}%
+        {{hash=25f473290c8bb7bab58c095d52a08e35}{%
+           family={Reiher},
+           family_i={R\bibinitperiod},
+           given={Peter},
+           given_i={P\bibinitperiod}}}%
+        {{hash=1c9f757e7ed78dc7b84520f19ed2974d}{%
+           family={Robinson},
+           family_i={R\bibinitperiod},
+           given={Max},
+           given_i={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{16b56d593a9b15fe39ba5de26294427c}
+      \strng{fullhash}{0bced6a6d05b815203adcddfa04de630}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Computer Security Applications Conference, 2006. ACSAC'06. 22nd Annual}
+      \field{title}{A framework for a collaborative DDoS defense}
+      \field{year}{2006}
+      \field{pages}{33\bibrangedash 42}
+      \range{pages}{10}
+    \endentry
+    \entry{IETFDraft}{online}{}
+      \name{author}{7}{}{%
+        {{hash=5b581cb7ca40c871a447deacddf366a8}{%
+           family={Nishizuka},
+           family_i={N\bibinitperiod},
+           given={K.},
+           given_i={K\bibinitperiod}}}%
+        {{hash=f7fd09dba1ffd65728eaa5155f6353ca}{%
+           family={Xia},
+           family_i={X\bibinitperiod},
+           given={L.},
+           given_i={L\bibinitperiod}}}%
+        {{hash=ae1ea2fb9e9a22952d38e04bb52d664c}{%
+           family={Xia},
+           family_i={X\bibinitperiod},
+           given={J.},
+           given_i={J\bibinitperiod}}}%
+        {{hash=84feb515519431c80c5479697032f133}{%
+           family={Zhang},
+           family_i={Z\bibinitperiod},
+           given={D.},
+           given_i={D\bibinitperiod}}}%
+        {{hash=f463111cd3ccb0897abd52bb59c063b1}{%
+           family={Fang},
+           family_i={F\bibinitperiod},
+           given={L.},
+           given_i={L\bibinitperiod}}}%
+        {{hash=b2b811960a12dac88a900c1c6a8c5e6b}{%
+           family={Gray},
+           family_i={G\bibinitperiod},
+           given={C.},
+           given_i={C\bibinitperiod}}}%
+        {{hash=1378c494cf08df28c16d3e3a54aa09d6}{%
+           family={Compton},
+           family_i={C\bibinitperiod},
+           given={R.},
+           given_i={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{11093ce61cdae76e0297a4ed4af3bb99}
+      \strng{fullhash}{390cc6251da79d2a736dccf8b393bf19}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Inter-organization cooperative DDoS protection mechanism}
+      \field{urlday}{27}
+      \field{urlmonth}{12}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://tools.ietf.org/html/draft-nishizuka-dots-inter-domain-mechanism-02
+      \endverb
+    \endentry
+    \entry{IPv4Exhaustion}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9029d6b9ce9dc3d580bdd4ff31ab0a3c}{%
+           family={Centre},
+           family_i={C\bibinitperiod},
+           given={RIPE\bibnamedelimb Network\bibnamedelima Coordination},
+           given_i={R\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{9029d6b9ce9dc3d580bdd4ff31ab0a3c}
+      \strng{fullhash}{9029d6b9ce9dc3d580bdd4ff31ab0a3c}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{IPv4 Exhaustion}
+      \field{year}{2015}
+      \verb{url}
+      \verb https://www.ripe.net/publications/ipv6-info-centre/about-ipv6/ipv4-exhaustion
+      \endverb
+    \endentry
+    \entry{EIP74}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2cd3425b3cc606757d03f154c26ed470}{%
+           family={Beregszaszi},
+           family_i={B\bibinitperiod},
+           given={Alex},
+           given_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{2cd3425b3cc606757d03f154c26ed470}
+      \strng{fullhash}{2cd3425b3cc606757d03f154c26ed470}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Ethereum Improvement Proposal 74: Support RSA signature verification}
+      \verb{url}
+      \verb https://github.com/ethereum/EIPs/issues/74
+      \endverb
+    \endentry
+    \entry{BaselineRequirements}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{Baseline Requirements Certificate Policy for the Issuance and Management of Publicly-Trusted Certificates}
+      \verb{url}
+      \verb https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.5.pdf
+      \endverb
+    \endentry
+    \entry{GlobalSign}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{Securing a Public IP Address - SSL Certificates}
+      \verb{url}
+      \verb https://support.globalsign.com/customer/portal/articles/1216536-securing-a-public-ip-address---ssl-certificates
+      \endverb
+    \endentry
+    \entry{Solc}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{The Solidity Contract-Oriented Programming Language}
+      \verb{url}
+      \verb https://github.com/ethereum/solidity
+      \endverb
+    \endentry
+    \entry{Truffle}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{Truffle Framework}
+      \verb{url}
+      \verb http://truffleframework.com/
+      \endverb
+    \endentry
+    \entry{Solium}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{Solium Framework}
+      \verb{url}
+      \verb https://github.com/duaraghav8/Solium
+      \endverb
+    \endentry
+    \entry{ThinkingAboutSmartContractSecurity}{online}{}
+      \name{author}{1}{}{%
+        {{hash=850981945102d0f671b6762173c8988a}{%
+           family={Buterin},
+           family_i={B\bibinitperiod},
+           given={Vitalik},
+           given_i={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{850981945102d0f671b6762173c8988a}
+      \strng{fullhash}{850981945102d0f671b6762173c8988a}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Thinking about Smart contract security}
+      \field{urlday}{18}
+      \field{urlmonth}{05}
+      \field{urlyear}{2017}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://blog.ethereum.org/2016/06/19/thinking-smart-contract-security
+      \endverb
+    \endentry
+    \entry{EIP150}{online}{}
+      \name{author}{1}{}{%
+        {{hash=886e39f0ae654cb1b8ccd1961f0a72c6}{%
+           family={Buterin},
+           family_i={B\bibinitperiod},
+           given={V.},
+           given_i={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{886e39f0ae654cb1b8ccd1961f0a72c6}
+      \strng{fullhash}{886e39f0ae654cb1b8ccd1961f0a72c6}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Ethereum Improvement Proposal 150: Long-term gas cost changes for IO-heavy operations to mitigate transaction spam attacks}
+      \verb{url}
+      \verb https://github.com/ethereum/EIPs/issues/150
+      \endverb
+    \endentry
+    \entry{DefaultGoEthereumConfiguration}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{go-ethereum Github Repository. File \texttt{eth/config.go}}
+      \verb{url}
+      \verb https://github.com/ethereum/go-ethereum/blob/fff16169c64a83d57d2eed35b6a2e33248c7d5eb/eth/config.go%5C#L45
+      \endverb
+    \endentry
+    \entry{ETHGasStationAnnouncement}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8afee99dd9fa1066810fbad65c6ed7f7}{%
+           family={@ethgasstation},
+           family_i={@\bibinitperiod}}}%
+      }
+      \strng{namehash}{8afee99dd9fa1066810fbad65c6ed7f7}
+      \strng{fullhash}{8afee99dd9fa1066810fbad65c6ed7f7}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Safe Low Gas Price}
+      \verb{url}
+      \verb https://medium.com/@ethgasstation/the-safe-low-gas-price-fb44fdc85b91
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
