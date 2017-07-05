@@ -48,77 +48,6 @@
       \verb https://www.us-cert.gov/ncas/tips/ST04-015
       \endverb
     \endentry
-    \entry{DDoSRise}{article}{}
-      \name{author}{1}{}{%
-        {{hash=eeb4981be436cd3154408ddf34a9eb4c}{%
-           family={Mansfield-Devine},
-           family_i={M\bibinithyphendelim D\bibinitperiod},
-           given={Steve},
-           given_i={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{eeb4981be436cd3154408ddf34a9eb4c}
-      \strng{fullhash}{eeb4981be436cd3154408ddf34a9eb4c}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{1353-4858}
-      \field{journaltitle}{Network Security}
-      \field{number}{10}
-      \field{title}{The growth and evolution of DDoS}
-      \field{volume}{2015}
-      \field{year}{2015}
-      \field{pages}{13\bibrangedash 20}
-      \range{pages}{8}
-      \verb{doi}
-      \verb http://dx.doi.org/10.1016/S1353-4858(15)30092-1
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/S1353485815300921
-      \endverb
-    \endentry
-    \entry{OriginalPaper}{article}{}
-      \name{author}{6}{}{%
-        {{hash=5c15a063ed161b173a59c0381ee9a1ab}{%
-           family={Rodriguez},
-           family_i={R\bibinitperiod},
-           given={B.},
-           given_i={B\bibinitperiod}}}%
-        {{hash=064391a746a3a80e139782c8263544ec}{%
-           family={Bocek},
-           family_i={B\bibinitperiod},
-           given={T.},
-           given_i={T\bibinitperiod}}}%
-        {{hash=eaa2eb571243e2a8a138a11e3c448a7b}{%
-           family={Lareida},
-           family_i={L\bibinitperiod},
-           given={A.},
-           given_i={A\bibinitperiod}}}%
-        {{hash=939b9672f7979272a77ff0113faf9146}{%
-           family={Hausheer},
-           family_i={H\bibinitperiod},
-           given={D.},
-           given_i={D\bibinitperiod}}}%
-        {{hash=d2dd6b4439f5f153d78c2c5ffe47cdc4}{%
-           family={Rafati},
-           family_i={R\bibinitperiod},
-           given={S.},
-           given_i={S\bibinitperiod}}}%
-        {{hash=7afe3995f2e832c47afd5a3a415ad9bd}{%
-           family={Stiller},
-           family_i={S\bibinitperiod},
-           given={B.},
-           given_i={B\bibinitperiod}}}%
-      }
-      \strng{namehash}{ce3888c5f5ecd5857d8cf635adc56018}
-      \strng{fullhash}{e1a0a579a4cf950faea50ecb2cb3ed1d}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN}
-      \field{year}{2017}
-    \endentry
     \entry{DDoSOverview}{article}{}
       \name{author}{3}{}{%
         {{hash=2b5d15db6ca6c5534037203c7e68b957}{%
@@ -158,43 +87,34 @@
       \endverb
       \keyw{Flooding attacks}
     \endentry
-    \entry{DefCOM}{inproceedings}{}
-      \name{author}{4}{}{%
-        {{hash=c3aaf2ed6dc1f280998734aafc2196a5}{%
-           family={Oikonomou},
-           family_i={O\bibinitperiod},
-           given={George},
-           given_i={G\bibinitperiod}}}%
-        {{hash=03b7274a86dbf5ea13d3abde794916cb}{%
-           family={Mirkovic},
-           family_i={M\bibinitperiod},
-           given={Jelena},
-           given_i={J\bibinitperiod}}}%
-        {{hash=25f473290c8bb7bab58c095d52a08e35}{%
-           family={Reiher},
-           family_i={R\bibinitperiod},
-           given={Peter},
-           given_i={P\bibinitperiod}}}%
-        {{hash=1c9f757e7ed78dc7b84520f19ed2974d}{%
-           family={Robinson},
-           family_i={R\bibinitperiod},
-           given={Max},
-           given_i={M\bibinitperiod}}}%
+    \entry{DDoSRise}{article}{}
+      \name{author}{1}{}{%
+        {{hash=eeb4981be436cd3154408ddf34a9eb4c}{%
+           family={Mansfield-Devine},
+           family_i={M\bibinithyphendelim D\bibinitperiod},
+           given={Steve},
+           given_i={S\bibinitperiod}}}%
       }
-      \list{organization}{1}{%
-        {IEEE}%
-      }
-      \strng{namehash}{16b56d593a9b15fe39ba5de26294427c}
-      \strng{fullhash}{0bced6a6d05b815203adcddfa04de630}
+      \strng{namehash}{eeb4981be436cd3154408ddf34a9eb4c}
+      \strng{fullhash}{eeb4981be436cd3154408ddf34a9eb4c}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{Computer Security Applications Conference, 2006. ACSAC'06. 22nd Annual}
-      \field{title}{A framework for a collaborative DDoS defense}
-      \field{year}{2006}
-      \field{pages}{33\bibrangedash 42}
-      \range{pages}{10}
+      \field{issn}{1353-4858}
+      \field{journaltitle}{Network Security}
+      \field{number}{10}
+      \field{title}{The growth and evolution of DDoS}
+      \field{volume}{2015}
+      \field{year}{2015}
+      \field{pages}{13\bibrangedash 20}
+      \range{pages}{8}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/S1353-4858(15)30092-1
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S1353485815300921
+      \endverb
     \endentry
     \entry{IETFDraft}{online}{}
       \name{author}{7}{}{%
@@ -247,6 +167,86 @@
       \verb{url}
       \verb https://tools.ietf.org/html/draft-nishizuka-dots-inter-domain-mechanism-02
       \endverb
+    \endentry
+    \entry{OriginalPaper}{article}{}
+      \name{author}{6}{}{%
+        {{hash=5c15a063ed161b173a59c0381ee9a1ab}{%
+           family={Rodriguez},
+           family_i={R\bibinitperiod},
+           given={B.},
+           given_i={B\bibinitperiod}}}%
+        {{hash=064391a746a3a80e139782c8263544ec}{%
+           family={Bocek},
+           family_i={B\bibinitperiod},
+           given={T.},
+           given_i={T\bibinitperiod}}}%
+        {{hash=eaa2eb571243e2a8a138a11e3c448a7b}{%
+           family={Lareida},
+           family_i={L\bibinitperiod},
+           given={A.},
+           given_i={A\bibinitperiod}}}%
+        {{hash=939b9672f7979272a77ff0113faf9146}{%
+           family={Hausheer},
+           family_i={H\bibinitperiod},
+           given={D.},
+           given_i={D\bibinitperiod}}}%
+        {{hash=d2dd6b4439f5f153d78c2c5ffe47cdc4}{%
+           family={Rafati},
+           family_i={R\bibinitperiod},
+           given={S.},
+           given_i={S\bibinitperiod}}}%
+        {{hash=7afe3995f2e832c47afd5a3a415ad9bd}{%
+           family={Stiller},
+           family_i={S\bibinitperiod},
+           given={B.},
+           given_i={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{ce3888c5f5ecd5857d8cf635adc56018}
+      \strng{fullhash}{e1a0a579a4cf950faea50ecb2cb3ed1d}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN}
+      \field{year}{2017}
+    \endentry
+    \entry{DefCOM}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=c3aaf2ed6dc1f280998734aafc2196a5}{%
+           family={Oikonomou},
+           family_i={O\bibinitperiod},
+           given={George},
+           given_i={G\bibinitperiod}}}%
+        {{hash=03b7274a86dbf5ea13d3abde794916cb}{%
+           family={Mirkovic},
+           family_i={M\bibinitperiod},
+           given={Jelena},
+           given_i={J\bibinitperiod}}}%
+        {{hash=25f473290c8bb7bab58c095d52a08e35}{%
+           family={Reiher},
+           family_i={R\bibinitperiod},
+           given={Peter},
+           given_i={P\bibinitperiod}}}%
+        {{hash=1c9f757e7ed78dc7b84520f19ed2974d}{%
+           family={Robinson},
+           family_i={R\bibinitperiod},
+           given={Max},
+           given_i={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{16b56d593a9b15fe39ba5de26294427c}
+      \strng{fullhash}{0bced6a6d05b815203adcddfa04de630}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Computer Security Applications Conference, 2006. ACSAC'06. 22nd Annual}
+      \field{title}{A framework for a collaborative DDoS defense}
+      \field{year}{2006}
+      \field{pages}{33\bibrangedash 42}
+      \range{pages}{10}
     \endentry
     \entry{IPv4Exhaustion}{article}{}
       \name{author}{1}{}{%
