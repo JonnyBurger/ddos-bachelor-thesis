@@ -13,13 +13,13 @@ test.beforeEach(t => {
 });
 
 test('Should be able to deploy with correct parameters', async t => {
-    const parameters = [1234, 123456, 'abc'];
+    const parameters = [1234, 123456];
     await deployContract(t.context.web3, t.context.accounts[0], ReferenceContract, parameters);
     t.pass();
 });
 
-test.failing('Should not be able to deploy with wrong parameter types', async t => {
-    const parameters = [473432984723947023942034324234234, 324732894, 'abc'];
+test('Should not be able to deploy with wrong parameter types', async t => {
+    const parameters = ['yayayyaya', 324732894];
     try {
         await deployContract(t.context.web3, t.context.accounts[0], ReferenceContract, parameters);
         t.fail();
@@ -36,9 +36,9 @@ test('Should be able to get blocked IPs', async t => {
         .map((a, i) => `127.0.0.${i + 1}`)
         .map(ip.toLong);
 
-    const parameters = [ip.toLong('127.0.0.1'), 0, 'abc'];
+    const parameters = [ip.toLong('127.0.0.1'), 0];
     const contract = await deployContract(t.context.web3, t.context.accounts[0], ReferenceContract, parameters);
-    await promisify(contract.createCustomerIPv4)(
+    await promisify(contract.createCustomer)(
         t.context.accounts[1].address,
         ip.toLong('127.0.0.0'),
         28,
@@ -47,7 +47,7 @@ test('Should be able to get blocked IPs', async t => {
             gas: 1000000
         }
     );
-    const hash = await promisify(contract.blockIPv4)(
+    const hash = await promisify(contract.block)(
         input,
         parseInt(Date.now() / 1000, 10),
         {
@@ -56,15 +56,16 @@ test('Should be able to get blocked IPs', async t => {
         }
     );
     await promisify(t.context.web3.eth.getTransactionReceipt)(hash);
-    const ips = await promisify(contract.blockedIPv4)();
+    const ips = await promisify(contract.blocked)();
     t.is(ip.fromLong(parseInt(ips[0][0], 10)), '127.0.0.1');
     t.is(ips[0].length, HOW_MANY_IP_ADDRESSES);
 });
 
-test('Should be to create customer IPv4 if in same subnet', async t => {
-    const parameters = [ip.toLong('123.45.67.89'), 24, 'abc'];
+test('Should be to create customer if in same subnet', async t => {
+    const parameters = [ip.toLong('123.45.67.89'), 24];
     const contract = await deployContract(t.context.web3, t.context.accounts[0], ReferenceContract, parameters);
-    const hash = await promisify(contract.createCustomerIPv4)(
+
+    await promisify(contract.createCustomer)(
         t.context.accounts[1].address,
         ip.toLong('123.45.67.99'),
         28,
@@ -73,17 +74,17 @@ test('Should be to create customer IPv4 if in same subnet', async t => {
             gas: 1000000
         }
     );
-    const result = await promisify(t.context.web3.eth.getTransaction)(hash);
-    // TODO: Do something
+    const customerCount = await promisify(contract.customerCount)();
+    t.is(parseInt(customerCount, 10), 1);
 });
 
-test('Should not be able to create customer IPv4 if not owner', async t => {
-    const parameters = [ip.toLong('123.45.67.89'), 24, 'abc'];
+test('Should not be able to create customer if not owner', async t => {
+    const parameters = [ip.toLong('123.45.67.89'), 24];
     const contract = await deployContract(t.context.web3, t.context.accounts[0], ReferenceContract, parameters);
 
     // We expect an error when registering an customer IP
     try {
-        await promisify(contract.createCustomerIPv4)(
+        await promisify(contract.createCustomer)(
             t.context.accounts[1].address,
             ip.toLong('123.45.67.99'),
             28,
@@ -98,13 +99,13 @@ test('Should not be able to create customer IPv4 if not owner', async t => {
     }
 });
 
-test('Should not be able to create customer IPv4 if not in same subnet', async t => {
-    const parameters = [ip.toLong('123.45.67.89'), 24, 'abc'];
+test('Should not be able to create customer if not in same subnet', async t => {
+    const parameters = [ip.toLong('123.45.67.89'), 24];
     const contract = await deployContract(t.context.web3, t.context.accounts[0], ReferenceContract, parameters);
 
     // We expect an error when registering an customer IP
     try {
-        await promisify(contract.createCustomerIPv4)(
+        await promisify(contract.createCustomer)(
             t.context.accounts[1].address,
             ip.toLong('123.45.67.99'),
             20, // Subnet too wide
