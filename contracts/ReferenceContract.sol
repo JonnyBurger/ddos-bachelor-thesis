@@ -13,8 +13,8 @@ contract ArrayStore {
     }
 
     struct Report {
-        uint expiringDate;
-        uint128 sourceIp;
+        uint expirationDate;
+        IPAddress sourceIp;
         IPAddress destinationIp;
     }
 
@@ -37,7 +37,7 @@ contract ArrayStore {
     }
 
     function isNotExpired(Report self) internal returns (bool) {
-        return self.expiringDate >= now;
+        return self.expirationDate >= now;
     }
 
     function getUnexpired(Report[] memory list) internal returns (Report[] memory) {
@@ -62,26 +62,26 @@ contract ArrayStore {
         if (msg.sender != owner) {
             throw;
         }
-        if (!isInSameIPv4Subnet(ip, mask)) {
+        if (!isInSameSubnet(ip, mask)) {
             throw;
         }
         customers[customer] = IPAddress(ip, mask);
         _customerCount++;
     }
 
-    function isInSameIPv4Subnet(uint128 ip, uint8 mask) constant returns (bool) {
+    function isInSameSubnet(uint128 ip, uint8 mask) constant returns (bool) {
         if (mask < ipBoundary.mask) {
             return false;
         }
         return int128(ip) & -1<<(128-ipBoundary.mask) == int128(ipBoundary.ip) & (-1<<(128-ipBoundary.mask));
     }
 
-    function block(uint128[] src, uint expiringDate) {
+    function block(uint128[] src, uint expirationDate) {
         if (msg.sender == owner) {
             for (uint i = 0; i < src.length; i++) {
                 reports.push(Report({
-                    expiringDate: expiringDate,
-                    sourceIp: src[i],
+                    expirationDate: expirationDate,
+                    sourceIp: IPAddress({ip: src[i], mask: 32}),
                     destinationIp: ipBoundary
                 }));
             }
@@ -90,27 +90,29 @@ contract ArrayStore {
         if (customer.ip != 0) {
             for (uint j = 0; j < src.length; j++) {
                 reports.push(Report({
-                    expiringDate: expiringDate,
-                    sourceIp: src[j],
+                    expirationDate: expirationDate,
+                    sourceIp: IPAddress({ip: src[j], mask: 32}),
                     destinationIp: customer
                 }));
             }
         }        
     }
 
-    function blocked() constant returns (uint128[] sourceIp, uint128[] destinationIp, uint8[] mask) {
+    function blocked() constant returns (uint128[] sourceIp, uint8[] sourceMask, uint128[] destinationIp, uint8[] mask) {
         Report[] memory unexpired = getUnexpired(reports);
         
         uint128[] memory src = new uint128[](unexpired.length);
+        uint8[] memory srcmask = new uint8[](unexpired.length);
         uint128[] memory dst = new uint128[](unexpired.length);
-        uint8[] memory msk = new uint8[](unexpired.length);
+        uint8[] memory dstmask = new uint8[](unexpired.length);
 
         for (uint i = 0; i < unexpired.length; i++) {
-            src[i] = unexpired[i].sourceIp;
+            src[i] = unexpired[i].sourceIp.ip;
+            srcmask[i] = unexpired[i].sourceIp.mask;
             dst[i] = unexpired[i].destinationIp.ip;
-            msk[i] = unexpired[i].destinationIp.mask;
+            dstmask[i] = unexpired[i].destinationIp.mask;
         }
-        return (src, dst, msk);
+        return (src, srcmask, dst, dstmask);
     }
 
     function customerCount() constant returns (uint128 count) {

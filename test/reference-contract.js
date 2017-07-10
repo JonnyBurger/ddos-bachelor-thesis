@@ -113,7 +113,7 @@ test('Should not be able to create customer if not owner', async t => {
 			new Address6('::123.45.67.99').bigInteger(),
 			28,
 			{
-				from: t.context.accounts[1].address, // <-– illegal, we are not sending it from the owner IP
+				from: t.context.accounts[1].address, // <- illegal, we are not sending it from the owner IP
 				gas: 1000000
 			}
 		);
