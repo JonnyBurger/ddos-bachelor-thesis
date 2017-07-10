@@ -2085,18 +2085,19 @@
     <bcf:citekey order="10">DefCOM</bcf:citekey>
     <bcf:citekey order="11">IETFDraft</bcf:citekey>
     <bcf:citekey order="12">OriginalPaper</bcf:citekey>
-    <bcf:citekey order="13">IPv4Exhaustion</bcf:citekey>
-    <bcf:citekey order="14">EIP74</bcf:citekey>
-    <bcf:citekey order="15">BaselineRequirements</bcf:citekey>
-    <bcf:citekey order="16">GlobalSign</bcf:citekey>
-    <bcf:citekey order="17">Solc</bcf:citekey>
-    <bcf:citekey order="18">Truffle</bcf:citekey>
-    <bcf:citekey order="19">Solium</bcf:citekey>
-    <bcf:citekey order="20">ThinkingAboutSmartContractSecurity</bcf:citekey>
-    <bcf:citekey order="21">EIP150</bcf:citekey>
-    <bcf:citekey order="22">DefaultGoEthereumConfiguration</bcf:citekey>
-    <bcf:citekey order="23">ETHGasStationAnnouncement</bcf:citekey>
-    <bcf:citekey order="24">EIP150</bcf:citekey>
+    <bcf:citekey order="13">Solc</bcf:citekey>
+    <bcf:citekey order="14">IPv4Exhaustion</bcf:citekey>
+    <bcf:citekey order="15">EIP74</bcf:citekey>
+    <bcf:citekey order="16">BaselineRequirements</bcf:citekey>
+    <bcf:citekey order="17">GlobalSign</bcf:citekey>
+    <bcf:citekey order="18">Solc</bcf:citekey>
+    <bcf:citekey order="19">Truffle</bcf:citekey>
+    <bcf:citekey order="20">Solium</bcf:citekey>
+    <bcf:citekey order="21">ThinkingAboutSmartContractSecurity</bcf:citekey>
+    <bcf:citekey order="22">EIP150</bcf:citekey>
+    <bcf:citekey order="23">DefaultGoEthereumConfiguration</bcf:citekey>
+    <bcf:citekey order="24">ETHGasStationAnnouncement</bcf:citekey>
+    <bcf:citekey order="25">EIP150</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none/global/" type="entry" sortscheme="none" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

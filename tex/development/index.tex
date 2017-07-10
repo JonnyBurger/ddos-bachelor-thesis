@@ -1,7 +1,23 @@
 \chapter{Development}
 
+In the following, three variants of a DDoS attack signaling protocol are being developed. For that, a smart contract is being written in the Soldity programming language \cite{Solc} for each variant. A smart contract strongly resembles a 'class' that is known from object-oriented programming. The following is a 'Hello World' smart contract from the Ethereum website (https://www.ethereum.org/greeter).
+
+\input{snippets/greeter.tex}
+
+Instead of the \texttt{class} keyword, solidity uses a \texttt{contract} keyword. Inheritance is possible using the \texttt{is} (rather than \texttt{extends} in Java) keyword. A contract can, like a class, be instantiated. The constructor is defined by the method within the contract that has the same name as the contract - in this case, \texttt{function greeter(string greeting)} is the constructor of \texttt{greeter}. Methods can be declared public or private. A special type in Solidity is the \texttt{address} type, which can hold an address of an Ethereum network user.
+
+This Solidity code can be compiled to bytecode and deployed on a Ethereum blockchain. When deployed, the contract is stored in a block, alongside with other data that users committed to the Blockchain, and synced to all users of the network (downloading the complete public Ethereum Blockchain uses dozens of Gigabytes). Once the deployment is finished, Ethereum users can instantiate the smart contract. If they choose to do so, they  send a transaction to the Ethereum network and the instance of the contract is registered on the Blockchain. Methods can also be executed by sending a transaction to the Ethereum Blockchain.
+
+In each method body, a \texttt{msg} global object is available, containing information about the transaction being executed, including \texttt{msg.sender} (an \texttt{address}), \texttt{msg.gas}, \texttt{msg.value} (for sending Ether).
+
+In addition to that, a second global variable \texttt{block} gives information about the current block, including \texttt{block.number} and \texttt{block.timestamp}.
+
+A constant method, like \texttt{function greet() constant returns (string)} is a special function that does not trigger a transaction. Instead, it is a getter function that only executes locally. Constant functions provide convienient interfaces for reading data, but all data should be considered public.
+
 \section{Contract 1: Native storage}
-The first variant that will be developed stores all IP addresses in the blockchain natively. The advantage is that all infrastructure is outsourced to the blockchain, making the solution completely decentralized. The disadvantage is that high gas fees make this the most costly solution and that the scale is limited in that the Ethereum blockchain is not designed to store data in the Gigabyte range.
+The first variant stores all IP addresses in the blockchain natively. No optimizations regarding speed and cost are being made, all IP addresses are simply stored in an array.
+
+
 
 \section{Contract 2: Pointer to web resource}
 The second variant of the smart contract works around the space constraints and the big cost of the first variant by storing the list of IP addresses on a web resource and pointing to that on the blockchain. The advantage is that it works on a much larger scale. The disadvantage is that a web server needs to be set up and a separate standard has to be established describing the format of the web resource. This solution is also more prone to connectivity issues and does not take advantage of the decentralization and immutability of the blockchain.

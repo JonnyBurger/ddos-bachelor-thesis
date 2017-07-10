@@ -248,6 +248,15 @@
       \field{pages}{33\bibrangedash 42}
       \range{pages}{10}
     \endentry
+    \entry{Solc}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{The Solidity Contract-Oriented Programming Language}
+      \verb{url}
+      \verb https://github.com/ethereum/solidity
+      \endverb
+    \endentry
     \entry{IPv4Exhaustion}{article}{}
       \name{author}{1}{}{%
         {{hash=9029d6b9ce9dc3d580bdd4ff31ab0a3c}{%
@@ -303,15 +312,6 @@
       \field{title}{Securing a Public IP Address - SSL Certificates}
       \verb{url}
       \verb https://support.globalsign.com/customer/portal/articles/1216536-securing-a-public-ip-address---ssl-certificates
-      \endverb
-    \endentry
-    \entry{Solc}{online}{}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labeltitlesource}{title}
-      \field{title}{The Solidity Contract-Oriented Programming Language}
-      \verb{url}
-      \verb https://github.com/ethereum/solidity
       \endverb
     \endentry
     \entry{Truffle}{online}{}
