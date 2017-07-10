@@ -5,15 +5,16 @@ contract ArrayStore {
     IPAddress ipBoundary;
     address owner;
     mapping (address => IPAddress) customers;
-    uint32 _customerCount;
+    uint128 _customerCount;
+
     struct IPAddress  {
-        uint32 ip;
+        uint128 ip;
         uint8 mask;
     }
 
     struct Report {
         uint expiringDate;
-        uint32 sourceIp;
+        uint128 sourceIp;
         IPAddress destinationIp;
     }
 
@@ -43,7 +44,13 @@ contract ArrayStore {
         return filter(list, isNotExpired);
     }
 
-    function ArrayStore(uint32 ip, uint8 mask) {
+    modifier needsMask(uint8 mask) {
+        if (mask == 0) {
+            throw;
+        }
+        _;
+    }
+    function ArrayStore(uint128 ip, uint8 mask) {
         owner = msg.sender;
         ipBoundary = IPAddress({
             ip: ip,
@@ -51,7 +58,7 @@ contract ArrayStore {
         });
     }
 
-    function createCustomer(address customer, uint32 ip, uint8 mask) {
+    function createCustomer(address customer, uint128 ip, uint8 mask) needsMask(mask) {
         if (msg.sender != owner) {
             throw;
         }
@@ -62,14 +69,14 @@ contract ArrayStore {
         _customerCount++;
     }
 
-    function isInSameIPv4Subnet(uint32 ip, uint8 mask) constant returns (bool) {
+    function isInSameIPv4Subnet(uint128 ip, uint8 mask) constant returns (bool) {
         if (mask < ipBoundary.mask) {
             return false;
         }
-        return int32(ip) & -1<<(32-ipBoundary.mask) == int32(ipBoundary.ip) & (-1<<(32-ipBoundary.mask));
+        return int128(ip) & -1<<(128-ipBoundary.mask) == int128(ipBoundary.ip) & (-1<<(128-ipBoundary.mask));
     }
 
-    function block(uint32[] src, uint expiringDate) {
+    function block(uint128[] src, uint expiringDate) {
         if (msg.sender == owner) {
             for (uint i = 0; i < src.length; i++) {
                 reports.push(Report({
@@ -91,11 +98,11 @@ contract ArrayStore {
         }        
     }
 
-    function blocked() constant returns (uint32[] sourceIp, uint32[] destinationIp, uint8[] mask) {
+    function blocked() constant returns (uint128[] sourceIp, uint128[] destinationIp, uint8[] mask) {
         Report[] memory unexpired = getUnexpired(reports);
         
-        uint32[] memory src = new uint32[](unexpired.length);
-        uint32[] memory dst = new uint32[](unexpired.length);
+        uint128[] memory src = new uint128[](unexpired.length);
+        uint128[] memory dst = new uint128[](unexpired.length);
         uint8[] memory msk = new uint8[](unexpired.length);
 
         for (uint i = 0; i < unexpired.length; i++) {
@@ -106,7 +113,7 @@ contract ArrayStore {
         return (src, dst, msk);
     }
 
-    function customerCount() constant returns (uint32 count) {
+    function customerCount() constant returns (uint128 count) {
         return _customerCount;
     }
 }

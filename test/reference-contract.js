@@ -1,5 +1,5 @@
 import test from 'ava';
-import ip from 'ip';
+import {Address6} from 'ip-address';
 import promisify from 'es6-promisify';
 
 const deployContract = require('../lib/deploy-contract');
@@ -42,10 +42,10 @@ test('Should be able to get blocked IPs', async t => {
 	const HOW_MANY_IP_ADDRESSES = 10;
 	const input = new Array(HOW_MANY_IP_ADDRESSES)
 		.fill(null)
-		.map((a, i) => `127.0.0.${i + 1}`)
-		.map(ip.toLong);
+		.map((a, i) => new Address6(`::127.0.0.${i + 1}`))
+		.map(i => i.bigInteger());
 
-	const parameters = [ip.toLong('127.0.0.1'), 0];
+	const parameters = [new Address6('::127.0.0.1').bigInteger(), 0];
 	const contract = await deployContract(
 		t.context.web3,
 		t.context.accounts[0],
@@ -54,7 +54,7 @@ test('Should be able to get blocked IPs', async t => {
 	);
 	await promisify(contract.createCustomer)(
 		t.context.accounts[1].address,
-		ip.toLong('127.0.0.0'),
+		new Address6('::127.0.0.0').bigInteger(),
 		28,
 		{
 			from: t.context.accounts[0].address,
@@ -71,12 +71,12 @@ test('Should be able to get blocked IPs', async t => {
 	);
 	await promisify(t.context.web3.eth.getTransactionReceipt)(hash);
 	const ips = await promisify(contract.blocked)();
-	t.is(ip.fromLong(parseInt(ips[0][0], 10)), '127.0.0.1');
+	t.is(Address6.fromBigInteger(ips[0][0]).to4().correctForm(), '127.0.0.1');
 	t.is(ips[0].length, HOW_MANY_IP_ADDRESSES);
 });
 
 test('Should be to create customer if in same subnet', async t => {
-	const parameters = [ip.toLong('123.45.67.89'), 24];
+	const parameters = [new Address6('::123.45.67.89').bigInteger(), 24];
 	const contract = await deployContract(
 		t.context.web3,
 		t.context.accounts[0],
@@ -86,7 +86,7 @@ test('Should be to create customer if in same subnet', async t => {
 
 	await promisify(contract.createCustomer)(
 		t.context.accounts[1].address,
-		ip.toLong('123.45.67.99'),
+		new Address6('::123.45.67.99').bigInteger(),
 		28,
 		{
 			from: t.context.accounts[0].address,
@@ -98,7 +98,7 @@ test('Should be to create customer if in same subnet', async t => {
 });
 
 test('Should not be able to create customer if not owner', async t => {
-	const parameters = [ip.toLong('123.45.67.89'), 24];
+	const parameters = [new Address6('::123.45.67.89').bigInteger(), 24];
 	const contract = await deployContract(
 		t.context.web3,
 		t.context.accounts[0],
@@ -110,7 +110,7 @@ test('Should not be able to create customer if not owner', async t => {
 	try {
 		await promisify(contract.createCustomer)(
 			t.context.accounts[1].address,
-			ip.toLong('123.45.67.99'),
+			new Address6('::123.45.67.99').bigInteger(),
 			28,
 			{
 				from: t.context.accounts[1].address, // <-– illegal, we are not sending it from the owner IP
@@ -124,7 +124,7 @@ test('Should not be able to create customer if not owner', async t => {
 });
 
 test('Should not be able to create customer if not in same subnet', async t => {
-	const parameters = [ip.toLong('123.45.67.89'), 24];
+	const parameters = [new Address6('123.45.67.89').bigInteger(), 24];
 	const contract = await deployContract(
 		t.context.web3,
 		t.context.accounts[0],
@@ -136,7 +136,7 @@ test('Should not be able to create customer if not in same subnet', async t => {
 	try {
 		await promisify(contract.createCustomer)(
 			t.context.accounts[1].address,
-			ip.toLong('123.45.67.99'),
+			new Address6('::123.45.67.99').bigInteger(),
 			20, // Subnet too wide
 			{
 				from: t.context.accounts[0].address,
@@ -149,17 +149,27 @@ test('Should not be able to create customer if not in same subnet', async t => {
 	}
 });
 
-test.failing('Should crash when omitting constructor parameters', async t => {
-	const parameters = [ip.toLong('123.45.67.89'), 24];
-	try {
-		await deployContract(
-			t.context.web3,
-			t.context.accounts[0],
-			ReferenceContract,
-			parameters
-		);
-		t.fail();
-	} catch (err) {
-		t.pass();
-	}
+test('Should crash when not submitted a mask', async t => {
+	const parameters = [new Address6('123.45.67.89').bigInteger()];
+    const contract = await deployContract(
+        t.context.web3,
+        t.context.accounts[0],
+        ReferenceContract,
+        parameters
+    );
+    // We expect an error when registering an customer IP
+    try {
+        await promisify(contract.createCustomer)(
+            t.context.accounts[1].address,
+            new Address6('::123.45.67.99').bigInteger(),
+            // Don't supply a mask
+            {
+                from: t.context.accounts[0].address,
+                gas: 1000000
+            }
+        );
+        t.fail();
+    } catch (err) {
+        t.pass();
+}
 });
