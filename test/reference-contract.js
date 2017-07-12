@@ -63,6 +63,7 @@ test('Should be able to get blocked IPs', async t => {
 	);
 	const hash = await promisify(contract.block)(
 		input,
+		input.map(() => 128),
 		parseInt(Date.now() / 1000, 10),
 		{
 			from: t.context.accounts[1].address,

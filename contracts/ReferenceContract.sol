@@ -76,26 +76,24 @@ contract ArrayStore {
         return int128(ip) & -1<<(128-ipBoundary.mask) == int128(ipBoundary.ip) & (-1<<(128-ipBoundary.mask));
     }
 
-    function block(uint128[] src, uint expirationDate) {
-        if (msg.sender == owner) {
-            for (uint i = 0; i < src.length; i++) {
-                reports.push(Report({
-                    expirationDate: expirationDate,
-                    sourceIp: IPAddress({ip: src[i], mask: 32}),
-                    destinationIp: ipBoundary
-                }));
-            }
+    function block(uint128[] src, uint8[] srcmask, uint expirationDate) {
+        if (src.length != srcmask.length) {
+            throw;
         }
-        IPAddress customer = customers[msg.sender];
-        if (customer.ip != 0) {
-            for (uint j = 0; j < src.length; j++) {
-                reports.push(Report({
-                    expirationDate: expirationDate,
-                    sourceIp: IPAddress({ip: src[j], mask: 32}),
-                    destinationIp: customer
-                }));
+        IPAddress destination = msg.sender == owner ? ipBoundary : customers[msg.sender];
+        if (destination.ip == 0) {
+            throw;
+        }
+        for (uint i = 0; i < src.length; i++) {
+            if (!isInSameSubnet(src[i], srcmask[i])) {
+                throw;
             }
-        }        
+            reports.push(Report({
+                expirationDate: expirationDate,
+                sourceIp: IPAddress({ip: src[i], mask: srcmask[i]}),
+                destinationIp: destination
+            }));
+        }
     }
 
     function blocked() constant returns (uint128[] sourceIp, uint8[] sourceMask, uint128[] destinationIp, uint8[] mask) {

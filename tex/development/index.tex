@@ -14,6 +14,14 @@ In addition to that, a second global variable \texttt{block} gives information a
 
 A constant method, like \texttt{function greet() constant returns (string)} is a special function that does not trigger a transaction. Instead, it is a getter function that only executes locally. Constant functions provide convienient interfaces for reading data, but all data should be considered public.
 
+\section{IPv6 considerations}
+
+With IPv4 addresses being 32 bits long, only $ 2^{32} $ combinations possible and the amount of free addresses is almost exhausted \cite{IPv4Exhaustion}, there currently is a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
+
+An IPv4 address can be represented in IPv6 using a format that is defined RFC 3493: 80 bits of zeros, 16 bits of ones, followed the IPv4 address. For example, the IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. This notation is supported by the Linux kernel and macOS natively, in a web browser \texttt{http://[::ffff:2e65:6095]} will display the same website as \texttt{http://46.101.96.149}.
+
+This makes it possible to greatly simplify support for both IPv4 and IPv6, with no flag needed to indicate which version of the protocol is meant. All addresses are stored in a IPv6 format (using a \texttt{uint128} type) and if the bits 81-96 are all ones, it indicates that it is an IPv4 address.
+
 \section{Contract 1: Native storage}
 The first variant stores all IP addresses in the blockchain natively. No optimizations regarding speed and cost are being made, all IP addresses are simply stored in an array.
 
@@ -46,9 +54,29 @@ Only the owner of the contract can add a customer, otherwise the method throws. 
 
 Also, the method checks if the supplied IP range is outside the IP boundary and throws if this is the case. For that, if the IP boundary is \texttt{n}, the last 128 - \texttt{n} digits of both IP addresses are set to 0 and they should match up. For example, to find out if \texttt{::127.0.200.20/120} is in the \texttt{::127.0.0.1/112} boundary, the last 16 bits (128 - 112) are set to zero in both addressed. Then, because \texttt{::127.0.0.0 = ::127.0.0.0}, it is true that the first IP range is included in the second one.
 
+The following method provides an interface for registering a report:
+
+\lstinputlisting{snippets/array-store-block-fn.sol}
+
+Two cases are distinguished: If the owner of the smart contract calls the method, the rule gets applied to the whole IP boundary. Otherwise, the rule gets applied to the range of IP addresses that were registered using the \texttt{createCustomer} method. So the creator of the smart contract can restrict for which IP address ranges the customer can add reports, but the customer can add reports in that range without contacting the smart contract owner. The correct permissions are verified by the other blockchain users who are executing the transaction also and updating their state of the blockchain.
+
+This code is enough to allow for customers adding reports to the contract. Because of technicalities, the reports can not be marked as \texttt{public}, because public nested structs are not supported in Solidity. It is generally advised to keep the data structure as flat as possible to avoid this problem.
+All data in a contract is technically public, but in machine code that has to be deassembled. In order to create an interface where blockchain users can read nested structs, it is necessary to flatten the structure into plain arrays.
+
+\lstinputlisting{snippets/array-store-filter.sol}
+
+This code calls helpers functions which are also declared in the contract.
+
+\lstinputlisting{snippets/array-store-helper-fn.sol}
+
+The helper functions \texttt{filter} and \texttt{isNotExpired} composed together form the \texttt{getUnexpired} function which returns all reports that are not yet expired. Passing functions to other functions is possible in Solidity, but the filtering is not as straight-forward as it is in most languages. There is not native \texttt{filter} function like in Python or Javascript, and no arrays of dynamic size can be created inside a function body. Therefore, two for-loops are needed, the first to determine the size of the array that should be created, and the second one to fill an array of that size. This does not make the contract more expensive to operate, since all these methods are marked as \texttt{internal} and are only run locally.
+
+The contract now has all methods needed to write and read reports. These methods can be called programmatically using a client library, like \texttt{geth} (the Go client) or \texttt{the Javascript client}. For inserting IPv6 addresses into the contract from a client interface, it needs to be converted into a 128-bit integer. Helper libraries exist for this task, for example the \texttt{ip-address} package on the npm (Node package manager) registry allows to easily convert a string representation of an IP address to a big integer:
+
+\lstinputlisting{snippets/ip-address-npm.js}
 
 \section{Contract 2: Pointer to web resource}
-The second variant of the smart contract works around the space constraints and the big cost of the first variant by storing the list of IP addresses on a web resource and pointing to that on the blockchain. The advantage is that it works on a much larger scale. The disadvantage is that a web server needs to be set up and a separate standard has to be established describing the format of the web resource. This solution is also more prone to connectivity issues and does not take advantage of the decentralization and immutability of the blockchain.
+The second variant of the smart contract works around the space constraints and the big cost of the first variant by storing the list of IP addresses on a web resource and pointing to that on the blockchain. The advantage is that it works on a much larger scale. The disadvantage is that a web server needs to be set up and a separate standard has to be established describing the format of the web resource. This solution is also more prone to connectivity issues and does not take advantage of the decentralization and immutability of the blockchain. 
 
 \subsection{Web resource}
 When pointing to a web resource, the design of the architecture that is not on the blockchain needs to be considered. By storing a URL in the blockchain, it is already implied that the connection to the resource is made using HTTP(S), which is a suitable protocol for our needs.
@@ -78,16 +106,6 @@ The third variant of the smart contract is a standalone contract that solves the
 A bloom filter is a probabilistic data structure that is very space efficient. In the context of large amounts of IP addresses, it can be tested if an IP address has been inserted into the bloom filter beforehand with constant space requirements. False positives are possible, false negatives are not.
 
 The bloom filter contract is a balance between leveraging the blockchain and using little space, however perfect accuracy cannot be guaranteed anymore.
-
-\section{IPv6 support}
-
-With IPv4 addresses being 32 bits long, only $ 2^{32} $ combinations possible and the amount of free addresses is almost exhausted \cite{IPv4Exhaustion}, there currently is a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
-
-Two ways of supporting both IPv4 and IPv6 could be considered.
-The first is to represent IPv4 addresses as IPv6 addresses. The most widespread format is defined in RFC 3493: 80 bits of zeros, 16 bits of ones, followed the IPv4 address. For example, the IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. In fact, this notation is supported by the Linux kernel and macOS natively, in a web browser \texttt{http://[::ffff:2e65:6095]} will display the same website as \texttt{http://46.101.96.149}.
-
-The other option would be to use a flag indicating whether an address is IPv4 or IPv6. If mainly IPv4 addresses are stored in a contract, this would yield a space benefit.
-Given that there is already a standardized notation for IPv4 in IPv6 format,this thesis is proceeding with the first option.
 
 \section{IP address ownership verification}
 In all variants of the smart contract, owners of destination IP addresses can store source IP addresses they want to be blocked in the smart contract. In order to establish trust, there should be a way to automatically verify the ownership of the destination IP addresses. This is a challenging task, as is explained in this section. Using certificates to validate IP ownerships in Solidity is currently not practical for at least two reasons.
