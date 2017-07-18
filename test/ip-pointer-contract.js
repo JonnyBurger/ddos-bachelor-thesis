@@ -59,7 +59,7 @@ test('Should be able to get blocked URLs', async t => {
 
   const [, pointer] = await getMapping({
     contract,
-    name: 'customerIPv4',
+    name: 'reports',
     index: t.context.accounts[1].address
   });
 

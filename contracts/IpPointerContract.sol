@@ -1,29 +1,35 @@
 pragma solidity 0.4.9;
 
 contract IpPointerContract {
-    struct Drop {
+    struct Report {
         uint expiringDate;
         string url;
         uint40 dst_ip;
     }
 
-    uint40 ipBoundary;
+    struct IPAddress  {
+        uint128 ip;
+        uint8 mask;
+    }
+
+    IPAddress ipBoundary;
     address owner;
     mapping (address => bool) public members;
-    mapping (address => Drop) public customerIPv4;
-
-    string cache;
+    mapping (address => Report) public reports;
 
     function IpPointerContract(uint32 ip, uint8 mask) {
         owner = msg.sender;
-        ipBoundary = 1234567890;
+        ipBoundary = IPAddress({
+            ip: ip,
+            mask: mask
+        });
     }
 
     function createCustomer(address customer, uint32 ip, uint8 mask) {
         if (msg.sender != owner) {
             throw;
         }
-        if (isInSameIPv4Subnet(ip, mask)) {
+        if (isInSameSubnet(ip, mask)) {
             members[customer] = true;
         }
     }
@@ -32,12 +38,13 @@ contract IpPointerContract {
         if (!members[msg.sender]) {
             throw;
         }
-        customerIPv4[msg.sender] = Drop(now, url, 123456789);
+        reports[msg.sender] = Report(now, url, 123456789);
     }
 
-    function isInSameIPv4Subnet(uint32 ip, uint8 mask) constant returns (bool) {
-        // TODO: Check against IP boundary
-        return true;
+    function isInSameSubnet(uint128 ip, uint8 mask) constant returns (bool) {
+        if (mask < ipBoundary.mask) {
+            return false;
+        }
+        return int128(ip) & -1<<(128-ipBoundary.mask) == int128(ipBoundary.ip) & (-1<<(128-ipBoundary.mask));
     }
-
 }
