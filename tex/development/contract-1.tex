@@ -1,0 +1,52 @@
+\section{Contract 1: Native storage}
+The first variant stores all IP addresses in the blockchain natively. No optimizations regarding speed and cost are being made, all IP addresses are simply stored in an array.
+
+\lstinputlisting{snippets/array-store-shell.sol}
+
+Inside the contract body, some structs are defined, with syntax resembling that of the C programming language:
+
+\lstinputlisting{snippets/structs.sol}
+
+For each IP address, a mask can be added. This makes it possible to specify a range of IP addresses with no redundancy. 
+When discussing masks, a notation such as '127.0.0.0/24' is used, where everything before the slash is the IP address base and the number behind the slash is the mask. A mask of '/32' means specifically and only that IP, while '/0' means the whole range of IP addresses possible. '127.0.0.0/24' means all IP addresses from 127.0.0.0 to 127.0.0.255. Since the contract works with IPv6 addresses, the maximum value for mask is 128.
+
+An entry that can be added to the smart contract is a composite of 3 values: The 'victim IP' or destination IP, the 'attacker IP' or source IP and an expiration date. Expired reports can be filtered by comparing to the \texttt{block.timestamp} global.
+
+The next step is to write the constructor function.
+
+\lstinputlisting{snippets/array-store-constructor.sol}
+
+The constructor function takes two arguments, an IP address and a mask, which form the 'IP Boundary'. The boundary makes it possible for the creator of the smart contract to restrict the destination IP addresses that can be added to only a certain range.
+
+The address of the creator of the instance gets saved in the \texttt{owner} property. This allows to define that the owner of the contract can call more methods than other users.
+
+The constructor also has a 'modifier'. A modifier is piece of code that is being run before the method body. The modifier \texttt{needsMask} simply throws when the user calls the constructor without the second argument (which the language itself allows). The underscore statement in Solidity can only be used in modifiers and its effect is that it jumps to the main method body immediately.
+
+In this contract, there is a method for adding a 'customer'.
+
+\lstinputlisting{snippets/array-store-create-customer.sol}
+
+Only the owner of the contract can add a customer, otherwise the method throws. In addition to checking ownership of the contract, the contract also checks if the mask argument was supplied using the previously discussed \texttt{needsMask} modifier.
+
+Also, the method checks if the supplied IP range is outside the IP boundary and throws if this is the case. For that, if the IP boundary is \texttt{n}, the last 128 - \texttt{n} digits of both IP addresses are set to 0 and they should match up. For example, to find out if \texttt{::127.0.200.20/120} is in the \texttt{::127.0.0.1/112} boundary, the last 16 bits (128 - 112) are set to zero in both addressed. Then, because \texttt{::127.0.0.0 = ::127.0.0.0}, it is true that the first IP range is included in the second one.
+
+The following method provides an interface for registering a report:
+
+\lstinputlisting{snippets/array-store-block-fn.sol}
+
+Two cases are distinguished: If the owner of the smart contract calls the method, the rule gets applied to the whole IP boundary. Otherwise, the rule gets applied to the range of IP addresses that were registered using the \texttt{createCustomer} method. So the creator of the smart contract can restrict for which IP address ranges the customer can add reports, but the customer can add reports in that range without contacting the smart contract owner. The correct permissions are verified by the other blockchain users who are executing the transaction also and updating their state of the blockchain.
+
+This code is enough to allow for customers adding reports to the contract. Because of technicalities, the reports can not be marked as \texttt{public}, because public nested structs are not supported in Solidity. It is generally advised to keep the data structure as flat as possible to avoid this problem.
+All data in a contract is technically public, but in machine code that has to be deassembled. In order to create an interface where blockchain users can read nested structs, it is necessary to flatten the structure into plain arrays.
+
+\lstinputlisting{snippets/array-store-filter.sol}
+
+This code calls helpers functions which are also declared in the contract.
+
+\lstinputlisting{snippets/array-store-helper-fn.sol}
+
+The helper functions \texttt{filter} and \texttt{isNotExpired} composed together form the \texttt{getUnexpired} function which returns all reports that are not yet expired. Passing functions to other functions is possible in Solidity, but the filtering is not as straight-forward as it is in most languages. There is not native \texttt{filter} function like in Python or Javascript, and no arrays of dynamic size can be created inside a function body. Therefore, two for-loops are needed, the first to determine the size of the array that should be created, and the second one to fill an array of that size. This does not make the contract more expensive to operate, since all these methods are marked as \texttt{internal} and are only run locally.
+
+The contract now has all methods needed to write and read reports. These methods can be called programmatically using a client library, like \texttt{geth} (the Go client) or \texttt{the Javascript client}. For inserting IPv6 addresses into the contract from a client interface, it needs to be converted into a 128-bit integer. Helper libraries exist for this task, for example the \texttt{ip-address} package on the npm (Node package manager) registry allows to easily convert a string representation of an IP address to a big integer:
+
+\lstinputlisting{snippets/ip-address-npm.js}
