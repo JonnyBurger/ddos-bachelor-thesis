@@ -277,6 +277,62 @@
       \verb https://www.ripe.net/publications/ipv6-info-centre/about-ipv6/ipv4-exhaustion
       \endverb
     \endentry
+    \entry{ParsingJSON}{online}{}
+      \name{author}{1}{}{%
+        {{hash=80df20fc8a3a49ec7e6c3f052c8e9c8b}{%
+           family={Seriot},
+           family_i={S\bibinitperiod},
+           given={Nicolas},
+           given_i={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{80df20fc8a3a49ec7e6c3f052c8e9c8b}
+      \strng{fullhash}{80df20fc8a3a49ec7e6c3f052c8e9c8b}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{26}
+      \field{month}{10}
+      \field{title}{Parsing JSON is a Minefield}
+      \field{year}{2016}
+      \verb{url}
+      \verb http://seriot.ch/parsing_json.php
+      \endverb
+    \endentry
+    \entry{LineDelimitedJSON}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           family_i={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{JSON Streaming - Line delimited JSON}
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON_2
+      \endverb
+    \endentry
+    \entry{RFC7158}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8156eae38e17275f0d4e90ae1051c2ab}{%
+           family={IETF},
+           family_i={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \strng{fullhash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{RFC 7158}
+      \verb{url}
+      \verb https://tools.ietf.org/html/rfc7159#appendix-A
+      \endverb
+    \endentry
     \entry{EIP74}{online}{}
       \name{author}{1}{}{%
         {{hash=2cd3425b3cc606757d03f154c26ed470}{%

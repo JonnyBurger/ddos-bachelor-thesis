@@ -4,11 +4,11 @@
   <bcf:options component="biber" type="global">
     <bcf:option type="singlevalued">
       <bcf:key>output_encoding</bcf:key>
-      <bcf:value>latin1</bcf:value>
+      <bcf:value>ascii</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>input_encoding</bcf:key>
-      <bcf:value>latin1</bcf:value>
+      <bcf:value>ascii</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>debug</bcf:key>
@@ -2087,17 +2087,20 @@
     <bcf:citekey order="12">OriginalPaper</bcf:citekey>
     <bcf:citekey order="13">Solc</bcf:citekey>
     <bcf:citekey order="14">IPv4Exhaustion</bcf:citekey>
-    <bcf:citekey order="15">EIP74</bcf:citekey>
-    <bcf:citekey order="16">BaselineRequirements</bcf:citekey>
-    <bcf:citekey order="17">GlobalSign</bcf:citekey>
-    <bcf:citekey order="18">Solc</bcf:citekey>
-    <bcf:citekey order="19">Truffle</bcf:citekey>
-    <bcf:citekey order="20">Solium</bcf:citekey>
-    <bcf:citekey order="21">ThinkingAboutSmartContractSecurity</bcf:citekey>
-    <bcf:citekey order="22">EIP150</bcf:citekey>
-    <bcf:citekey order="23">DefaultGoEthereumConfiguration</bcf:citekey>
-    <bcf:citekey order="24">ETHGasStationAnnouncement</bcf:citekey>
+    <bcf:citekey order="15">ParsingJSON</bcf:citekey>
+    <bcf:citekey order="16">LineDelimitedJSON</bcf:citekey>
+    <bcf:citekey order="17">RFC7158</bcf:citekey>
+    <bcf:citekey order="18">EIP74</bcf:citekey>
+    <bcf:citekey order="19">BaselineRequirements</bcf:citekey>
+    <bcf:citekey order="20">GlobalSign</bcf:citekey>
+    <bcf:citekey order="21">Solc</bcf:citekey>
+    <bcf:citekey order="22">Truffle</bcf:citekey>
+    <bcf:citekey order="23">Solium</bcf:citekey>
+    <bcf:citekey order="24">ThinkingAboutSmartContractSecurity</bcf:citekey>
     <bcf:citekey order="25">EIP150</bcf:citekey>
+    <bcf:citekey order="26">DefaultGoEthereumConfiguration</bcf:citekey>
+    <bcf:citekey order="27">ETHGasStationAnnouncement</bcf:citekey>
+    <bcf:citekey order="28">EIP150</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none/global/" type="entry" sortscheme="none" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

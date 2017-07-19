@@ -49,17 +49,16 @@ test('Should be able to get blocked URLs', async t => {
     from: t.context.accounts[0].address,
     contract
   });
-
   await makeTransaction({
     name: 'setPointer',
-    args: ['http://hithere.com'],
+    args: ['http://hithere.com', ip.toLong('123.45.67.89'), 28, (Date.now() / 1000) + 3600],
     from: t.context.accounts[1].address,
     contract
   });
 
   const [, pointer] = await getMapping({
     contract,
-    name: 'reports',
+    name: 'pointers',
     index: t.context.accounts[1].address
   });
 
