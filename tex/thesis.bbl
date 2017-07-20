@@ -333,6 +333,42 @@
       \verb https://tools.ietf.org/html/rfc7159#appendix-A
       \endverb
     \endentry
+    \entry{SubresourceIntegrity}{online}{}
+      \name{author}{1}{}{%
+        {{hash=502f1bd97b0e7d80b88e1f45ae1bfdb8}{%
+           family={Mozilla},
+           family_i={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{502f1bd97b0e7d80b88e1f45ae1bfdb8}
+      \strng{fullhash}{502f1bd97b0e7d80b88e1f45ae1bfdb8}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Subresource Integrity}
+      \verb{url}
+      \verb https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
+      \endverb
+    \endentry
+    \entry{Semver}{online}{}
+      \name{author}{1}{}{%
+        {{hash=86c590c4ef15d0078286562a483eb052}{%
+           family={Preston-Werner},
+           family_i={P\bibinithyphendelim W\bibinitperiod},
+           given={Tom},
+           given_i={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{86c590c4ef15d0078286562a483eb052}
+      \strng{fullhash}{86c590c4ef15d0078286562a483eb052}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Semantic Versioning 2.0.0}
+      \verb{url}
+      \verb http://semver.org/
+      \endverb
+    \endentry
     \entry{EIP74}{online}{}
       \name{author}{1}{}{%
         {{hash=2cd3425b3cc606757d03f154c26ed470}{%

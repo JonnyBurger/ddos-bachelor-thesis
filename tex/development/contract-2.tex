@@ -36,7 +36,63 @@ With these properties, line-delimited JSON streaming is a suitable syntax the we
 With the web resource and the smart contract being disconnected, a set of rules has to be defined to ensure interoperability. In contrast to the blockchain, a web resource can change as many times as needed. This makes it hard for the users of the blockchain to keep track of updates, and to verify whether the content of the webpage is still the same as it was the entry into the blockchain was created. To mitigate these issues, a new rule is added to the protocol: The contents of a web resource must be immutable and can never be changed. If a customer desires to update the data, a new resource must be created under a different URL and the smart contract needs to be updated with the new pointer.
 
 To prevent customers from modifying the content of their web resources (which they can), a SHA256-hash of the body of the resource needs to be included in the report that gets added to the smart contracts. Clients should generate hashes of the web resources themselved and should reject reports that do not have matching hashes.
+This technique is inspired by 'Subresource integrity' \cite{SubresourceIntegrity}, which validates resources like stylesheets and scripts in browsers and is therefore already widely deployed.
 
 This also brings another advantage: If an asset is immutable, it can be easily deployed to a CDN, which is harder to deny using a DDoS attack.
 
 To enable this feature, the \texttt{Pointer} struct in the smart contract simply contains another property, \texttt{bytes32 hash}. Accordingly, the \texttt{setPointer()} method gets updated as well.
+
+In variant 1 of the contract, a report object contained 1. an IP address of the source with optional mask 2. an IP address of the destination with optional mask 3. an expiration date.
+
+Therefore, the web resource contains there fields as well. Since multiple reports can be stored under one URL, an array is used and stored under the \texttt{reports} key.
+
+\begin{lstlisting}[
+    caption={Example web resource content},
+    captionpos=b,
+    label={SampleWebResource}
+]
+{
+    "reports": [
+        {
+            "expirationDate": 1502755200000,
+            "sourceIp": {
+                "ip": "::ffff:2e65:6095",
+                "mask": 120
+            },
+            "destinationIp": {
+                "ip": "::ffff:1234:abcd",
+                "mask": 120
+            }
+        },
+        {
+            "expirationDate": 1502755200000,
+            "sourceIp": {
+                "ip": "::ffff:efab:4321",
+                "mask": 80
+            },
+            "destinationIp": {
+                "ip": "::ffff:efab:4321",
+                "mask": 80
+            }
+        }
+    ]
+}
+\end{lstlisting}
+
+Instead of using an array, it would also be possible to create two separate JSON reports and delimit them with a newline (\texttt{{\textbackslash}n}) to enable streaming.
+
+The timestamps should be UNIX timestamps with miliseconds. IPs should be in IPv6 format (short notations are allowed), masks should be values from 0-128. Clients should check and reject the reports if they are not in the IP boundary set by the smart contract.
+
+In addition to the \texttt{reports} field, other fields are supported for context and metadata:
+
+\begin{description}
+
+\item [version] A string specifying the used version of the protocol to make the protocol future-proof. The versioning should follow Semantic Versioning \cite{Semver}
+
+\item [whitelist] can either be \texttt{true} or \texttt{false}. The default is \texttt{false}. When this flag is set, all reports in the \texttt{reports} array should be considered whitelist entries.
+
+\end{description}
+
+The specification can be expanded in the future by adding more fields and increasing the version number. DOTS \cite{IETFDraft} allows more fields, such as limiting a report to specific port numbers, adding metadata about the attack (duration, attack type, registration time, mitigation status). These information can be considered for addition to the format as well in a future version.
+
+The SHA256 hash of code snippet \ref{SampleWebResource} is \texttt{xZ9hL0AColp7EQ82H/LuAGrGjr5fA60K/vXMjISqnIA=} \footnote{On macOS or Linux a hash can be generated with the following command: \texttt{curl \$RESOURCEURL | openssl dgst -sha256 -binary | openssl enc -base64 -A}}. This value is set as the \texttt{hash} when registering the web resource in the smart contract.
