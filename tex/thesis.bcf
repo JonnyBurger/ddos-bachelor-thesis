@@ -2098,9 +2098,18 @@
     <bcf:citekey order="23">Solium</bcf:citekey>
     <bcf:citekey order="24">ThinkingAboutSmartContractSecurity</bcf:citekey>
     <bcf:citekey order="25">EIP150</bcf:citekey>
-    <bcf:citekey order="26">DefaultGoEthereumConfiguration</bcf:citekey>
-    <bcf:citekey order="27">ETHGasStationAnnouncement</bcf:citekey>
+    <bcf:citekey order="26">YellowPaper</bcf:citekey>
+    <bcf:citekey order="27">YellowPaper</bcf:citekey>
     <bcf:citekey order="28">EIP150</bcf:citekey>
+    <bcf:citekey order="29">DefaultGoEthereumConfiguration</bcf:citekey>
+    <bcf:citekey order="30">AverageGasPrice</bcf:citekey>
+    <bcf:citekey order="31">ETHGasStationAnnouncement</bcf:citekey>
+    <bcf:citekey order="32">Coinbase</bcf:citekey>
+    <bcf:citekey order="33">DAO</bcf:citekey>
+    <bcf:citekey order="34">Coinbase</bcf:citekey>
+    <bcf:citekey order="35">EthereumCent</bcf:citekey>
+    <bcf:citekey order="36">BlockGasLimit</bcf:citekey>
+    <bcf:citekey order="37">EIP150</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none/global/" type="entry" sortscheme="none" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

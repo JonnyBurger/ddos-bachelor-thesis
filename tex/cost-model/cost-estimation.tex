@@ -9,11 +9,11 @@ c = Deploy\ cost + (x \cdot Add\ IP\ Cost) + \lceil\frac{x}{2}\rceil \cdot Trans
 \label{eq:PriceToStoreXIPAddressed}
 \end{equation}
 
-In a bad case where Ether is expensive $ ETH = \$100 $ and the user wants fast transactions $ \alpha = \alpha_{fast} $, it costs \$3.82 to do one transaction with 20 IP addresses ($ C \approx 1364194 $).
+In a expensive case where the Ether price is expensive $ ETH = \$100 $ and the user wants fast transactions $ \alpha = \alpha_{fast} $, it costs \$3.82 to do one transaction with 20 IP addresses ($ C \approx 1364194 $).
 
-In a good case where Ether is reasonably cheap $ ETH = \$50 $ and most nodes have started accepting cheaper transactions $ a = a_{cheap} $, the transaction costs \$0.13.
+In a cheap case where Ether is reasonably cheap $ ETH = \$50 $ and most nodes have started accepting cheaper transactions $ a = a_{cheap} $, the transaction costs \$0.13.
 
-Even though the average gas price so far is approximately the default value set by clients, it seems realistic that users over time react and adjust the gas price according to the Ether price. If ether is higher, the gas price should be lower.
+So far users of the Ethereum network have not reacted to the higher Ether price by lowering gas costs. With activist sites like ethgasstation.info spreading awareness, it is realistic that users over time react and adjust the gas price according to the Ether price. If ether is higher, the gas price should be lower.
 
 Using $ \alpha = 0.16 $ as the gas price (the value that etherchain.org deems as the equilibrium as of writing) and an Ether price of $ ETH = \$90 $ (the price at the same time), the result is a transaction cost of \$1.96.
 

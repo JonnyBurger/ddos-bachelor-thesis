@@ -1,19 +1,19 @@
 [0] Config.pm:343> INFO - This is Biber 2.5
-[0] Config.pm:346> INFO - Logfile is 'thesis.blg'
-[53] biber-darwin:290> INFO - === Mi Jul 19, 2017, 20:41:19
-[78] Biber.pm:351> INFO - Reading 'thesis.bcf'
-[172] Biber.pm:776> INFO - Found 21 citekeys in bib section 0
-[185] Biber.pm:3493> INFO - Processing section 0
-[205] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
-[208] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
-[210] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
-[233] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
-[233] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
-[233] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
-[252] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[252] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[252] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
-[252] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
-[265] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
-[270] bbl.pm:619> INFO - Output to thesis.bbl
-[270] Biber.pm:108> INFO - WARNINGS: 3
+[6] Config.pm:346> INFO - Logfile is 'thesis.blg'
+[85] biber-darwin:290> INFO - === Do Jul 20, 2017, 13:21:47
+[108] Biber.pm:351> INFO - Reading 'thesis.bcf'
+[217] Biber.pm:776> INFO - Found 27 citekeys in bib section 0
+[230] Biber.pm:3493> INFO - Processing section 0
+[247] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
+[249] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[252] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
+[280] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
+[280] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
+[280] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
+[309] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[309] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[310] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
+[310] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
+[329] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
+[334] bbl.pm:619> INFO - Output to thesis.bbl
+[334] Biber.pm:108> INFO - WARNINGS: 3

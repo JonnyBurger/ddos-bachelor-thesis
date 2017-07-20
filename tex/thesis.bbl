@@ -430,6 +430,25 @@
       \verb https://github.com/ethereum/EIPs/issues/150
       \endverb
     \endentry
+    \entry{YellowPaper}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9f252fbc7b8ff3c128b3e8dd806afa9b}{%
+           family={Wood},
+           family_i={W\bibinitperiod},
+           given={Gavin},
+           given_i={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
+      \strng{fullhash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Ethereum: A secure decentralised generalised transaction ledger}
+      \verb{url}
+      \verb http://gavwood.com/paper.pdf
+      \endverb
+    \endentry
     \entry{DefaultGoEthereumConfiguration}{online}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
@@ -437,6 +456,23 @@
       \field{title}{go-ethereum Github Repository. File \texttt{eth/config.go}}
       \verb{url}
       \verb https://github.com/ethereum/go-ethereum/blob/fff16169c64a83d57d2eed35b6a2e33248c7d5eb/eth/config.go%5C#L45
+      \endverb
+    \endentry
+    \entry{AverageGasPrice}{online}{}
+      \name{author}{1}{}{%
+        {{hash=6a04a374d549abc7a9c36f67baccad50}{%
+           family={etherscan.io},
+           family_i={e\bibinitperiod}}}%
+      }
+      \strng{namehash}{6a04a374d549abc7a9c36f67baccad50}
+      \strng{fullhash}{6a04a374d549abc7a9c36f67baccad50}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Average Gas Price}
+      \verb{url}
+      \verb https://etherscan.io/chart/gasprice
       \endverb
     \endentry
     \entry{ETHGasStationAnnouncement}{online}{}
@@ -454,6 +490,76 @@
       \field{title}{The Safe Low Gas Price}
       \verb{url}
       \verb https://medium.com/@ethgasstation/the-safe-low-gas-price-fb44fdc85b91
+      \endverb
+    \endentry
+    \entry{Coinbase}{online}{}
+      \name{author}{1}{}{%
+        {{hash=28d13ddddf18afba2c3727253ba0d42f}{%
+           family={Coinbase},
+           family_i={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{fullhash}{28d13ddddf18afba2c3727253ba0d42f}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Bitcoin}
+      \verb{url}
+      \verb https://www.coinbase.com
+      \endverb
+    \endentry
+    \entry{DAO}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           family_i={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The DAO (Organization)}
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/The_DAO_(organization)
+      \endverb
+    \endentry
+    \entry{EthereumCent}{online}{}
+      \name{author}{1}{}{%
+        {{hash=aa11677d237b2c2b435fd7decac0d7ad}{%
+           family={CNBC},
+           family_i={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{aa11677d237b2c2b435fd7decac0d7ad}
+      \strng{fullhash}{aa11677d237b2c2b435fd7decac0d7ad}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Ethereum briefly crashed from \$319 to 10 cents in seconds on one exchange after multimillion dollar trade}
+      \verb{url}
+      \verb http://www.cnbc.com/2017/06/22/ethereum-price-crash-10-cents-gdax-exchange-after-multimillion-dollar-trade.html
+      \endverb
+    \endentry
+    \entry{BlockGasLimit}{online}{}
+      \name{author}{1}{}{%
+        {{hash=3d07cb491afa3e6321f8f4c6284d2846}{%
+           family={Wisniowiecki},
+           family_i={W\bibinitperiod},
+           given={Xawery},
+           given_i={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{3d07cb491afa3e6321f8f4c6284d2846}
+      \strng{fullhash}{3d07cb491afa3e6321f8f4c6284d2846}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What is Gas Limit in Ethereum?}
+      \verb{url}
+      \verb https://bitcoin.stackexchange.com/a/42629
       \endverb
     \endentry
   \endsortlist
