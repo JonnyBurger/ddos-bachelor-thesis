@@ -27,26 +27,34 @@ contract BloomFilter {
         return result();
     }
 
+    function charCodeAt(string key, uint index) constant returns (uint result){
+        return uint(bytes(key)[index]);
+    }
+
+    function op1(uint _k1, string key, uint len, uint i) constant returns (uint newk1) {
+        if (rem == 0) {
+            return _k1 ^ ((len > i) ? charCodeAt(key, i++) & 0xffff : 0);
+        }
+        if (rem == 1) {
+            return _k1 ^ ((len > i) ? charCodeAt(key, i++) & 0xffff << 8 : 0);
+        }
+        if (rem == 2) {
+            return _k1 ^ ((len > i) ? charCodeAt(key, i++) & 0xffff << 16 : 0);
+        }
+        if (rem == 3) {
+            return _k1 ^ ((len > i) ? charCodeAt(key, i) & 0xff << 24 : 0) ^ ((len > i) ? charCodeAt(key, i++) & 0xff00 >> 8 : 0);
+        }
+
+    }
+
     function hash(string key) {
         uint top;
         uint len = bytes(key).length;
         length = length + len;
 
-        uint _k1 = 0;
+        uint _k1 = k1;
         var i = 0;
-        if (rem == 0) {
-            _k1 ^= (len > i) ? uint(bytes(key)[i++]) & 0xffff : 0;
-        }
-        if (rem == 1) {
-            _k1 ^= (len > i) ? (uint(bytes(key)[i++]) & 0xffff) << 8 : 0;
-        }
-        if (rem == 2) {
-            _k1 ^= (len > i) ? (uint(bytes(key)[i++]) & 0xffff) << 16 : 0;
-        }
-        if (rem == 3) {
-            k1 ^= (len > i) ? (uint(bytes(key)[i]) & 0xff) << 24 : 0;
-            k1 ^= (len > i) ? (uint(bytes(key)[i++]) & 0xff00) >> 8 : 0;
-        }
+        _k1 = op1(_k1, key, len, i);
 
         rem = (len + rem) & 3;
         len -= rem;
@@ -58,20 +66,17 @@ contract BloomFilter {
                 _k1 = (_k1 << 15) | (_k1 >> 17);
                 _k1 = (_k1 * 0x3593 + (_k1 & 0xffff) * 0x1b870000) & 0xffffffff;
                 _h1 ^= _k1;
-                _h1 = (_h1 << 13) | (_h1 >> 19);
-                _h1 = (h1 * 5 + 0xe6546b64) & 0xffffffff;
                 if ((i + 3) >= len) {
                     break;
                 }
                 
-                _k1 = (uint(bytes(key)[i++]) & 0xffff) ^
-                    ((uint(bytes(key)[i++]) & 0xffff) << 8) ^
-                    ((uint(bytes(key)[i++]) & 0xffff) << 16);
-                top = uint(bytes(key)[i++]);
+                _k1 = (charCodeAt(key, i++) & 0xffff) ^
+                    ((charCodeAt(key, i++) & 0xffff) << 8) ^
+                    ((charCodeAt(key, i++) & 0xffff) << 16);
+                top = charCodeAt(key, i++);
                  ((top & 0xff) << 24 ^ ((top & 0xff00) >> 8));
             }
             _k1 = 0;
-
             if (rem == 3) {
                 _k1 ^= (uint(bytes(key)[i + 2]) & 0xffff) << 16;
             }
@@ -90,6 +95,7 @@ contract BloomFilter {
     function result() constant returns (uint ret) {
         uint _k1 = k1;
         uint _h1 = h1;
+        /*
         if (_k1 > 0) {
             _k1 = (_k1 * 0x2d51 + (_k1 & 0xffff) * 0xcc9e0000) & 0xffffffff;
             _k1 = (_k1 << 15) | (_k1 >> 17);
@@ -103,7 +109,7 @@ contract BloomFilter {
         _h1 ^= _h1 >> 13;
         _h1 = (_h1 * 0xae35 + (_h1 & 0xffff) * 0xc2b20000) & 0xffffffff;
         _h1 ^= _h1 >> 16;
-
+        */
         return _h1 >> 0;
     }
 
@@ -116,7 +122,7 @@ contract BloomFilter {
 
     uint hashes = 7;
     uint[] seeds = [145,844,423,111,333,7111,9];
-    uint bits = 128;
+    uint bits = 32;
     uint[] buffer;
 
     function BloomFilter() {

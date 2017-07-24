@@ -1,0 +1,7 @@
+\section{Contract 3: Bloom filter}
+
+While variant 1 of the smart contract is space-inefficient and variant 2 needs additional infrastructure, variant 3 is an attempt to strike a balance. It is a standalone contract that solves the scalability issue by using a bloom filter.
+
+A bloom filter is a probabilistic data structure that is very space efficient. In the context of large amounts of IP addresses, it can be tested if an IP address has been inserted into the bloom filter beforehand with constant space requirements. False positives are possible, false negatives are not.
+
+The third variant is space-efficient and the logic is self-contained, however perfect accuracy cannot be guaranteed anymore.

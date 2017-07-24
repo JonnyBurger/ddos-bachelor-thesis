@@ -32,16 +32,31 @@ test('Should compile', async t => {
 	t.pass();
 });
 
-test('Should hash correctly', async t => {
-	const parameters = ['Ethereum', 1];
-	const jsResult = 760066800;
+test('charCodeAt() is same as in Javascript', async t => {
+	const string = 'Ethereum';
 	const contract = await deployContract(
 		t.context.web3,
 		t.context.accounts[0],
 		BloomFilter
 	);
-	const hash = await promisify(contract.hashFn)(...parameters);
-    t.is(jsResult, hash.toNumber());
+	for (let i = 0; i < string.length; i++) {
+		const charCode = await promisify(contract.charCodeAt)(
+			string,
+			i
+		);
+		t.is(charCode.toNumber(), string.charCodeAt(i));
+	}
+});
+
+test('Should op1 correctly', async t => {
+	const jsResult = new Murmur3('Ethereum', 123).op1(0, 'Ethereum', 0);
+	const contract = await deployContract(
+		t.context.web3,
+		t.context.accounts[0],
+		BloomFilter
+	);
+	const hash = await promisify(contract.op1)(0, 'Ethereum', 'Ethereum'.length, 0);
+	t.is(jsResult, hash.toNumber());
 });
 
 test('Should hash consistently', async t => {
@@ -77,6 +92,8 @@ test('Bloomfilter test', async t => {
 	t.true(hash);
 	const hash2 = await (promisify(contract.has)('Bitcoin'));
 	t.false(hash2);
+	const hash3 = await (promisify(contract.has)('LTC'));
+	t.false(hash3);
 });
 
 // [8, 88, 100, 110, 31, 35, 30]
