@@ -2,10 +2,9 @@ import test from 'ava';
 import ip from 'ip';
 import promisify from 'es6-promisify';
 
-const {fnv_1a} = require('bloomfilter');
 
 const deployContract = require('../lib/deploy-contract');
-const {BloomFilter2} = require('../lib/get-contracts');
+const {BloomFilter3} = require('../lib/get-contracts');
 const makeBlockchain = require('../lib/get-provider');
 
 const makeTransaction = ({contract, name, args, from}) => {
@@ -21,36 +20,11 @@ test.beforeEach(t => {
 	t.context.accounts = accounts;
 });
 
-test('Does integer division round down', async t => {
-	const contract = await deployContract(
-		t.context.web3,
-		t.context.accounts[0],
-		BloomFilter2
-	);
-	const floored = await promisify(contract.floor)(1.5);
-	const ceiled = await promisify(contract.ceil)(1.5);
-	t.is(floored.toNumber(), 1);
-	t.is(ceiled.toNumber(), 2);
-});
-
-test('Hashing is correct', async t => {
-    const contract = await deployContract(
-        t.context.web3,
-        t.context.accounts[0],
-        BloomFilter2
-    );
-    const result = await promisify(contract.fnv_1a)('ABC');
-    t.is(result.toNumber(), fnv_1a('ABC'));
-    const result2 = await promisify(contract.fnv_1a)('DEF');
-    t.is(result2.toNumber(), fnv_1a('DEF'));
-    t.pass();
-});
-
 test('Test Bloom filter', async t => {
 	const contract = await deployContract(
 		t.context.web3,
 		t.context.accounts[0],
-        BloomFilter2,
+        BloomFilter3,
         [1024, 4]
     );
 	await makeTransaction({
