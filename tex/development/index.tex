@@ -22,6 +22,8 @@ An IPv4 address can be represented in IPv6 using a format that is defined RFC 34
 
 This makes it possible to greatly simplify support for both IPv4 and IPv6, with no flag needed to indicate which version of the protocol is meant. All addresses are stored in a IPv6 format (using a \texttt{uint128} type) and if the bits 81-96 are all ones, it indicates that it is an IPv4 address.
 
+\input{development/testing.tex}
+
 \input{development/contract-1.tex}
 \input{development/contract-2.tex}
 \input{development/contract-3.tex}
@@ -41,27 +43,6 @@ CAs need to make investments in establishing a system that securely validates a 
 Although it is technically possible to issue an SSL certificate for an IP address, it is very uncommon. GlobalSign \cite{GlobalSign} is the only provider known to us that issues certificates for IP addresses, and requires that the IP is registered in the RIPE database.
 
 The same system that currently exists for domain owner verification could be introduced by the industry for IP addresses verification, but is very complicated and defeats the purpose of using the blockchain as the original idea was to remove the need for additional infrastructure.
-
-\section{Validating Smart contracts during development}
-Developing a smart contract requires a compiler and a blockchain on which the developer can execute the smart contract. A compiler, such as solc \cite{Solc}, will warn about syntax errors and does not compile invalid Solidity code, indicating to the developer that there is an error in the code.
-
-While compilers provide a first layer of assurance by only compiling valid contracts with valid syntax, it is still possible to write code with bugs and security vulnerabilities. As with any software, developers need a workflow which allows them to test their changes fast and efficiently.
-
-The main Ethereum blockchain is unsuitable for validating the correctness of the code manually. There are significant costs to deploy a contract to the blockchain, also it is not capable of giving the developer immediate feedback because of transaction processing times. It is also frowned upon to use the main blockchain for testing purposes, as all network participants need to download all blocks.
-
-This is not the case in the Testnet, which is a separate blockchain for testing purposes. Still, the Testnet is a globally shared blockchain and is not perfect for development. Instead, a test framework called \texttt{TestRPC} that makes it possible to set up a local blockchain for testing is used. Using \texttt{TestRPC}, it is possible to simulate deployments and transactions of smart contracts with no confirmation delay. Out of the box, \texttt{TestRPC} sets up multiple Ethereum accounts, making it simple to switch the message sender address and test whether the access control features of the developed smart contract are working as desired. This makes \texttt{TestRPC} the ideal blockchain for developing.
-
-In addition to manual testing, the robustness should be validated by unit tests, just like in any other piece of software. This allows to automatically validate that all assertions are still true when a change is introduced to the contract. A robust contract should include unit tests validating that normal use of the contract features result in correct behavior, as well as tests for edge cases and abuse of the contract features.
-
-Examples of cases that should be tested are: Calling a function without permission, calling a function more often than expected, calling a function with unexpected arguments, such as null arguments, wrong types or a big payload.
-
-\texttt{TestRPC}, the \texttt{solc-js} compiler, and the \texttt{ava} testing framework to set up a test environment. Each test is completely atomic and independent from other ones, that means that for each test, a separate \texttt{TestRPC} blockchain is created and the scenario is run on it. After the test is finished, the blockchain and the accounts get destroyed.
-
-The complete isolation of each test is good practice, as side-effects can be ruled out. With \texttt{ava}, the tests can be run in parallel, making it faster to run the whole test suite. However, there are many other generic test frameworks that work just as well and have their own advantages and disadvantages.
-
-One interesting specialized framework is Truffle \cite{Truffle}, which provides helpers for developing and testing Solidity contracts. Truffle attempts to make the process described in this section easier and looks very promising, but is still in beta. For the reason that the framework is still very much in development and changing, a generic testing framework was used.
-
-For real-world smart contract applications, testing is not enough, critical contracts should be audited by computer security professionals before being deployed. As the aim of this thesis is to document a proof-of-concept DDoS mitigation application, no audit will be conducted.
 
 \section{Security considerations with Solidity}
 Code vulnerabilities are more common in Ethereum than in other environments. The whole blockchain data is public, and serious contracts are made open source in order to create trust for the people who use it. Therefore applications are auditable and bugs are more likely to be found.

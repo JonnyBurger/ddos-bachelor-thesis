@@ -1,19 +1,34 @@
 [0] Config.pm:343> INFO - This is Biber 2.5
-[1] Config.pm:346> INFO - Logfile is 'thesis.blg'
-[55] biber-darwin:290> INFO - === Mo Jul 24, 2017, 18:20:15
-[76] Biber.pm:351> INFO - Reading 'thesis.bcf'
-[167] Biber.pm:776> INFO - Found 29 citekeys in bib section 0
-[179] Biber.pm:3493> INFO - Processing section 0
-[193] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
-[197] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
-[199] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
-[244] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
-[244] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
-[244] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
-[276] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[276] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[276] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
-[276] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
-[298] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
-[305] bbl.pm:619> INFO - Output to thesis.bbl
-[305] Biber.pm:108> INFO - WARNINGS: 3
+[0] Config.pm:346> INFO - Logfile is 'thesis.blg'
+[54] biber-darwin:290> INFO - === Mo Jul 31, 2017, 01:15:35
+[81] Biber.pm:351> INFO - Reading 'thesis.bcf'
+[252] Biber.pm:776> INFO - Found 34 citekeys in bib section 0
+[269] Biber.pm:3493> INFO - Processing section 0
+[316] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
+[322] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[329] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
+[366] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
+[366] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
+[366] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
+[367] Utils.pm:149> WARN - The field 'author' in entry 'TestRPC' cannot be null, deleting it
+[367] Utils.pm:149> WARN - The field 'month' in entry 'TestRPC' cannot be null, deleting it
+[367] Utils.pm:149> WARN - The field 'year' in entry 'TestRPC' cannot be null, deleting it
+[367] Utils.pm:149> WARN - The field 'author' in entry 'web3' cannot be null, deleting it
+[367] Utils.pm:149> WARN - The field 'month' in entry 'web3' cannot be null, deleting it
+[367] Utils.pm:149> WARN - The field 'year' in entry 'web3' cannot be null, deleting it
+[367] Utils.pm:149> WARN - The field 'author' in entry 'imurmur' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'month' in entry 'imurmur' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'year' in entry 'imurmur' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'author' in entry 'bloomfilterjs' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'month' in entry 'bloomfilterjs' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'year' in entry 'bloomfilterjs' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'author' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'month' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[368] Utils.pm:149> WARN - The field 'year' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[407] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[407] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[407] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
+[407] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
+[435] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
+[441] bbl.pm:619> INFO - Output to thesis.bbl
+[442] Biber.pm:108> INFO - WARNINGS: 18

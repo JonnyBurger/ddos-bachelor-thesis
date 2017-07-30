@@ -8,7 +8,7 @@ contract mortal {
     function kill() { if (msg.sender == owner) selfdestruct(owner); }
 }
 
-contract greeter {
+contract greeter is mortal {
     string greeting;
 
     function greeter(string _greeting) public {

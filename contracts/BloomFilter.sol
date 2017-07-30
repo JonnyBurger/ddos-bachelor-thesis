@@ -95,7 +95,6 @@ contract BloomFilter {
     function result() constant returns (uint ret) {
         uint _k1 = k1;
         uint _h1 = h1;
-        /*
         if (_k1 > 0) {
             _k1 = (_k1 * 0x2d51 + (_k1 & 0xffff) * 0xcc9e0000) & 0xffffffff;
             _k1 = (_k1 << 15) | (_k1 >> 17);
@@ -109,7 +108,6 @@ contract BloomFilter {
         _h1 ^= _h1 >> 13;
         _h1 = (_h1 * 0xae35 + (_h1 & 0xffff) * 0xc2b20000) & 0xffffffff;
         _h1 ^= _h1 >> 16;
-        */
         return _h1 >> 0;
     }
 

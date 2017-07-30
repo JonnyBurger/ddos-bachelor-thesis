@@ -1,14 +1,21 @@
 pragma solidity 0.4.9;
 
 contract BloomFilter3 {
-    int array_size = 32;
-    int bitcount = 32 * 8;
+    int array_size = 1024;
+    int bitcount = 1024 * 8;
     int hashes = 13;
     uint[] filter;
-    function BloomFilter3() {
-        filter = new uint[](32);
+    bool whitelist;
+    address owner;
+    function BloomFilter3(bool white) {
+        owner = msg.sender;
+        filter = new uint[](1024);
+        whitelist = white;
     }
     function add(string s) {
+        if (owner != msg.sender) {
+            throw;
+        }
         var digest = int(sha256(s));
 
         for (var i = 0; i < hashes; i++) {

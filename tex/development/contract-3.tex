@@ -4,4 +4,43 @@ While variant 1 of the smart contract is space-inefficient and variant 2 needs a
 
 A bloom filter is a probabilistic data structure that is very space efficient. In the context of large amounts of IP addresses, it can be tested if an IP address has been inserted into the bloom filter beforehand with constant space requirements. False positives are possible, false negatives are not.
 
-The third variant is space-efficient and the logic is self-contained, however perfect accuracy cannot be guaranteed anymore.
+This variant is space-efficient and the logic is self-contained, however perfect accuracy cannot be guaranteed anymore. Also, additional parameters like a blacklist/whitelist flag, expiration dates, ip boundaries can not be stored in a bloom filter, as it is impossible to fully retrieve the information that the bloom filter was fed.
+
+It is however possible to store additional information in the contract, and use multiple contracts if the parameters differ for reports.
+
+No implementation of a bloom filter in Solidity could be found online, therefore the approach taken to implement this variant was to convert one of the countless examples written in other programming languages into Solidity.
+
+One part of a bloom filter is the hash function that takes any string and converts it into a fixed-length hash. The other part is managing the store, and exposing interfaces for adding entries and checking if an entry has been added.
+
+Different hash functions are available and the choice of the hash function influences the properties of the bloom filter, mainly accuracy and speed. A bloom filter becomes more accurate if the hash function it uses produces more uniform hashes. However, usually more uniform results also means slower hashing.
+
+\subsection{Hashing function}
+
+The hashing part is the more complex code to convert to Solidity, since hashing functions use big numbers and bit-shifting to generate their hashes, which both are very prone to differences in different environments.
+
+In an first attempt, the popular hashing library \texttt{imurmurhash} \cite{imurmur} was taken and rewritten in Solidity as close as possible. This library is using the \texttt{\textgreater{}\textgreater{}\textgreater} (logical right shift) operator which is absent in Solidity. By using a \texttt{\textgreater{}\textgreater} (arithmetic right shift) operator instead, the hashes could not be reproduced. It also generated big numbers in the process whose behavor was inconsistent between Ethereum VM and Javascript environments.
+When later using the ported hash function in a bloom filter, it would return many false positives\footnote{A test case showing the false positive is available under \texttt{test/hash-function.js} in the project files.}.
+
+In an second attempt, the \texttt{bloomfilter.js} \cite{bloomfilterjs} library was ported to Solidity as close as possible. This library uses the Fowler-Noll-Vo hash function instead. The commit history shows that it had once worked without the \texttt{\textgreater{}\textgreater{}\textgreater} operator, but that operator was added later. Yet, the Solidity implementation did still not yield the same hashes for the same input as the Javascript equivalent of the code. By testing subfunctions of the hash function, it was discovered that the inconsistency is caused by bug numbers. In one hash operation, the statement \texttt{2166136261 \textasciicircum{} 65 \& 0xff} would be executed. It is easily verifiable that this expression evaluates to \texttt{-2128831100} in Javascript and to \texttt{2166136196} in Solidity Version 0.4.9.
+
+This difference results because Solidity uses types for numbers such as \texttt{int}, while Javascript only supports floating-point math. With the different hashes being generated, the contract that resulted from the second attempt also led to false positives. \footnote{A test case showing the false positive is available under \texttt{test/hash-function-2.js} in the project files.}
+
+Porting existing hash functions to Solidity provides great challenges. For the third attempt, bloom filter implementations were searched that used one of the hash functions already implemented in Solidity. Two hashing algorithm functions are globally available in every Solidity contract, \texttt{sha256()} and \texttt{sha3()}. For the third attempt, a 'Simple Bloom Filter' \cite{SimpleBloomFilter} code snippet from Github was used as the basis for the smart contract.
+
+This third attempt proved successful as the SHA-256 hashes are reproducible and false positives did not occur anymore. The smart contract that resulted from this attempt has also the most concise and easiest to read code.
+
+\subsection{State management and interface}
+
+A bloom filter creates a fixed length array that initially only contains zeroes. The result of the hashing of the input determines which array items are being switched from zero to one or vice versa. The size of the array is variable.
+
+Instead of only hashing an input value once, it usually is hashed multiple times. This reduces the chance of collision \cite{MultipleHashes}. The amount of hash iterations is also variable. In this simple bloom filter, additional hashes beyond the first one are just bit-shifts of the first hash.
+
+The bigger the amount of the array items and the bigger the amount of the hash iterations, the more accurate a bloom filter gets. The default parameters of the Python bloom filter were an array size of 1024 and 13 hash iterations. \cite{SimpleBloomFilter} 
+
+In Solidity however, this configuration would raise an 'out of gas' error when adding a string to the filter. 
+The maximum amount of gas (also called gas limit) that can be spent on a transaction is 3,141,592 (pi million). Since every node in the network needs to download every transaction, there is an artificial cap on how computationally expensive a transation may be.
+
+By decreasing the array size to 512, the transaction stays below the gas limit and the bloom filter works. 
+By testing different values, it was determined that an array size of 836 is the maximum before this specific contract would not be able to have a transaction executed.
+
+The amount of hash iterations would not significantly affect gas cost. This is because bit-shifts are relatively cheap, and because Ethereum weighs storage more heavily than computing power when it comes to cost calculation.
