@@ -29,20 +29,23 @@ This makes it possible to greatly simplify support for both IPv4 and IPv6, with 
 \input{development/contract-3.tex}
 
 \section{IP address ownership verification}
-In all variants of the smart contract, owners of destination IP addresses can store source IP addresses they want to be blocked in the smart contract. In order to establish trust, there should be a way to automatically verify the ownership of the destination IP addresses. This is a challenging task, as is explained in this section. Using certificates to validate IP ownerships in Solidity is currently not practical for at least two reasons.
 
-It is a computationally expensive task that would require more gas than the gas limit allows and there is no implementation of certificate verification in Solidity. Certificate verification, as it is most commonly done with OpenSSL, would have to be ported ported to Solidity, which is complex.
+In all variants of the smart contract, owners of destination IP addresses can store source IP addresses they want to be blocked in the smart contract. In order to establish trust, one might suggest there should be a way to automatically verify the ownership of the destination IP addresses. This approach was explored during the development of the prototype, however it turns out to be a challenging task. Using certificates to validate IP address ownership in Solidity is currently not practical for at least two reasons.
+
+The main issue is obtaining a certificate. As there is no way to directly mathematically or logically prove that somebody is the owner of an IP address (it can be spoofed), an indirect solution is required. Theoretically, the certificate process of domains could be applied to IP addresses.
+
+Certificate Authorities (CA) are institutions whose business is to issue and manage certificates. They verify and validate the ownership of a domain and issue an certificate for it. CAs need to fulfill a wide range of requirements \cite{BaselineRequirements} to be considered reputable and be included in the root key store of operating system and browser vendors. Currently, only 156 certificates from 60 different owners are trusted in Firefox \cite{httpscca67}.
+
+To fulfill the strict requirements, CAs need to make investments in establishing a system that securely validates a domain and manages the certificates that are issued. To make money, nearly all CAs that are trusted in Firefox charge a issuance fee for domains. The notable exception is "Let's Encrypt" \cite{LetsEncrypt}, which makes money through sponsorships.
+
+Although it is technically possible to issue an SSL certificate for an IP address, it is very uncommon. GlobalSign \cite{GlobalSign} is the only provider whose certificates are trusted by Firefox and that issues certificates for IP addresses. To obtain a certificate, it is also a requirement that the IP address is registered in the RIPE database \cite{Database95}.
+
+Concluding the overview of the certificate issuance process, there are no good providers offering certificates for IP addresses and it is an expensive endeavor to build a certificate authority whose complexity quickly becomes bigger than the one of the scope of the thesis.
+
+Assuming it is possible to obtain and validate certificates for IP addresses, it is a computationally expensive task that would require more gas than the gas limit allows and there is no implementation of certificate verification in Solidity. Certificate verification, as it is most commonly done with OpenSSL, would have to be ported ported to Solidity, which is complex.
 There is however a proposal to add certificate validation on a language-level \cite{EIP74}. As of writing, the exact implementation is not clear, with parts of the community vouching for direct RSA signature verification, and other parts wanting BigInt Support which could then enable certificate validation.
 
-However, since everything in the blockchain is public including stored certificates and IP addresses, it is not required that certificates are validated in Solidity, it can also be done off the blockchain. 
-
-The second challenge is obtaining a certificate. As there is no way to directly mathematically or logically prove that somebody is the owner of an IP (it can be spoofed), an indirect solution is required. It was considered that the certificate process of domains could be applied to IPs: There are Certificate Authorities (CA) who verify and validate the ownership of a domain.
-
-CAs need to make investments in establishing a system that securely validates a domain and manages the certificates that are issued. CAs need to fulfill a wide range of requirements \cite{BaselineRequirements} to be considered reputable and be included in the root key store of operating system and browser vendors. Nearly all CAs for domains issue certificates for a fee or need to generate revenue by sponsorships.
-
-Although it is technically possible to issue an SSL certificate for an IP address, it is very uncommon. GlobalSign \cite{GlobalSign} is the only provider known to us that issues certificates for IP addresses, and requires that the IP is registered in the RIPE database.
-
-The same system that currently exists for domain owner verification could be introduced by the industry for IP addresses verification, but is very complicated and defeats the purpose of using the blockchain as the original idea was to remove the need for additional infrastructure.
+Certificate validation in Solidity is not a hard requirement though \textemdash{} since everything in the blockchain is public including stored certificates and IP addresses, it can also be done off the blockchain. 
 
 \section{Security considerations with Solidity}
 Code vulnerabilities are more common in Ethereum than in other environments. The whole blockchain data is public, and serious contracts are made open source in order to create trust for the people who use it. Therefore applications are auditable and bugs are more likely to be found.

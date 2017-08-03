@@ -44,3 +44,13 @@ By decreasing the array size to 512, the transaction stays below the gas limit a
 By testing different values, it was determined that an array size of 836 is the maximum before this specific contract would not be able to have a transaction executed.
 
 The amount of hash iterations would not significantly affect gas cost. This is because bit-shifts are relatively cheap, and because Ethereum weighs storage more heavily than computing power when it comes to cost calculation.
+
+\subsection{IPv6 format ambiguity consideration}
+
+A IPv6 address can be formatted in more than one way. \cite{RFC4291I66} For instance, leading zeroes in one block can, but don't have to, be omitted. Also, multiple subsequent blocks containing only zeroes can, but don't have to be replaced by two colons.
+For example, \texttt{0000:0000:0000:0000:0000:ffff:2e65:6095} can also be formatted as
+\path{0:0:0:0:0:ffff:2e65:6095} or even as \texttt{::ffff:2e65:6095}. Passing to the hash function the same IP address, but in different formats, will result in vastly different hashes, assuming an uniform hash function.
+
+To prevent false negatives, the possibility of multiple representations per IP addresses has to be eliminated. Therefore, it makes sense to forbid shorthand notations as well as IPv4-in-IPv6 notations such as \texttt{::ffff:46.101.96.149} and any other alternative notations that RFC 4291 \cite{RFC4291I66} mentions.
+This does not result in higher storage costs, as a SHA256 hash is always only 256 bits long.
+

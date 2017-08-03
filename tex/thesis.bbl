@@ -428,6 +428,58 @@
       \verb https://www.quora.com/Why-do-bloom-filters-have-multiple-hash-functions/answer/John-Kurlak
       \endverb
     \endentry
+    \entry{RFC4291I66}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://tools.ietf.org/html/rfc4291}}
+      \field{note}{(Accessed on 08/02/2017)}
+      \field{title}{RFC 4291 - IP Version 6 Addressing Architecture}
+    \endentry
+    \entry{BaselineRequirements}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{Baseline Requirements Certificate Policy for the Issuance and Management of Publicly-Trusted Certificates}
+      \verb{url}
+      \verb https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.5.pdf
+      \endverb
+    \endentry
+    \entry{httpscca67}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://ccadb-public.secure.force.com/mozilla/CACertificatesInFirefoxReport}}
+      \field{note}{(Accessed on 08/02/2017)}
+      \field{title}{https://ccadb-public.secure.force.com/mozilla/CACertificatesInFirefoxReport}
+    \endentry
+    \entry{LetsEncrypt}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/02/2017)}
+      \field{title}{Let's Encrypt}
+      \verb{url}
+      \verb https://letsencrypt.org/
+      \endverb
+    \endentry
+    \entry{GlobalSign}{online}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{title}{Securing a Public IP Address - SSL Certificates}
+      \verb{url}
+      \verb https://support.globalsign.com/customer/portal/articles/1216536-securing-a-public-ip-address---ssl-certificates
+      \endverb
+    \endentry
+    \entry{Database95}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://apps.db.ripe.net/search/query.html}}
+      \field{note}{(Accessed on 08/02/2017)}
+      \field{title}{Database Query ---RIPE Network Coordination Centre}
+    \endentry
     \entry{EIP74}{online}{}
       \name{author}{1}{}{%
         {{hash=2cd3425b3cc606757d03f154c26ed470}{%
@@ -445,24 +497,6 @@
       \field{title}{Ethereum Improvement Proposal 74: Support RSA signature verification}
       \verb{url}
       \verb https://github.com/ethereum/EIPs/issues/74
-      \endverb
-    \endentry
-    \entry{BaselineRequirements}{online}{}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labeltitlesource}{title}
-      \field{title}{Baseline Requirements Certificate Policy for the Issuance and Management of Publicly-Trusted Certificates}
-      \verb{url}
-      \verb https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.5.pdf
-      \endverb
-    \endentry
-    \entry{GlobalSign}{online}{}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labeltitlesource}{title}
-      \field{title}{Securing a Public IP Address - SSL Certificates}
-      \verb{url}
-      \verb https://support.globalsign.com/customer/portal/articles/1216536-securing-a-public-ip-address---ssl-certificates
       \endverb
     \endentry
     \entry{Solium}{online}{}
