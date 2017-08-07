@@ -4,6 +4,8 @@
 
 This section aims to provide a rough guidance on expected cost for each variant of the smart contract.
 
+Actual costs will vary over time as the Ether-to-USD exchange rate as well as the network gas price will change. It is also dependant of the desired transaction confirmation speed. To avoid this section becoming inaccurate in the future, only the amount of gas consumed is benchmarked. The actual cost can be calculated using the cost model described in chapter 5.
+
 For calculating costs of Ethereum usage, the unit used is gas as it is mostly predictable. This is to make the numbers still usable in the future as gas price and Ether-to-USD conversion rate will experience variance over time.
 
 For variant 1, a benchmark script was created\footnote{The source code can be found under \texttt{v1-gas-benchmark.js}. The benchmark can be executed with \texttt{node index v1-gas-benchmark}.}. The benchmark calculates the cumulative gas spent on contract creation and IP address insertion. Two cases were calculated: For the worst case, each IP address was inserted in a separate transaction. For the best case, reports were bundled into one transaction. The benchmark was executed in both cases for 1 IP address, then 2 IP addresses and so forth up to 20 IP addresses. The resulting costs are displayed in Figure \ref{fig:v1-gas-cost}.
