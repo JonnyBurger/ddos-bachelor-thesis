@@ -1,5 +1,5 @@
 import test from 'ava';
-import ip from 'ip';
+import {Address6} from 'ip-address';
 import promisify from 'es6-promisify';
 
 
@@ -24,17 +24,16 @@ test('Test Bloom filter', async t => {
 	const contract = await deployContract(
 		t.context.web3,
 		t.context.accounts[0],
-        BloomFilter3,
-        [1024, 4]
+        BloomFilter3
     );
 	await makeTransaction({
 		name: 'add',
-		args: ['Bess'],
+		args: ['::127.0.0.1'],
 		from: t.context.accounts[0].address,
 		contract
     });
-    const isABCAdded = await (promisify(contract.test))('Bess');
+    const isABCAdded = await (promisify(contract.test))('::127.0.0.1');
     t.true(isABCAdded);
-    const isDEFAdded = await (promisify(contract.test))('Jane');
+    const isDEFAdded = await (promisify(contract.test))(new Address6('::255.255.255.255').bigInteger().toString());
     t.false(isDEFAdded);
 });

@@ -16,7 +16,6 @@ contract ArrayStore {
         uint expirationDate;
         IPAddress sourceIp;
         IPAddress destinationIp;
-        bytes32 hash;
     }
 
     function filter(Report[] memory self, function (Report memory) returns (bool) f) internal returns (Report[] memory r) {

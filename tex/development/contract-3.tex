@@ -29,21 +29,56 @@ Porting existing hash functions to Solidity provides great challenges. For the t
 
 This third attempt proved successful as the SHA-256 hashes are reproducible and false positives did not occur anymore. The smart contract that resulted from this attempt has also the most concise and easiest to read code.
 
-\subsection{State management and interface}
-
-A bloom filter creates a fixed length array that initially only contains zeroes. The result of the hashing of the input determines which array items are being switched from zero to one or vice versa. The size of the array is variable.
+\subsection{Hashing parameters}
 
 Instead of only hashing an input value once, it usually is hashed multiple times. This reduces the chance of collision \cite{MultipleHashes}. The amount of hash iterations is also variable. In this simple bloom filter, additional hashes beyond the first one are just bit-shifts of the first hash.
 
-The bigger the amount of the array items and the bigger the amount of the hash iterations, the more accurate a bloom filter gets. The default parameters of the Python bloom filter were an array size of 1024 and 13 hash iterations. \cite{SimpleBloomFilter} 
+The bloom filter takes two parameters: numbers of bits in the filter and number of hash functions. 
+
+The bigger the amount of the array items and the bigger the amount of the hash iterations, the more accurate a bloom filter gets. The default parameters of the Python bloom filter were an array size of 1024 bytes and 13 hash iterations. \cite{SimpleBloomFilter}.
 
 In Solidity however, this configuration would raise an 'out of gas' error when adding a string to the filter. 
-The maximum amount of gas (also called gas limit) that can be spent on a transaction is 3,141,592 (pi million). Since every node in the network needs to download every transaction, there is an artificial cap on how computationally expensive a transation may be.
+The maximum amount of gas (also called gas limit) that can be spent on a transaction is 3,141,592 (pi million). Since every node in the network needs to download every transaction, there is an artificial cap on how computationally expensive a transaction may be.
 
-By decreasing the array size to 512, the transaction stays below the gas limit and the bloom filter works. 
-By testing different values, it was determined that an array size of 836 is the maximum before this specific contract would not be able to have a transaction executed.
+By decreasing the array size to 512 bytes, the cost stays below the gas limit and the bloom filter works. 
+Testing different values determined that an array size of 836 bytes is the maximum before this specific contract would not be able to have a transaction executed. However this thesis continues with the assumption of a 512 byte array size to stay well below the gas limit – this way more features can be added to the contract without hitting the gas limit.
 
-The amount of hash iterations would not significantly affect gas cost. This is because bit-shifts are relatively cheap, and because Ethereum weighs storage more heavily than computing power when it comes to cost calculation.
+\subsection{Accuracy and number of reports}
+
+Given a number of items that are indexed, and a number of hash functions, the ideal array size and number of hash functions can be calculated. According to http://hur.st \cite{BloomfilterAccuracy}, given $n$ = number of items in the filter and $p =$ probability of false positives, the number of bits in the filter $m$ can be calculated using equation \ref{eq:m} and the number of hash functions $k$ using equation \ref{eq:k}. 
+
+\begin{equation}
+m = \lceil\frac{n * log(p)}{ln(\frac{1.0}{2.0 ^{ln(2)}})}\rceil
+\label{eq:m}
+\end{equation}
+
+\begin{equation}
+k = \lfloor ln(2) * m / n) \rceil
+\label{eq:k}
+\end{equation}
+
+For example: Given that the magnitude of DDoS attacks is in the millions (n = 1'000'000) and assuming that a 5\% chance of false positives is good enough (p = 0.05), an array size of 14357134 bits (1.71 MB) and 4 hash functions will do.
+
+Solving equation \ref{eq:m} for $p$ gives equation \ref{eq:p}
+
+\begin{equation}
+p = e^{\frac{{m \cdot ln(\frac{1}{2^{ln(2)}})}}{n}}
+\label{eq:p}
+\end{equation}
+
+\subsection{State management and interface}
+
+A bloom filter creates a fixed length array that initially only contains zeroes.
+\input{snippets/contract-3-constructor.tex}
+
+When adding an entry, it gets hashed and some items in the array get bit-shifted from '0' to '1'. The algorithm is taken from the original Python implementation \cite{SimpleBloomFilter}.
+
+\input{snippets/contract-3-add.tex}
+
+For testing whether an IP address has been inserted, the input string gets hashed again and the same positions in the array are calculated. If all the values at the array positions are 1's, the bloom filter assumes the string has been inserted before (of course false positives are possible).
+
+
+\input{snippets/contract-3-test.tex}
 
 \subsection{IPv6 format ambiguity consideration}
 
