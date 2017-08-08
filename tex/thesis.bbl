@@ -23,6 +23,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Ethereum: Blockchain App Platform}
       \verb{url}
       \verb https://ethereum.org/
@@ -42,6 +43,7 @@
       \field{labeltitlesource}{title}
       \field{day}{04}
       \field{month}{11}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Understanding Denial-of-Service Attacks}
       \field{year}{2009}
       \verb{url}
@@ -116,7 +118,7 @@
       \verb http://www.sciencedirect.com/science/article/pii/S1353485815300921
       \endverb
     \endentry
-    \entry{IETFDraft}{online}{}
+    \entry{IETFDraft}{misc}{}
       \name{author}{7}{}{%
         {{hash=5b581cb7ca40c871a447deacddf366a8}{%
            family={Nishizuka},
@@ -160,13 +162,9 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Inter-organization cooperative DDoS protection mechanism}
-      \field{urlday}{27}
-      \field{urlmonth}{12}
-      \field{urlyear}{2016}
-      \verb{url}
-      \verb https://tools.ietf.org/html/draft-nishizuka-dots-inter-domain-mechanism-02
-      \endverb
+      \field{howpublished}{\url{https://tools.ietf.org/html/draft-ietf-dots-architecture-04}}
+      \field{note}{(Accessed on 08/08/2017)}
+      \field{title}{Distributed-Denial-of-Service Open Threat Signaling (DOTS) Architecture}
     \endentry
     \entry{OriginalPaper}{article}{}
       \name{author}{6}{}{%
@@ -209,6 +207,9 @@
       \field{labeltitlesource}{title}
       \field{title}{A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN}
       \field{year}{2017}
+      \verb{url}
+      \verb https://www.semanticscholar.org/paper/A-Blockchain-Based-Architecture-for-Collaborative-Rodrigues-Bocek/a1a842aaca9f99b396154d6932c6746e68f33f5a
+      \endverb
     \endentry
     \entry{DefCOM}{inproceedings}{}
       \name{author}{4}{}{%
@@ -247,11 +248,18 @@
       \field{year}{2006}
       \field{pages}{33\bibrangedash 42}
       \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/ACSAC.2006.5
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/ACSAC.2006.5
+      \endverb
     \endentry
     \entry{Solc}{online}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{The Solidity Contract-Oriented Programming Language}
       \verb{url}
       \verb https://github.com/ethereum/solidity
@@ -271,6 +279,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{IPv4 Exhaustion}
       \field{year}{2015}
       \verb{url}
@@ -309,6 +318,7 @@
       \field{labeltitlesource}{title}
       \field{day}{26}
       \field{month}{10}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Parsing JSON is a Minefield}
       \field{year}{2016}
       \verb{url}
@@ -327,6 +337,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{JSON Streaming - Line delimited JSON}
       \verb{url}
       \verb https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON_2
@@ -344,9 +355,10 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{RFC 7158}
       \verb{url}
-      \verb https://tools.ietf.org/html/rfc7159#appendix-A
+      \verb https://tools.ietf.org/html/rfc7159
       \endverb
     \endentry
     \entry{SubresourceIntegrity}{online}{}
@@ -361,6 +373,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Subresource Integrity}
       \verb{url}
       \verb https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
@@ -380,6 +393,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Semantic Versioning 2.0.0}
       \verb{url}
       \verb http://semver.org/
@@ -423,6 +437,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Why do bloom filters have multiple hash functions?}
       \verb{url}
       \verb https://www.quora.com/Why-do-bloom-filters-have-multiple-hash-functions/answer/John-Kurlak
@@ -448,6 +463,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Baseline Requirements Certificate Policy for the Issuance and Management of Publicly-Trusted Certificates}
       \verb{url}
       \verb https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.5.pdf
@@ -475,6 +491,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Securing a Public IP Address - SSL Certificates}
       \verb{url}
       \verb https://support.globalsign.com/customer/portal/articles/1216536-securing-a-public-ip-address---ssl-certificates
@@ -502,6 +519,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Ethereum Improvement Proposal 74: Support RSA signature verification}
       \verb{url}
       \verb https://github.com/ethereum/EIPs/issues/74
@@ -511,6 +529,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Solium Framework}
       \verb{url}
       \verb https://github.com/duaraghav8/Solium
@@ -530,10 +549,8 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Thinking about Smart contract security}
-      \field{urlday}{18}
-      \field{urlmonth}{05}
-      \field{urlyear}{2017}
       \field{year}{2016}
       \verb{url}
       \verb https://blog.ethereum.org/2016/06/19/thinking-smart-contract-security
@@ -553,6 +570,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Ethereum Improvement Proposal 150: Long-term gas cost changes for IO-heavy operations to mitigate transaction spam attacks}
       \verb{url}
       \verb https://github.com/ethereum/EIPs/issues/150
@@ -572,6 +590,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Ethereum: A secure decentralised generalised transaction ledger}
       \verb{url}
       \verb http://gavwood.com/paper.pdf
@@ -581,6 +600,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{go-ethereum Github Repository. File \texttt{eth/config.go}}
       \verb{url}
       \verb https://github.com/ethereum/go-ethereum/blob/fff16169c64a83d57d2eed35b6a2e33248c7d5eb/eth/config.go%5C#L45
@@ -598,6 +618,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Average Gas Price}
       \verb{url}
       \verb https://etherscan.io/chart/gasprice
@@ -615,6 +636,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{The Safe Low Gas Price}
       \verb{url}
       \verb https://medium.com/@ethgasstation/the-safe-low-gas-price-fb44fdc85b91
@@ -632,6 +654,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Bitcoin}
       \verb{url}
       \verb https://www.coinbase.com
@@ -649,6 +672,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{The DAO (Organization)}
       \verb{url}
       \verb https://en.wikipedia.org/wiki/The_DAO_(organization)
@@ -666,6 +690,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{Ethereum briefly crashed from \$319 to 10 cents in seconds on one exchange after multimillion dollar trade}
       \verb{url}
       \verb http://www.cnbc.com/2017/06/22/ethereum-price-crash-10-cents-gdax-exchange-after-multimillion-dollar-trade.html
@@ -685,6 +710,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{note}{(Accessed on 08/08/2017)}
       \field{title}{What is Gas Limit in Ethereum?}
       \verb{url}
       \verb https://bitcoin.stackexchange.com/a/42629

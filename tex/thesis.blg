@@ -1,47 +1,49 @@
 [0] Config.pm:343> INFO - This is Biber 2.5
 [0] Config.pm:346> INFO - Logfile is 'thesis.blg'
-[55] biber-darwin:290> INFO - === Di Aug  8, 2017, 11:21:27
-[82] Biber.pm:351> INFO - Reading 'thesis.bcf'
-[217] Biber.pm:776> INFO - Found 39 citekeys in bib section 0
-[228] Biber.pm:3493> INFO - Processing section 0
-[243] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
-[246] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
-[248] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
-[284] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
-[284] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
-[284] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
-[285] Utils.pm:149> WARN - The field 'author' in entry 'TestRPC' cannot be null, deleting it
-[285] Utils.pm:149> WARN - The field 'month' in entry 'TestRPC' cannot be null, deleting it
-[285] Utils.pm:149> WARN - The field 'year' in entry 'TestRPC' cannot be null, deleting it
-[285] Utils.pm:149> WARN - The field 'author' in entry 'web3' cannot be null, deleting it
-[285] Utils.pm:149> WARN - The field 'month' in entry 'web3' cannot be null, deleting it
-[285] Utils.pm:149> WARN - The field 'year' in entry 'web3' cannot be null, deleting it
-[286] Utils.pm:149> WARN - The field 'author' in entry 'imurmur' cannot be null, deleting it
-[286] Utils.pm:149> WARN - The field 'month' in entry 'imurmur' cannot be null, deleting it
-[286] Utils.pm:149> WARN - The field 'year' in entry 'imurmur' cannot be null, deleting it
-[286] Utils.pm:149> WARN - The field 'author' in entry 'bloomfilterjs' cannot be null, deleting it
-[286] Utils.pm:149> WARN - The field 'month' in entry 'bloomfilterjs' cannot be null, deleting it
-[286] Utils.pm:149> WARN - The field 'year' in entry 'bloomfilterjs' cannot be null, deleting it
-[287] Utils.pm:149> WARN - The field 'author' in entry 'SimpleBloomFilter' cannot be null, deleting it
-[287] Utils.pm:149> WARN - The field 'month' in entry 'SimpleBloomFilter' cannot be null, deleting it
-[287] Utils.pm:149> WARN - The field 'year' in entry 'SimpleBloomFilter' cannot be null, deleting it
-[288] Utils.pm:149> WARN - The field 'author' in entry 'BloomfilterAccuracy' cannot be null, deleting it
-[288] Utils.pm:149> WARN - The field 'month' in entry 'BloomfilterAccuracy' cannot be null, deleting it
-[288] Utils.pm:149> WARN - The field 'year' in entry 'BloomfilterAccuracy' cannot be null, deleting it
-[289] Utils.pm:149> WARN - The field 'author' in entry 'RFC4291I66' cannot be null, deleting it
-[289] Utils.pm:149> WARN - The field 'month' in entry 'RFC4291I66' cannot be null, deleting it
-[289] Utils.pm:149> WARN - The field 'year' in entry 'RFC4291I66' cannot be null, deleting it
-[289] Utils.pm:149> WARN - The field 'author' in entry 'httpscca67' cannot be null, deleting it
-[290] Utils.pm:149> WARN - The field 'month' in entry 'httpscca67' cannot be null, deleting it
-[290] Utils.pm:149> WARN - The field 'year' in entry 'httpscca67' cannot be null, deleting it
-[290] Utils.pm:149> WARN - The field 'author' in entry 'Database95' cannot be null, deleting it
-[290] Utils.pm:149> WARN - The field 'month' in entry 'Database95' cannot be null, deleting it
-[291] Utils.pm:149> WARN - The field 'year' in entry 'Database95' cannot be null, deleting it
-[322] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[322] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[322] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
-[322] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
-[344] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
-[349] Utils.pm:149> WARN - The entry 'Database95' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
-[351] bbl.pm:619> INFO - Output to thesis.bbl
-[351] Biber.pm:108> INFO - WARNINGS: 31
+[66] biber-darwin:290> INFO - === Di Aug  8, 2017, 12:07:25
+[93] Biber.pm:351> INFO - Reading 'thesis.bcf'
+[223] Biber.pm:776> INFO - Found 39 citekeys in bib section 0
+[239] Biber.pm:3493> INFO - Processing section 0
+[264] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
+[267] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[270] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
+[313] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
+[313] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
+[313] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
+[313] Utils.pm:149> WARN - The field 'month' in entry 'IETFDraft' cannot be null, deleting it
+[314] Utils.pm:149> WARN - The field 'year' in entry 'IETFDraft' cannot be null, deleting it
+[314] Utils.pm:149> WARN - The field 'author' in entry 'TestRPC' cannot be null, deleting it
+[314] Utils.pm:149> WARN - The field 'month' in entry 'TestRPC' cannot be null, deleting it
+[314] Utils.pm:149> WARN - The field 'year' in entry 'TestRPC' cannot be null, deleting it
+[314] Utils.pm:149> WARN - The field 'author' in entry 'web3' cannot be null, deleting it
+[315] Utils.pm:149> WARN - The field 'month' in entry 'web3' cannot be null, deleting it
+[315] Utils.pm:149> WARN - The field 'year' in entry 'web3' cannot be null, deleting it
+[315] Utils.pm:149> WARN - The field 'author' in entry 'imurmur' cannot be null, deleting it
+[315] Utils.pm:149> WARN - The field 'month' in entry 'imurmur' cannot be null, deleting it
+[315] Utils.pm:149> WARN - The field 'year' in entry 'imurmur' cannot be null, deleting it
+[316] Utils.pm:149> WARN - The field 'author' in entry 'bloomfilterjs' cannot be null, deleting it
+[316] Utils.pm:149> WARN - The field 'month' in entry 'bloomfilterjs' cannot be null, deleting it
+[316] Utils.pm:149> WARN - The field 'year' in entry 'bloomfilterjs' cannot be null, deleting it
+[316] Utils.pm:149> WARN - The field 'author' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[316] Utils.pm:149> WARN - The field 'month' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[316] Utils.pm:149> WARN - The field 'year' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[317] Utils.pm:149> WARN - The field 'author' in entry 'BloomfilterAccuracy' cannot be null, deleting it
+[317] Utils.pm:149> WARN - The field 'month' in entry 'BloomfilterAccuracy' cannot be null, deleting it
+[317] Utils.pm:149> WARN - The field 'year' in entry 'BloomfilterAccuracy' cannot be null, deleting it
+[317] Utils.pm:149> WARN - The field 'author' in entry 'RFC4291I66' cannot be null, deleting it
+[317] Utils.pm:149> WARN - The field 'month' in entry 'RFC4291I66' cannot be null, deleting it
+[318] Utils.pm:149> WARN - The field 'year' in entry 'RFC4291I66' cannot be null, deleting it
+[318] Utils.pm:149> WARN - The field 'author' in entry 'httpscca67' cannot be null, deleting it
+[318] Utils.pm:149> WARN - The field 'month' in entry 'httpscca67' cannot be null, deleting it
+[318] Utils.pm:149> WARN - The field 'year' in entry 'httpscca67' cannot be null, deleting it
+[318] Utils.pm:149> WARN - The field 'author' in entry 'Database95' cannot be null, deleting it
+[319] Utils.pm:149> WARN - The field 'month' in entry 'Database95' cannot be null, deleting it
+[319] Utils.pm:149> WARN - The field 'year' in entry 'Database95' cannot be null, deleting it
+[350] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[351] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[351] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
+[351] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
+[372] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
+[378] Utils.pm:149> WARN - The entry 'Database95' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
+[379] bbl.pm:619> INFO - Output to thesis.bbl
+[379] Biber.pm:108> INFO - WARNINGS: 33
