@@ -1,14 +1,14 @@
 \chapter{Development}
 
-In the following, three variants of a DDoS attack signaling protocol are being developed. For that, a smart contract is being written in the Soldity programming language \cite{Solc} for each variant. A smart contract strongly resembles a 'class' that is known from object-oriented programming. The following is a 'Hello World' smart contract from the Ethereum website (https://www.ethereum.org/greeter).
+In the following, three variants of a DDoS attack signaling protocol are being developed. For that, a smart contract is being written in the Soldity programming language \cite{Solc} for each variant. Code-wise, a smart contract strongly resembles a 'class' that is known from object-oriented programming. The following is a 'Hello World' smart contract from the Ethereum website (https://www.ethereum.org/greeter).
 
 \input{snippets/greeter.tex}
 
-Instead of the \texttt{class} keyword, solidity uses a \texttt{contract} keyword. Inheritance is possible using the \texttt{is} (rather than \texttt{extends} in Java) keyword. A contract can, like a class, be instantiated. The constructor is defined by the method within the contract that has the same name as the contract - in this case, \texttt{function greeter(string greeting)} is the constructor of \texttt{greeter}. Methods can be declared public or private. They are, like in Javascript, prefixed with the \texttt{function} keyword. A special type in Solidity is the \texttt{address} type, which can hold an 40-byte address of an Ethereum network user.
+Instead of the \texttt{class} keyword, solidity uses a \texttt{contract} keyword. Inheritance is possible using the \texttt{is} (rather than \texttt{extends} in Java) keyword. A contract can, like a class, be instantiated. The constructor is defined by the method within the contract that has the same name as the contract - in this case, \texttt{function greeter(string greeting)} is the constructor of the \texttt{greeter} contract. Methods can be declared public or private. They are, similar to Javascript, prefixed with the \texttt{function} keyword. A special type in Solidity is the \texttt{address} type, which can hold an 40-byte address of an Ethereum network user.
 
-This Solidity code can be compiled to bytecode and deployed on a Ethereum blockchain. When deployed, the contract is stored in a block, alongside with other data that users committed to the Blockchain, and synced to all users of the network (downloading the complete public Ethereum Blockchain uses dozens of Gigabytes). Once the deployment is finished, Ethereum users can instantiate the smart contract. If they choose to do so, they  send a transaction to the Ethereum network and the instance of the contract is registered on the Blockchain. Methods can also be executed by sending a transaction to the Ethereum Blockchain.
+This Solidity code can be compiled to bytecode and deployed on an Ethereum blockchain. When deployed, the contract is stored in a block, alongside with other data that users committed to the Blockchain, and synced to all users of the network. Downloading the complete public Ethereum Blockchain uses dozens of Gigabytes. Once the deployment is finished, Ethereum users can instantiate the smart contract. If they choose to do so, they  send a transaction to the Ethereum network and the instance of the contract is registered on the Blockchain. Methods can also be executed by sending a transaction to the Ethereum Blockchain.
 
-In each method body, a \texttt{msg} global object is available, containing information about the transaction being executed, including \texttt{msg.sender} (an \texttt{address}), \texttt{msg.gas}, \texttt{msg.value} (for sending Ether).
+In each method body, a \texttt{msg} global object is available, containing information about the transaction being executed, including \texttt{msg.sender} (an \texttt{address}), \texttt{msg.gas} and \texttt{msg.value} (for sending Ether).
 
 In addition to that, a second global variable \texttt{block} gives information about the current block, including \texttt{block.number} and \texttt{block.timestamp}.
 
@@ -16,11 +16,11 @@ A constant method, like \texttt{function greet() constant returns (string)} is a
 
 \section{IPv6 considerations}
 
-With IPv4 addresses being 32 bits long, only $ 2^{32} $ combinations possible and the amount of free addresses is almost exhausted \cite{IPv4Exhaustion}, there currently is a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
+With IPv4 addresses being 32 bits long, only $ 2^{32} $ combinations are possible and the amount of free addresses is almost exhausted \cite{IPv4Exhaustion}, so we are currently in a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
 
-An IPv4 address can be represented in IPv6 using a format that is defined RFC 3493: 80 bits of zeros, 16 bits of ones, followed the IPv4 address. For example, the IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. This notation is supported by the Linux kernel and macOS natively, in a web browser \texttt{http://[::ffff:2e65:6095]} will display the same website as \texttt{http://46.101.96.149}.
+An IPv4 address can be represented in IPv6 using a format that is defined in RFC 3493: 80 bits of zeros, 16 bits of ones, followed the IPv4 address. For example, the IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. This notation is supported by the Linux kernel and macOS natively. Most web browsers will, when entering \texttt{http://[::ffff:2e65:6095]}, display the same website as when entering \texttt{http://46.101.96.149}.
 
-This makes it possible to greatly simplify support for both IPv4 and IPv6, with no flag needed to indicate which version of the protocol is meant. All addresses are stored in a IPv6 format (using a \texttt{uint128} type) and if the bits 81-96 are all ones, it indicates that it is an IPv4 address.
+This makes it possible to greatly simplify support for both IPv4 and IPv6, with no flag needed to indicate which version of the protocol is meant. All addresses can be stored in an IPv6 format (using an \texttt{uint128} type) and if the bits 81-96 are all ones, it indicates that it is an IPv4 address.
 
 \input{development/testing.tex}
 

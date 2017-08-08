@@ -208,7 +208,7 @@
       \field{title}{A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN}
       \field{year}{2017}
       \verb{url}
-      \verb https://www.semanticscholar.org/paper/A-Blockchain-Based-Architecture-for-Collaborative-Rodrigues-Bocek/a1a842aaca9f99b396154d6932c6746e68f33f5a
+      \verb http://doi.org/10.1007/978-3-319-60774-0_2
       \endverb
     \endentry
     \entry{DefCOM}{inproceedings}{}
@@ -603,7 +603,7 @@
       \field{note}{(Accessed on 08/08/2017)}
       \field{title}{go-ethereum Github Repository. File \texttt{eth/config.go}}
       \verb{url}
-      \verb https://github.com/ethereum/go-ethereum/blob/fff16169c64a83d57d2eed35b6a2e33248c7d5eb/eth/config.go%5C#L45
+      \verb https://github.com/ethereum/go-ethereum/blob/fff16169c64a83d57d2eed35b6a2e33248c7d5eb/eth/config.go#L45
       \endverb
     \endentry
     \entry{AverageGasPrice}{online}{}

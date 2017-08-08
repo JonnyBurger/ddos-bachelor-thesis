@@ -3,9 +3,9 @@ Developing a smart contract requires a compiler and a blockchain on which the de
 
 \subsection{Environment}
 
-The main Ethereum blockchain is unsuitable for validating the correctness of the code manually. There are significant costs to deploy a contract to the blockchain, also it is not capable of giving the developer immediate feedback because of transaction processing times. It is also frowned upon to use the main blockchain for testing purposes, as all network participants need to download all blocks.
+The main Ethereum blockchain is unsuitable for validating the correctness of the code manually. There are significant costs to deploy a contract to the main blockchain, also it is not possible for a developer to get immediate feedback because of transaction processing times. It is also insensitive to use the main blockchain for testing purposes, as all network participants need to download all blocks.
 
-This is not the case in the Testnet, which is a separate blockchain for testing purposes. Still, the Testnet is a globally shared blockchain and is not perfect for development.
+The 'Testnet' is a separate Ethereum blockchain for testing purposes. The Ether needed to deploy contracts is not traded on exchanges and was mined with a much lower difficulty level, so usage of the Testnet is basically free. However, the Testnet is also a globally shared blockchain with confirmation times and is not perfect for development. 
 
 \texttt{TestRPC} \cite{TestRPC} is a library that makes it possible to set up a local blockchain for testing purposes. Using \texttt{TestRPC}, it is possible to simulate deployments and transactions of smart contracts with no confirmation delay. Out of the box, \texttt{TestRPC} sets up multiple Ethereum accounts, making it simple to switch the message sender address and test whether the access control features of the developed smart contract are working as intended. This makes \texttt{TestRPC} the ideal blockchain for developing.
 
@@ -14,11 +14,11 @@ This is not the case in the Testnet, which is a separate blockchain for testing 
 A compiler, such as solc \cite{Solc}, will warn about syntax errors and does not compile invalid Solidity code, indicating to the developer that there is an error in the code.
 
 \texttt{solc} does refuse to compile code that has operations of incompatible types, invalid variable redeclarations, invalid return types and incorrect syntax. 
-It does not give an error for unused variables, dead code, missing arguments and does not completely protect against runtime errors or gas limit errors.
+It does however not give an error for unused variables, dead code, missing arguments and does not completely protect against runtime errors or gas limit errors.
 
 While compilers provide a first layer of assurance by only compiling valid contracts with valid syntax, it is still possible to write code with bugs and security vulnerabilities.
 
-Testing is a technique used in all almost fields of software development to reduce unintended regressions introduced when modifying code. A set of test cases is defined which a testing framework can run through and determine whether all assertions still pass. It is the automation of manual quality assurance.
+Testing is a technique used in almost all fields of software development to reduce unintended regressions introduced when modifying code. A set of test cases is defined which a testing framework can run through and determine whether all assertions still pass. It is the automation of manual quality assurance.
 
 Cases that can be tested to improve robustness are: Intended smart contract use, malicious smart contract use, and edge cases. For example: Calling a function without permission, calling a function more often than expected, calling a function with unexpected arguments, such as null arguments, wrong types or a big payload.
 A robust contract should include unit tests validating that normal use of the contract features result in correct behavior, as well as tests for edge cases and abuse of the contract features.
