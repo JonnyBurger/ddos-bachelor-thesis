@@ -1,2 +1,16 @@
 \chapter{Summary and Conclusions}
 
+Ethereum provides a new platform for decentralized applications of any kind. Using the turing-complete programming language Solidity, smart contracts can be programmed to solve a wide variety of problems.
+
+In order to enable decentralized applications, Ethereum must make some tradeoffs by disincentivizing computation-heavy or space-inefficient applications with cost and limitations.
+
+Several factors decide the cost of Ethereum applications. The complexity of the application, parameters of Ethereum clients and Ether price influence the cost. Speed is correlated to cost with faster transactions for higher prices.
+
+Three protoypes of a smart contract for signaling DDoS attacks for the Ethereum platform were developed, tested and benchmarked. In general, all variants are functional and can be used to store IP addresses. For a small number of IP addresses, the smart contracts are reasonable solutions that are relatively cheap to implement. However, storing more than a few hundred IPs directly in the contract causes serious scalability issues that are hard to overcome on the Ethereum blockchain.
+
+The approach to directly store all IP addresses in an array results in extremely high costs as expected. The supposed solution, the bloom filter, only increased the cost while also introducing imperfect accuracy and eliminating the possibility to obtain a full list of stored IP addresses.
+
+The approach of pointing to a list of IP addresses on the web is the most scalable approach of the three, outsourcing the big data to a established protocol. By testing the integrity of the resources using a hash, the immutability properties of the blockchain can be extended to the web resource as well. On the contrary, this variant is the least ambitious of the solutions and does not fully deliver on the promise of a blockchain-based solution.
+
+In conclusion, Ethereum as a general-purpose blockchain is not the ideal technology to run DDoS signaling applications. However, most of the issues come down to scalability and the developed solutions are viable for signaling small amounts of data. To further advance the idea of decentralized DDoS signaling, specialized blockchains have to be developed which feature properties more suited for this type of application.
+

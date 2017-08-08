@@ -1,50 +1,50 @@
 \section{Contract 2: Pointer to web resource}
 The main disadvantage of storing the reports directly in the contract is that the cost of the data entry scales linearly with the number of reports. What is just a few cents in gas fees for a few reports, can grow expensive at scale.
-Ethereum disincentivizes the storage of large data because each node needs to keep track of a whole blockchain by downloading it. Therefore it is also a concern for the Ethereum ecosystem to store large amounts of data.
+Ethereum disincentivizes the storage of large data because each node needs to keep track of a whole blockchain by downloading it. 
 
-The second variant of the smart contract works around the space constraints and the big cost of the first variant by storing the list of IP addresses on a web resource and pointing to it on the blockchain. The advantage of this variant is that it works on a much larger scale and is expected to be cheaper in the long-term. The disadvantages are that a web server needs to be set up and a separate specification has to be defined for the format of the web resource. This solution is also more prone to connectivity issues and does not take full advantage of the decentralization and immutability of the blockchain.
+The second variant of the smart contract works around the space constraints and the big cost of the first variant by storing the list of IP addresses on a web resource and pointing to it on the blockchain. The advantage of this variant is that it works on a much larger scale and is expected to be cheaper in the long-term. The disadvantages are that a web server needs to be set up and a separate specification has to be defined for the format of the web resource. This solution is also prone to connectivity issues and does not take full advantage of the decentralization and immutability of the blockchain.
 
 \subsection{Smart Contract}
-The basic data structure of the smart contract is similar to the array store contract. The difference is that it should accept URLs which point to lists of reports rather than reports themselves. Since it is possible to include as many reports as desired in a web resource, the assumption is made that only 1 pointer is needed per customer. This assumption can simplify the contract, so that is not necessary anymore to include a helper function that flattens the data.
+The basic data structure of the smart contract is similar to the array store contract. The difference is that the items do not contain IP addresses, but URLs which point to lists of IP addresses. Since it is possible to include as many reports as desired in a web resource, the assumption is made that only 1 pointer is needed per customer. This assumption can simplify the contract, so that no array is needed and that is not necessary anymore to include a helper function that flattens the data.
 
 \lstinputlisting{snippets/ip-pointer-store-outline.sol}
 
-Instead of using an array to store the pointers, a \texttt{mapping(address => Pointer)} is being used. It is the equivalent of a \texttt{Map<address, Pointer>} in Java with it having types, but it uses a 'Javascript object like' syntax for getting, setting and deleting values.
+Instead of using an array to store the pointers, a \texttt{mapping(address => Pointer)} is being used. It is the equivalent of a \texttt{Map<address, Pointer>} in Java with it having types, but it uses a Javascript object like syntax for getting, setting and deleting values.
 
 With this design, each user of the smart contract can have one pointer at a time. With each transaction the previous pointer is overwritten, hence the method name \texttt{setPointer}.
 
-The struct Pointer \texttt{Pointer} does not nest another struct \texttt{IPAddress} like in the previous contract, but instead stores base and mask directly. Although it would be a cleaner design, it would trigger an error message \texttt{Internal type is not allowed for public state variables}. The reason for this that each Ethereum contract has a JSON interface called Application Binary Interface (ABI) in which a structure like this cannot be represented at the moment. 
+The struct \texttt{Pointer} does not nest another struct \texttt{IPAddress} like in the previous contract, but instead stores IP address base and mask directly. Although it would be a cleaner design, it would trigger an error message \texttt{Internal type is not allowed for public state variables}. The reason for this that each Ethereum contract has a JSON interface called Application Binary Interface (ABI) in which a structure like this cannot be represented at the moment, therefore this type of structure is not supported.
 
-For this reason, the contract is programmed to do without nested structs. The benefit is that mappings can be used which means that no helper method is needed to retrieve the data.
-Verifying that the sender of the transaction is a member works by comparing \texttt{members[msg.sender].ip} to 0. In many other languages, \texttt{members[msg.sender]} would be compared to \texttt{null} and the comparison the above code would be susceptible to a null-pointer exception. However, in Solidity, there is no concept of 'null'. Accessing a pure value that has not been set returns zero, accessing a struct that has not been set returns a struct where all values are zero.
+For this reason, the contract is programmed to do without nested structs, but with mappings instead. The benefit of mappings is that no helper methods are needed to retrieve the data.
+Verifying that the sender of the transaction is a member works by comparing \texttt{members[msg.sender].ip} to 0. In many other languages, \texttt{members[msg.sender]} would be compared to \texttt{null} and the comparison the above code would be susceptible to a null-pointer exception. However, in Solidity, there is no concept of 'null'. Accessing a primitive value that has not been set returns zero, accessing a struct that has not been set returns a struct where all values are zero.
 
 \subsection{Web resource}
-The web resource has several design aspects that need to be considered. By storing a URL in the blockchain, it is already implied that the connection to the resource is made using HTTP(S), which is a suitable protocol for our needs.
+Several design aspects need to be considered for the web resource. By storing a URL in the blockchain, it is already implied that the connection to the resource is made using HTTP(S), which is a suitable protocol for our needs.
 
-A syntax and a data structure that the reports are represented in needs to be selected. It is desired to use an already common syntax like XML, CSV or JSON, because there are clients for many languages out there and and they are heavily standardized. An essay by Nicolas Seriot \cite{ParsingJSON} shows the challenges of covering edge cases in standards by showing inconsistencies in trailing commas, unclosed structures, duplicate keys and white space in JSON, making a case against developing an additional format. The use of an established format increases the \textbf{Portability} of the protocol.
+A syntax and a data structure that the reports are represented in needs to be selected. It is desired to use an already common syntax like XML, CSV or JSON, because there are a selection of clients for many languages available and because of the heavy standardization. The use of an established format increases the \textbf{Portability} of the protocol. An essay by Nicolas Seriot \cite{ParsingJSON} shows the challenges of covering edge cases in standards by showing inconsistencies in trailing commas, unclosed structures, duplicate keys and white space in JSON, making a case against developing an additional format.
 
-JSON and XML allow to extend the schema by adding more keys to the object or by adding more allowed tags to the schema. \textbf{Upgradeability} is a desired property of the protocol, it allows it to be developed further in the future to enable more features with backwards compatibility. This is more difficult with a two-dimensional design like CSV, because the format can only be extended by adding more columns.
+JSON and XML allow to extend the schema by adding more keys to the object or by adding more allowed tags to the schema. \textbf{Upgradeability} is also a desired property of the protocol, because it allows the web resource format to be developed further in the future to enable more features with backwards compatibility. This is more difficult with a two-dimensional design like CSV, because the format can only be extended by adding more columns.
 
-As one can expect that the lists to become very large, it is beneficiary to have the format in a way where it can already be partially evaluated while not yet fully loaded. This is called \textbf{Streaming}. Network latency and throughput rates do influence the speed in which the files will be downloaded.
-Streaming in CSV is easy, as soon as a newline character is detected, the client can safely assume that an entry has been fully loaded and that it can be processed. On the contrary, with XML or JSON, who have closing tags, streaming is not possible.
+The expectation is that lists can become very large, therefore it is beneficiary to have the format in a way where it can already be partially evaluated while not yet fully loaded. This is called \textbf{Streaming}. Network latency and throughput rates do influence the speed in which the files will be downloaded.
+Streaming in CSV is simple: as soon as a newline character is detected, the client can safely assume that an entry has been fully loaded and that it can be processed. On the contrary, with XML or JSON, who have closing tags, streaming is not possible.
 
 Neither CSV, JSON or XML have both good Streamability and Upgradeability, and other formats don't have good Portability.
 
-'Line delimited JSON streaming' \cite{LineDelimitedJSON} provides a reasonable tradeoff. It's syntax is a list of items that are delimited using a newline character (\texttt{{\textbackslash}n}), where each item has a valid JSON object according to RFC 7158 \cite{RFC7158}. Packages for Line-delimited JSON streaming exist for at least node.js and Python in their respective registries, so client libraries are available. As a fallback, it is always possible to download the full file, split it by newlines and pass each item into one of the many JSON parsers.
+Line delimited JSON streaming \cite{LineDelimitedJSON} provides a reasonable tradeoff. It's syntax is a list of items that are delimited using a newline character (\texttt{{\textbackslash}n}), where each item has a valid JSON object according to RFC 7158 \cite{RFC7158}. Packages for line-delimited JSON streaming exist for at least node.js and Python in their respective registries, so client libraries are available. As a fallback, it is always possible to download the full file, split it by newlines and pass each item into one of the many JSON parsers.
 With these properties, line-delimited JSON streaming is a suitable syntax the web resource.
 
-With the web resource and the smart contract being disconnected, a set of rules has to be defined to ensure interoperability. In contrast to the blockchain, a web resource can change as many times as needed. This makes it hard for the users of the blockchain to keep track of updates, and to verify whether the content of the webpage is still the same as it was the entry into the blockchain was created. To mitigate these issues, a new rule is added to the protocol: The contents of a web resource must be immutable and can never be changed. If a customer desires to update the data, a new resource must be created under a different URL and the smart contract needs to be updated with the new pointer.
+With the web resource and the smart contract being disconnected, a set of rules has to be defined to ensure interoperability. Unlike in a blockchain, a web resource can change its content as many times as needed. This makes it hard for the users of the blockchain to keep track of updates, and to verify whether the content of the webpage is still the same as it was the entry into the blockchain was created. To mitigate these issues, a new rule is added to the protocol: The contents of a web resource must be immutable and can never be changed. If a customer desires to update the data, a new resource must be created under a different URL and the smart contract needs to be updated with the new pointer.
 
 To prevent customers from modifying the content of their web resources (which they can), a SHA256-hash of the body of the resource needs to be included in the report that gets added to the smart contracts. Clients should generate hashes of the web resources themselved and should reject reports that do not have matching hashes.
 This technique is inspired by 'Subresource integrity' \cite{SubresourceIntegrity}, which validates resources like stylesheets and scripts in browsers and is therefore already widely deployed.
 
-This also brings another advantage: If an asset is immutable, it can be easily deployed to a CDN, which is harder to deny using a DDoS attack.
+Immutability also brings another advantage: If an asset is static, it can be easily deployed to a CDN, which is harder to deny using a DDoS attack.
 
-To enable this feature, the \texttt{Pointer} struct in the smart contract simply contains another property, \texttt{bytes32 hash}. Accordingly, the \texttt{setPointer()} method gets updated as well.
+To enable this feature, the \texttt{Pointer} struct in the smart contract simply contains another property, a \texttt{hash} with a type of \texttt{bytes32}. Accordingly, the \texttt{setPointer()} method gets updated as well.
 
 In variant 1 of the contract, a report object contained 1. an IP address of the source with optional mask 2. an IP address of the destination with optional mask 3. an expiration date.
 
-Therefore, the web resource contains there fields as well. Since multiple reports can be stored under one URL, an array is used and stored under the \texttt{reports} key.
+Therefore, the web resource contains these fields as well. Since multiple reports can be stored under one URL, an array is used and stored under the \texttt{reports} key.
 
 \begin{lstlisting}[
     caption={Example web resource content},
@@ -87,7 +87,7 @@ In addition to the \texttt{reports} field, other fields are supported for contex
 
 \begin{description}
 
-\item [version] A string specifying the used version of the protocol to make the protocol future-proof. The versioning should follow Semantic Versioning \cite{Semver}
+\item [version] A string specifying the used version of the protocol to make the protocol future-proof. The versioning should follow Semantic Versioning \cite{Semver}.
 
 \item [whitelist] can either be \texttt{true} or \texttt{false}. The default is \texttt{false}. When this flag is set, all reports in the \texttt{reports} array should be considered whitelist entries.
 
@@ -95,4 +95,4 @@ In addition to the \texttt{reports} field, other fields are supported for contex
 
 The specification can be expanded in the future by adding more fields and increasing the version number. DOTS \cite{IETFDraft} allows more fields, such as limiting a report to specific port numbers, adding metadata about the attack (duration, attack type, registration time, mitigation status). These information can be considered for addition to the format as well in a future version.
 
-The SHA256 hash of code snippet \ref{SampleWebResource} is \texttt{xZ9hL0AColp7EQ82H/LuAGrGjr5fA60K/vXMjISqnIA=} \footnote{On macOS or Linux a hash can be generated with the following command: \texttt{curl \$RESOURCEURL | openssl dgst -sha256 -binary | openssl enc -base64 -A}}. This value is set as the \texttt{hash} when registering the web resource in the smart contract.
+The SHA256 hash of code snippet \ref{SampleWebResource} is \texttt{xZ9hL0AColp7EQ82H/LuAGrGjr5fA60K/vXMjISqnIA=} \footnote{On macOS or Linux a hash can be generated with the following command: \texttt{curl \$RESOURCEURL | openssl dgst -sha256 -binary | openssl enc -base64 -A}}. This value is set for the \texttt{hash} field when registering the web resource in the smart contract.

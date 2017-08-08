@@ -443,14 +443,6 @@
       \verb https://www.quora.com/Why-do-bloom-filters-have-multiple-hash-functions/answer/John-Kurlak
       \endverb
     \endentry
-    \entry{BloomfilterAccuracy}{misc}{}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://hur.st/bloomfilter}}
-      \field{note}{(Accessed on 08/05/2017)}
-      \field{title}{Bloomfilter calculator}
-    \endentry
     \entry{RFC4291I66}{misc}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
@@ -715,6 +707,14 @@
       \verb{url}
       \verb https://bitcoin.stackexchange.com/a/42629
       \endverb
+    \endentry
+    \entry{BloomfilterAccuracy}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://hur.st/bloomfilter}}
+      \field{note}{(Accessed on 08/05/2017)}
+      \field{title}{Bloomfilter calculator}
     \endentry
   \endsortlist
 \endrefsection

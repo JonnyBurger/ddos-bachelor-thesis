@@ -10,20 +10,20 @@ It is however possible to store additional information in the contract, and use 
 
 No implementation of a bloom filter in Solidity could be found online, therefore the approach taken to implement this variant was to convert one of the countless examples written in other programming languages into Solidity.
 
+\subsection{Hashing function}
+
 One part of a bloom filter is the hash function that takes any string and converts it into a fixed-length hash. The other part is managing the store, and exposing interfaces for adding entries and checking if an entry has been added.
 
 Different hash functions are available and the choice of the hash function influences the properties of the bloom filter, mainly accuracy and speed. A bloom filter becomes more accurate if the hash function it uses produces more uniform hashes. However, usually more uniform results also means slower hashing.
 
-\subsection{Hashing function}
-
-The hashing part is the more complex code to convert to Solidity, since hashing functions use big numbers and bit-shifting to generate their hashes, which both are very prone to differences in different environments.
+The hashing part is the more complex code to convert to Solidity, since hashing functions use big numbers and bit-shifting to generate their hashes, which both are hard to port exactly because of differences in different environments.
 
 In an first attempt, the popular hashing library \texttt{imurmurhash} \cite{imurmur} was taken and rewritten in Solidity as close as possible. This library is using the \texttt{\textgreater{}\textgreater{}\textgreater} (logical right shift) operator which is absent in Solidity. By using a \texttt{\textgreater{}\textgreater} (arithmetic right shift) operator instead, the hashes could not be reproduced. It also generated big numbers in the process whose behavor was inconsistent between Ethereum VM and Javascript environments.
 When later using the ported hash function in a bloom filter, it would return many false positives\footnote{A test case showing the false positive is available under \texttt{test/hash-function.js} in the project files.}.
 
-In an second attempt, the \texttt{bloomfilter.js} \cite{bloomfilterjs} library was ported to Solidity as close as possible. This library uses the Fowler-Noll-Vo hash function instead. The commit history shows that it had once worked without the \texttt{\textgreater{}\textgreater{}\textgreater} operator, but that operator was added later. Yet, the Solidity implementation did still not yield the same hashes for the same input as the Javascript equivalent of the code. By testing subfunctions of the hash function, it was discovered that the inconsistency is caused by bug numbers. In one hash operation, the statement \texttt{2166136261 \textasciicircum{} 65 \& 0xff} would be executed. It is easily verifiable that this expression evaluates to \texttt{-2128831100} in Javascript and to \texttt{2166136196} in Solidity Version 0.4.9.
+In an second attempt, the \texttt{bloomfilter.js} \cite{bloomfilterjs} library was ported to Solidity as close as possible. This library uses the Fowler-Noll-Vo hash function instead. The commit history shows that it had once worked without the \texttt{\textgreater{}\textgreater{}\textgreater} operator, but that operator was added later. Yet, the Solidity implementation did still not yield the same hashes for the same input as the Javascript equivalent of the code. By testing subfunctions of the hash function, it was discovered that the inconsistency is caused by big numbers. In one hash operation, the statement \texttt{2166136261 \textasciicircum{} 65 \& 0xff} would be executed. It is easily verifiable that this expression evaluates to \texttt{-2128831100} in Javascript and to \texttt{2166136196} in Solidity Version 0.4.9.
 
-This difference results because Solidity uses types for numbers such as \texttt{int}, while Javascript only supports floating-point math. With the different hashes being generated, the contract that resulted from the second attempt also led to false positives. \footnote{A test case showing the false positive is available under \texttt{test/hash-function-2.js} in the project files.}
+This difference results because Solidity uses types for numbers such as \texttt{int}, while Javascript only supports floating-point math. With the different hashes being generated, the contract that resulted from the second attempt also led to false positives.\footnote{A test case showing the false positive is available under \texttt{test/hash-function-2.js} in the project files.}
 
 Porting existing hash functions to Solidity provides great challenges. For the third attempt, bloom filter implementations were searched that used one of the hash functions already implemented in Solidity. Two hashing algorithm functions are globally available in every Solidity contract, \texttt{sha256()} and \texttt{sha3()}. For the third attempt, a 'Simple Bloom Filter' \cite{SimpleBloomFilter} code snippet from Github was used as the basis for the smart contract.
 
@@ -42,60 +42,6 @@ The maximum amount of gas (also called gas limit) that can be spent on a transac
 
 By decreasing the array size to 512 bytes, the cost stays below the gas limit and the bloom filter works. 
 Testing different values determined that an array size of 836 bytes is the maximum before this specific contract would not be able to have a transaction executed. However this thesis continues with the assumption of a 512 byte array size to stay well below the gas limit \textemdash \ this way more features can be added without hitting the gas threshold.
-
-\subsection{Accuracy}
-
-Given a number of items that are indexed, and a number of hash functions, the ideal array size and number of hash functions can be calculated. According to http://hur.st \cite{BloomfilterAccuracy}, given $n$ = number of items in the filter and $p =$ probability of false positives, the number of bits in the filter $m$ can be calculated using equation \ref{eq:m} and the number of hash functions $k$ using equation \ref{eq:k}. 
-
-\begin{equation}
-m = \lceil\frac{n * log(p)}{ln(\frac{1.0}{2.0 ^{ln(2)}})}\rceil
-\label{eq:m}
-\end{equation}
-
-\begin{equation}
-k = \lfloor ln(2) * m / n) \rceil
-\label{eq:k}
-\end{equation}
-
-For example: Given that the magnitude of DDoS attacks is in the millions (n = 1'000'000) and assuming that a 5\% chance of false positives is good enough (p = 0.05), an array size of 14357134 bits (1.71 MB) and 4 hash functions will do.
-
-Solving equation \ref{eq:m} for $p$ gives equation \ref{eq:p}.
-
-\begin{equation}
-p = e^{\frac{{m \cdot ln(\frac{1}{2^{ln(2)}})}}{n}}
-\label{eq:p}
-\end{equation}
-
-The probability of at least one false positive is shown in table \ref{table:Probability} and figure 4.1. It assumes the number of \textbf{bits} in the filter is 4'096 ($512\ bytes \cdot 8$).
-
-\begin{table}[ht]
-\begin{minipage}[b]{.45\textwidth}
-        \begin{tabular}{r | r}
-            \hline
-            IP addresses ($n$) & Probability \\ \hline
-            1 & $10^{-855}$ \\ \hline
-            10 & $10^{-86}$ \\ \hline
-            100 & $10^{-9}$ \\ \hline
-            1'000 & 0.14 \\ \hline
-            10'000 & 0.82 \\ \hline
-            100'000 & 0.98 \\ \hline
-            1'000'000 & 0.998 \\ \hline
-            10'000'000 & 0.9998 \\ \hline
-        \end{tabular}
-            \caption{Probability of false positives, using equation \ref{eq:p} and $m = 4'096$}
-            \label{table:Probability}
-\end{minipage}
-\hspace{.1\textwidth}
-\begin{minipage}[b]{.45\textwidth}
-        \includegraphics[width=1\textwidth]{v3-chance.png}
-        \label{fig:Probability}
-        \captionof{figure}{Probability of false positives, using data from Table \ref{table:Probability} (logarithmic scale)}
-\end{minipage}
-\end{table}
-
-The bloom filter does have a false positive chance of under 1\% for up to 425 IP addresses. Inserting more IP addresses after that decreases the accuracy of the bloom filter dramatically. With 1'000 insertions, variant 3 would lead to 14\% of legimitate traffic being blocked. With 3'000 insertions, over half of the legitimate traffic would be falsly blocked.
-
-With the gas limit constaint in place and the probabilities in mind, it is recommended to use more than one contract if the probability of false positives would be higher than acceptable otherwise. The acceptable probability of false positives is individual for each user.
 
 \subsection{State management and interface}
 

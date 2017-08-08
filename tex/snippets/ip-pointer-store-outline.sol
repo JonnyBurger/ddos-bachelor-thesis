@@ -6,6 +6,7 @@ struct Pointer {
     string url;
     uint128 ip;
     uint8 mask;
+    bytes32 _hash;
 }
 
 struct IPAddress  {
@@ -25,7 +26,7 @@ function createCustomer(address customer, uint128 ip, uint8 mask) {
     }
 }
 
-function setPointer(string url, uint128 subnetIp, uint8 subnetMask, uint expirationDate) {
+function setPointer(string url, uint128 subnetIp, uint8 subnetMask, uint expirationDate, bytes32 _hash) {
     if (members[msg.sender].ip == 0) {
         throw;
     }
@@ -39,6 +40,7 @@ function setPointer(string url, uint128 subnetIp, uint8 subnetMask, uint expirat
         expirationDate: expirationDate,
         url: url,
         ip: subnetIp,
-        mask: subnetMask
+        mask: subnetMask,
+        _hash: _hash
     });
 }

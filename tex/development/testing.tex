@@ -20,18 +20,19 @@ While compilers provide a first layer of assurance by only compiling valid contr
 
 Testing is a technique used in almost all fields of software development to reduce unintended regressions introduced when modifying code. A set of test cases is defined which a testing framework can run through and determine whether all assertions still pass. It is the automation of manual quality assurance.
 
-Cases that can be tested to improve robustness are: Intended smart contract use, malicious smart contract use, and edge cases. For example: Calling a function without permission, calling a function more often than expected, calling a function with unexpected arguments, such as null arguments, wrong types or a big payload.
+Cases that can be tested in the Ethereum context to improve robustness are: Intended smart contract use, malicious smart contract use, and edge cases. For example: Calling a function without permission, calling a function more often than expected, calling a function with unexpected arguments, such as null arguments, wrong types or a big payload.
+
 A robust contract should include unit tests validating that normal use of the contract features result in correct behavior, as well as tests for edge cases and abuse of the contract features.
 
-Usually testing frameworks are written in the language that they are made for testing. There is no testing framework in  Solidity, however there is\texttt{web3.js} \cite{web3}, which exposes a Javascript interface for creating contracts, reading from contracts, and calling transactions. This makes it possible to select from an array of available Javascript testing frameworks. In this section, it is described how to test Solidity code with the \texttt{ava} framework. However, this choice is arbitrary and not important, as testing with another framework will work similarly.
+Usually testing frameworks are written in the language that they are made for testing. There is no testing framework in  Solidity, however there is \texttt{web3.js} \cite{web3}, which exposes a Javascript interface for creating contracts, reading from contracts, and calling transactions. This makes it possible to select from an array of available Javascript testing frameworks. In this section, it is described how to test Solidity code with the \texttt{ava} framework. However, this choice is arbitrary,testing with another framework will work similarly.
 
-With a macro function, it is possible to create an isolated blockchain for each tdst scenario. The header for each test file is:
+With a macro function, it is possible to create an isolated blockchain for each test scenario. The header for each test file is:
 
 \input{snippets/ava-blockchain-each.tex}
 
 The dependencies \texttt{ava}, \texttt{web3}, \texttt{ethereumjs-testrpc} are imported at the top of the file. \footnote{They need to be installed first using the command \texttt{npm install ava web3 ethereumjs-testrpc}, assuming node.js is installed on the computer.}. The function \texttt{makeBlockchain} creates a testing blockchain using \texttt{TestRPC}, and returns an interface for interacting with it, as well as a list of Ethereum account addresses that were generated. 2 accounts were created in this instance, which is sufficient to test from the perspective of a contract owner and an non-provileged user.
 
-For each test, \texttt{makeBlockchain()} is called beforehand and separate blockchain interface and list of addresses is generated and made available. This prevents test cases from interfering with each other.
+For each test, \texttt{makeBlockchain()} is called beforehand, which generates a separate blockchain interface and list of addresses. This prevents test cases from interfering with each other.
 
 Consider the 'Hello World' contract from the beginning of this chapter. A simple test would be to create an instance of the contract and test if the \texttt{greet()} function would return the string that was passed to the constructor as the first argument. This test can be implemented in \texttt{ava} with the following code:
 
@@ -41,13 +42,13 @@ At first, the contract code gets read from a file and compiled. The compiler, \t
 
 Then, the contract gets instantiated with a 'Hello!' string as the first argument. The address from which this transaction is sent, the bytecode and the amount of gas also has to be specified.
 In normal circumstances, a password for the address also has to be provided, but in a \texttt{TestRPC} environment, it can be disabled.
-The provided gas in this example is hard-coded for simplicity \textendash{} a more sensible solution would be to estimate gas using the \texttt{estimateGas} helper function provided by \texttt{web3} \footnote{In the project files, a helper function is defined under \texttt{lib/estimate-gas.js}, which handles gas estimation for the whole project.}.
+The provided gas in this example is hard-coded for simplicity \textendash{} a more sensible solution would be to estimate gas using the \texttt{estimateGas} helper function provided by \texttt{web3}\footnote{In the project files, a helper function is defined under \texttt{lib/estimate-gas.js}, which handles gas estimation for the whole project.}.
 
-The final argument is a 'callback function'. \texttt{web3} provides a non-blocking asynchronous interface, which means instead getting a return value, a function is called \footnote{By using 'Promises', a syntactic sugar language feature in Javascript, callback functions can be avoided. Promises are used in  the actual project, however in this example classic callback functions are used to avoid confusion.}.
-\texttt{web3} oddly calls the callback function twice \textendash{} only after the second time the transaction is committed to the blockchain.
+The final argument is a 'callback function'. \texttt{web3} provides a non-blocking asynchronous interface, which means instead of returning a value, a user-defined function is called\footnote{By using 'Promises', a syntactic sugar language feature in Javascript, callback functions can be avoided. Promises are used in  the actual project, however in this example classic callback functions are used to avoid confusion.}.
+\texttt{web3} oddly calls the callback function twice \textendash{} only after the second time it is safe to assume the transaction is committed to the blockchain.
 
 Once the contract instance is created and on the blockchain, methods of the contract can be called. \texttt{myContract.greet()} takes another callback function which is called with the return value of the method. The return value in this case is expected to be 'Hello!'. If this assumption is not true, \texttt{ava} would throw an error here.
 
-When running the test \footnote{Run the test using \texttt{./node\_modules/ava/cli.js test/greeter.js} in the project}, the test framework should give \texttt{1 passed} as the output and exit with code 0.
+When running the test\footnote{Run the test using \texttt{./node\_modules/ava/cli.js test/greeter.js} in the project}, the test framework should give \texttt{1 passed} as the output and exit with code 0 to indicate that all tests passed. Exit code 1 is use to signalize that there is at least one problem.
 
 In addition to testing, critical contracts should be audited by computer security professionals before being deployed. As this thesis does not yet aim to provide a production-ready platform, no external audits were performed.
