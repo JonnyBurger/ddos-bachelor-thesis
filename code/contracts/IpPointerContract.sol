@@ -7,7 +7,7 @@ contract IpPointerContract {
         string url;
         uint128 ip;
         uint8 mask;
-        bytes32 _hash;
+        string _hash;
     }
 
     struct IPAddress  {
@@ -39,7 +39,7 @@ contract IpPointerContract {
         }
     }
 
-    function setPointer(string url, uint128 subnetIp, uint8 subnetMask, uint expirationDate, bytes32 _hash) {
+    function setPointer(string url, uint128 subnetIp, uint8 subnetMask, uint expirationDate, string _hash) {
         if (members[msg.sender].ip == 0) {
             throw;
         }

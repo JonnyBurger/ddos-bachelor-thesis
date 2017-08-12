@@ -55,7 +55,7 @@ These factors make speed hard to quantify without some  assumptions about the ne
 
 \section{Accuracy}
 
-Variant 1 and 2 store the reports and the IP addresses in a lossless format, therefore guaranteeing perfect accuracy. Variant 3 however does lose accuracy because of the bloomfilter, the exact amount of which is calculated in this section.
+Variant 1 and 2 store the reports and the IP addresses in a lossless format, guaranteeing perfect accuracy. Variant 3 however does lose accuracy because of the bloomfilter, the exact amount of which is calculated in this section.
 
 Given a number of items that are indexed, and a number of hash functions, the ideal array size and number of hash functions for a bloom filter can be calculated. According to \cite{BloomfilterAccuracy}, given $n$ = number of items in the filter and $p =$ probability of false positives, the number of bits in the filter $m$ can be calculated using equation \ref{eq:m} and the number of hash functions $k$ using equation \ref{eq:k}. 
 

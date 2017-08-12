@@ -40,7 +40,7 @@ This technique is inspired by 'Subresource integrity' \cite{SubresourceIntegrity
 
 Immutability also brings another advantage: If an asset is static, it can be easily deployed to a CDN, which is harder to deny using a DDoS attack.
 
-To enable this feature, the \texttt{Pointer} struct in the smart contract simply contains another property, a \texttt{hash} with a type of \texttt{bytes32}. Accordingly, the \texttt{setPointer()} method gets updated as well.
+To enable this feature, the \texttt{Pointer} struct in the smart contract simply contains another property, a \texttt{hash} with a type of \texttt{string}. Accordingly, the \texttt{setPointer()} method gets updated as well.
 
 In variant 1 of the contract, a report object contained 1. an IP address of the source with optional mask 2. an IP address of the destination with optional mask 3. an expiration date.
 

@@ -19,11 +19,19 @@
 
 \refsection{0}
   \sortlist[entry]{none/global/}
+    \entry{BitcoinMarketCap}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://coinmarketcap.com/}}
+      \field{note}{(Last visited 08/12/2017)}
+      \field{title}{CryptoCurrency Market Capitalizations}
+    \endentry
     \entry{Ethereum}{online}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Ethereum: Blockchain App Platform}
       \verb{url}
       \verb https://ethereum.org/
@@ -43,7 +51,7 @@
       \field{labeltitlesource}{title}
       \field{day}{04}
       \field{month}{11}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Understanding Denial-of-Service Attacks}
       \field{year}{2009}
       \verb{url}
@@ -163,7 +171,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://tools.ietf.org/html/draft-ietf-dots-architecture-04}}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Distributed-Denial-of-Service Open Threat Signaling (DOTS) Architecture}
     \endentry
     \entry{OriginalPaper}{article}{}
@@ -259,7 +267,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{The Solidity Contract-Oriented Programming Language}
       \verb{url}
       \verb https://github.com/ethereum/solidity
@@ -279,7 +287,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{IPv4 Exhaustion}
       \field{year}{2015}
       \verb{url}
@@ -291,7 +299,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://github.com/ethereumjs/testrpc}}
-      \field{note}{(Accessed on 07/30/2017)}
+      \field{note}{Last visited 07/30/2017}
       \field{title}{ethereumjs/testrpc: Fast Ethereum RPC client for testing and development}
     \endentry
     \entry{web3}{misc}{}
@@ -299,7 +307,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://github.com/ethereum/web3.js/}}
-      \field{note}{(Accessed on 07/30/2017)}
+      \field{note}{Last visited 07/30/2017}
       \field{title}{ethereum/web3.js: Ethereum JavaScript API}
     \endentry
     \entry{ParsingJSON}{online}{}
@@ -318,7 +326,7 @@
       \field{labeltitlesource}{title}
       \field{day}{26}
       \field{month}{10}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Parsing JSON is a Minefield}
       \field{year}{2016}
       \verb{url}
@@ -337,7 +345,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{JSON Streaming - Line delimited JSON}
       \verb{url}
       \verb https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON_2
@@ -355,7 +363,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{RFC 7158}
       \verb{url}
       \verb https://tools.ietf.org/html/rfc7159
@@ -373,7 +381,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Subresource Integrity}
       \verb{url}
       \verb https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
@@ -393,18 +401,59 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Semantic Versioning 2.0.0}
       \verb{url}
       \verb http://semver.org/
       \endverb
+    \endentry
+    \entry{WikipediaBloomfilter}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://en.wikipedia.org/wiki/Bloom_filter}}
+      \field{note}{Last visited 08/11/2017}
+      \field{title}{Bloom filter - Wikipedia}
+    \endentry
+    \entry{BloomfilterTutorial}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://llimllib.github.io/bloomfilter-tutorial/}}
+      \field{note}{Last visited 08/11/2017}
+      \field{title}{Bloom Filters by Example}
+    \endentry
+    \entry{BloomfilterHashingPerformance}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=7c52241d31326decffca130d6880ecf9}{%
+           family={Kirsch},
+           family_i={K\bibinitperiod},
+           given={Adam},
+           given_i={A\bibinitperiod}}}%
+        {{hash=4dbcb1c7060726deee27d97b4bf31321}{%
+           family={Mitzenmacher},
+           family_i={M\bibinitperiod},
+           given={Michael},
+           given_i={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3077566aa7668be35ce8ee35c5322e1}
+      \strng{fullhash}{d3077566aa7668be35ce8ee35c5322e1}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{In Proc. the 14th Annual European Symposium on Algorithms (ESA 2006}
+      \field{title}{Less hashing, same performance: Building a better bloom filter}
+      \field{year}{2006}
+      \field{pages}{456\bibrangedash 467}
+      \range{pages}{12}
     \endentry
     \entry{imurmur}{misc}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://github.com/jensyt/imurmurhash-js}}
-      \field{note}{(Accessed on 07/25/2017)}
+      \field{note}{Last visited 07/25/2017}
       \field{title}{jensyt/imurmurhash-js: An incremental implementation of MurmurHash3 for JavaScript}
     \endentry
     \entry{bloomfilterjs}{misc}{}
@@ -412,7 +461,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://github.com/jasondavies/bloomfilter.js}}
-      \field{note}{(Accessed on 07/25/2017)}
+      \field{note}{Last visited 07/25/2017}
       \field{title}{jasondavies/bloomfilter.js: JavaScript bloom filter using FNV for fast hashing}
     \endentry
     \entry{SimpleBloomFilter}{misc}{}
@@ -420,7 +469,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://gist.github.com/josephkern/2897618}}
-      \field{note}{(Accessed on 07/25/2017)}
+      \field{note}{Last visited 07/25/2017}
       \field{title}{A Simple Bloom Filter in Python}
     \endentry
     \entry{MultipleHashes}{online}{}
@@ -437,7 +486,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Why do bloom filters have multiple hash functions?}
       \verb{url}
       \verb https://www.quora.com/Why-do-bloom-filters-have-multiple-hash-functions/answer/John-Kurlak
@@ -448,14 +497,14 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://tools.ietf.org/html/rfc4291}}
-      \field{note}{(Accessed on 08/02/2017)}
+      \field{note}{Last visited 08/02/2017}
       \field{title}{RFC 4291 - IP Version 6 Addressing Architecture}
     \endentry
     \entry{BaselineRequirements}{online}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Baseline Requirements Certificate Policy for the Issuance and Management of Publicly-Trusted Certificates}
       \verb{url}
       \verb https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.5.pdf
@@ -466,14 +515,14 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://ccadb-public.secure.force.com/mozilla/CACertificatesInFirefoxReport}}
-      \field{note}{(Accessed on 08/02/2017)}
+      \field{note}{Last visited 08/02/2017}
       \field{title}{https://ccadb-public.secure.force.com/mozilla/CACertificatesInFirefoxReport}
     \endentry
     \entry{LetsEncrypt}{misc}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/02/2017)}
+      \field{note}{Last visited 08/02/2017}
       \field{title}{Let's Encrypt}
       \verb{url}
       \verb https://letsencrypt.org/
@@ -483,7 +532,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Securing a Public IP Address - SSL Certificates}
       \verb{url}
       \verb https://support.globalsign.com/customer/portal/articles/1216536-securing-a-public-ip-address---ssl-certificates
@@ -494,7 +543,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://apps.db.ripe.net/search/query.html}}
-      \field{note}{(Accessed on 08/02/2017)}
+      \field{note}{Last visited 08/02/2017}
       \field{title}{Database Query ---RIPE Network Coordination Centre}
     \endentry
     \entry{EIP74}{online}{}
@@ -511,7 +560,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Ethereum Improvement Proposal 74: Support RSA signature verification}
       \verb{url}
       \verb https://github.com/ethereum/EIPs/issues/74
@@ -521,7 +570,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Solium Framework}
       \verb{url}
       \verb https://github.com/duaraghav8/Solium
@@ -541,7 +590,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Thinking about Smart contract security}
       \field{year}{2016}
       \verb{url}
@@ -562,7 +611,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Ethereum Improvement Proposal 150: Long-term gas cost changes for IO-heavy operations to mitigate transaction spam attacks}
       \verb{url}
       \verb https://github.com/ethereum/EIPs/issues/150
@@ -582,7 +631,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Ethereum: A secure decentralised generalised transaction ledger}
       \verb{url}
       \verb http://gavwood.com/paper.pdf
@@ -592,7 +641,7 @@
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{go-ethereum Github Repository. File \texttt{eth/config.go}}
       \verb{url}
       \verb https://github.com/ethereum/go-ethereum/blob/fff16169c64a83d57d2eed35b6a2e33248c7d5eb/eth/config.go#L45
@@ -610,7 +659,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Average Gas Price}
       \verb{url}
       \verb https://etherscan.io/chart/gasprice
@@ -628,7 +677,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{The Safe Low Gas Price}
       \verb{url}
       \verb https://medium.com/@ethgasstation/the-safe-low-gas-price-fb44fdc85b91
@@ -646,7 +695,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Bitcoin}
       \verb{url}
       \verb https://www.coinbase.com
@@ -664,7 +713,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{The DAO (Organization)}
       \verb{url}
       \verb https://en.wikipedia.org/wiki/The_DAO_(organization)
@@ -682,7 +731,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{Ethereum briefly crashed from \$319 to 10 cents in seconds on one exchange after multimillion dollar trade}
       \verb{url}
       \verb http://www.cnbc.com/2017/06/22/ethereum-price-crash-10-cents-gdax-exchange-after-multimillion-dollar-trade.html
@@ -702,7 +751,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{(Accessed on 08/08/2017)}
+      \field{note}{Last visited 08/08/2017}
       \field{title}{What is Gas Limit in Ethereum?}
       \verb{url}
       \verb https://bitcoin.stackexchange.com/a/42629
@@ -713,7 +762,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://hur.st/bloomfilter}}
-      \field{note}{(Accessed on 08/05/2017)}
+      \field{note}{Last visited 08/05/2017}
       \field{title}{Bloomfilter calculator}
     \endentry
   \endsortlist

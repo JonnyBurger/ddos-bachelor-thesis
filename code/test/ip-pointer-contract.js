@@ -34,7 +34,7 @@ test('Should be able to deploy with correct parameters', async t => {
   t.pass();
 });
 
-test.failing('Should be able to get blocked URLs', async t => {
+test('Should be able to get blocked URLs', async t => {
   const parameters = [ip.toLong('123.45.67.89'), 24];
   const contract = await deployContract(
     t.context.web3,
@@ -51,7 +51,7 @@ test.failing('Should be able to get blocked URLs', async t => {
   });
   await makeTransaction({
     name: 'setPointer',
-    args: ['http://hithere.com', ip.toLong('123.45.67.89'), 28, (Date.now() / 1000) + 3600],
+    args: ['http://hithere.com', ip.toLong('123.45.67.89'), 28, (Date.now() / 1000) + 3600, '9b96a1fe1d548cbbc960cc6a0286668fd74a763667b06366fb2324269fcabaa4'],
     from: t.context.accounts[1].address,
     contract
   });
