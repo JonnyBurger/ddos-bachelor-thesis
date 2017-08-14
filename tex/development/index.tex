@@ -1,26 +1,28 @@
 \chapter{Development}
 
+\section{Solidity Primer}
+
 In the following, three variants of a DDoS attack signaling protocol are being developed. For that, a smart contract is being written in the Soldity programming language \cite{Solc} for each variant. Code-wise, a smart contract strongly resembles a 'class' that is known from object-oriented programming. The following is a 'Hello World' smart contract from the Ethereum website (https://www.ethereum.org/greeter).
 
 \input{snippets/greeter.tex}
 
-Instead of the \texttt{class} keyword, solidity uses a \texttt{contract} keyword. Inheritance is possible using the \texttt{is} (rather than \texttt{extends} in Java) keyword. A contract can, like a class, be instantiated. The constructor is defined by the method within the contract that has the same name as the contract - in this case, \texttt{function greeter(string greeting)} is the constructor of the \texttt{greeter} contract. Methods can be declared public or private. They are, similar to Javascript, prefixed with the \texttt{function} keyword. A special type in Solidity is the \texttt{address} type, which can hold an 40-byte address of an Ethereum network user.
+Instead of the \texttt{class} keyword, Solidity uses a \texttt{contract} keyword. Inheritance is possible using the \texttt{is} (rather than \texttt{extends} in Java) keyword. A contract can, like a class, be instantiated. The constructor is defined by the method within the contract that has the same name as the contract - in this case, \texttt{function greeter(string greeting)} is the constructor of the \texttt{greeter} contract. Methods can be declared public or private. They are(similar to Javascript) prefixed with the \texttt{function} keyword. A special type in Solidity is the \texttt{address} type, which can hold an 20-byte address of an Ethereum network user.
 
-This Solidity code can be compiled to bytecode and deployed on an Ethereum blockchain. When deployed, the contract is stored in a block, alongside with other data that users committed to the Blockchain, and synced to all users of the network. Downloading the complete public Ethereum Blockchain uses dozens of Gigabytes. Once the deployment is finished, Ethereum users can instantiate the smart contract. If they choose to do so, they  send a transaction to the Ethereum network and the instance of the contract is registered on the Blockchain. Methods can also be executed by sending a transaction to the Ethereum Blockchain.
+This Solidity code can be compiled to bytecode and deployed on an Ethereum blockchain using free tools like solc \cite{Solc} and web3 \cite{web3}. When deployed, the contract is stored in a block, alongside with other data that users committed to the Blockchain, and synced to all users of the network. Downloading the complete public Ethereum Blockchain requires dozens of Gigabytes of space \cite{EthereumBlockchainSize}, and it is ever-growing. Once the deployment is finished, Ethereum users can instantiate the smart contract. If they choose to do so, they  send a transaction to the Ethereum network and the instance of the contract is registered on the Blockchain. Methods can also be executed by sending a transaction to the Ethereum Blockchain.
 
-In each method body, a \texttt{msg} global object is available, containing information about the transaction being executed, including \texttt{msg.sender} (an \texttt{address}), \texttt{msg.gas} and \texttt{msg.value} (for sending Ether).
+In each method body, a \texttt{msg} global object is available, containing information about the transaction being executed, including \texttt{msg.sender} (the \texttt{address} of the transaction sender), \texttt{msg.gas} and \texttt{msg.value} (for sending Ether currency).
 
-In addition to that, a second global variable \texttt{block} gives information about the current block, including \texttt{block.number} and \texttt{block.timestamp}.
+In addition to that, a second global object \texttt{block} gives information about the current block, including \texttt{block.number} and \texttt{block.timestamp}.
 
-A constant method, like \texttt{function greet() constant returns (string)} is a special function that does not trigger a transaction. Instead, it is a getter function that only executes locally. Constant functions provide convienient interfaces for reading data, but all data should be considered public.
+A constant method, like \texttt{function greet() constant returns (string)} in the example above is a special function that does not trigger a transaction. Instead, it is a getter function that only executes locally. Constant functions provide convienient interfaces for reading data, but all data should be considered public.
 
 \section{IPv6 considerations}
 
-With IPv4 addresses being 32 bits long, only $ 2^{32} $ combinations are possible and the amount of free addresses is almost exhausted \cite{IPv4Exhaustion}, so we are currently in a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
+With IPv4 addresses being 32 bits long, only $ 2^{32} $ combinations are possible and the amount of free addresses is almost exhausted \cite{IPv4Exhaustion}. This leads to the situation that there is currently a transition phase from IPv4 to IPv6. Therefore it makes sense to support both formats.
 
-An IPv4 address can be represented in IPv6 using a format that is defined in RFC 3493: 80 bits of zeros, 16 bits of ones, followed the IPv4 address. For example, the IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. This notation is supported by the Linux kernel and macOS natively. Most web browsers will, when entering \texttt{http://[::ffff:2e65:6095]}, display the same website as when entering \texttt{http://46.101.96.149}.
+An IPv4 address can be represented in IPv6 using a format that is defined in RFC 3493 \cite{RFC3493}: 80 bits of zeros, 16 bits of ones, followed by the IPv4 address. For example, the IPv4 address \texttt{46.101.96.149} would be \texttt{0:0:0:0:0:ffff:2e65:6095} in IPv6 hex representation. This notation, most notably, is already supported by the Linux kernel \cite{IPv6Wiki16}. The Google Chrome browser and the Firefox browser will, when entering \texttt{http://[::ffff:2e65:6095]}, display the same website as when entering the IPv4 notation, \texttt{http://46.101.96.149}, which is easily verifiable.
 
-This makes it possible to greatly simplify support for both IPv4 and IPv6, with no flag needed to indicate which version of the protocol is meant. All addresses can be stored in an IPv6 format (using an \texttt{uint128} type) and if the bits 81-96 are all ones, it indicates that it is an IPv4 address.
+This makes it possible to greatly simplify support for both IPv4 and IPv6, with no flag needed to indicate which version of the protocol is meant. All addresses can be stored in an IPv6 format (using an \texttt{uint128} type) and if the bits 81-96 are all ones, it should be considered an IPv4 address.
 
 \input{development/testing.tex}
 
@@ -30,68 +32,46 @@ This makes it possible to greatly simplify support for both IPv4 and IPv6, with 
 
 \section{IP address ownership verification}
 
-In all variants of the smart contract, owners of destination IP addresses can store source IP addresses they want to be blocked in the smart contract. In order to establish trust, one might suggest there should be a way to automatically verify the ownership of the destination IP addresses. This approach was explored during the development of the prototype, however it turns out to be a challenging task. Using certificates to validate IP address ownership in Solidity is currently not practical for at least two reasons.
+In all variants of the smart contract, owners of destination IP addresses can store source IP addresses they want to be blocked in the smart contract. In order to establish trust, it was suggested by the original paper \cite{OriginalPaper} there should be a way to automatically verify the ownership of the destination IP addresses, leaving the implementation open.
 
-The main issue is obtaining a certificate. As there is no way to directly mathematically or logically prove that somebody is the owner of an IP address (it can be spoofed), an indirect solution is required. Theoretically, the certificate process of domains could be applied to IP addresses.
+This problem was explored during the development of the prototype, however it turns out to be a challenging task. Using certificates to validate IP address ownership in Solidity is currently not practical for at least two reasons.
 
-Certificate Authorities (CA) are institutions whose business is to issue and manage certificates. They verify and validate the ownership of a domain and issue an certificate for it. CAs need to fulfill a wide range of requirements \cite{BaselineRequirements} to be considered reputable and be included in the root key store of operating system and browser vendors. Currently, only 156 certificates from 60 different owners are trusted in Firefox \cite{httpscca67}.
+The main issue is obtaining a certificate. As there is no way to directly mathematically or logically prove that somebody is the owner of an IP address (it can be spoofed \cite{IPSource38}), an indirect solution is required.
 
-To fulfill the strict requirements, CAs need to make investments in establishing a system that securely validates a domain and manages the certificates that are issued. To make money, nearly all CAs that are trusted in Firefox charge a issuance fee for domains. The notable exception is "Let's Encrypt" \cite{LetsEncrypt}, which makes money through sponsorships.
+Theoretically, the certificate process of domains could be applied to IP addresses. Certificate Authorities (CA) are institutions whose business is to issue and manage certificates. They verify and validate the ownership of domains and issue certificates for it. CAs need to fulfill a wide range of requirements \cite{BaselineRequirements} to be considered reputable and be included in the root key store of operating system and browser vendors. Currently, only 156 certificates from 60 different owners are trusted in Firefox \cite{httpscca67}.
 
-Although it is technically possible to issue an SSL certificate for an IP address, it is very uncommon. GlobalSign \cite{GlobalSign} is the only provider whose certificates are trusted by Firefox and that issues certificates for IP addresses. To obtain a certificate, it is also a requirement that the IP address is registered in the RIPE database \cite{Database95}.
+To fulfill the strict requirements, CAs need to make investments in establishing a system that securely validates a domain and manages the certificates that are issued. To make money, nearly all CAs that are trusted in Firefox charge an issuance fee for domains. The notable exception is "Let's Encrypt" \cite{LetsEncrypt}, which makes money through sponsorships.
 
-Concluding the overview of the certificate issuance process, there are no good providers offering certificates for IP addresses and it is an expensive endeavor to build a certificate authority whose complexity quickly becomes bigger than the one of the scope of the thesis.
+Although it is technically possible to issue an SSL certificate for an IP address, it is very uncommon. GlobalSign \cite{GlobalSign} is the only provider whose certificates are trusted by Firefox and that issues certificates for IP addresses. To obtain a certificate, it is a requirement that the IP address is registered in the RIPE database \cite{Database95}, which most are not, and a certificate starts at \$349.
 
-Assuming it is possible to obtain and validate certificates for IP addresses, it is a computationally expensive task that would require more gas than the gas limit allows and there is no implementation of certificate verification in Solidity. Certificate verification, as it is most commonly done with OpenSSL, would have to be ported ported to Solidity, which is complex.
+Concluding the overview of the certificate issuance process, there are no suitable providers offering certificates for IP addresses and it is an expensive endeavor to build a certificate authority whose complexity quickly becomes bigger than the one of the scope of the thesis.
+
+Assuming it would be possible to obtain and validate certificates for IP addresses, it is a computationally expensive task that would likely reach the gas limit of Ethereum. This is just a hypothesis however, as there is no implementation of certificate verification in Solidity. Certificate verification, as it is most commonly done with OpenSSL, would have to be ported ported to Solidity, which is complex.
 There is however a proposal to add certificate validation on a language-level \cite{EIP74}. As of writing, the exact implementation is not clear, with parts of the community vouching for direct RSA signature verification, and other parts wanting BigInt Support which could then enable certificate validation.
 
-Certificate validation in Solidity is not a hard requirement though \textemdash{} since everything in the blockchain is public including stored certificates and IP addresses, it can also be done off the blockchain. 
+Certificate validation in Solidity is not a hard requirement though \textemdash{} everything in the blockchain is public including stored certificates and IP addresses, it can also be done off the blockchain.
+
+To propose an alternative solution for identity verification, each Ethereum transaction is signed by the user and the \texttt{msg.sender} value is verified by the network, guaranteeing the authenticity of the sender address. By pre-validating the destination IP addresses before a customer is added, no reports can be added to the contract on others behalf.
+
 
 \section{Security considerations with Solidity}
-Code vulnerabilities are more common in Ethereum than in other environments. The whole blockchain data is public, and serious contracts are made open source in order to create trust for the people who use it. Therefore applications are auditable and bugs are more likely to be found.
 
-The application must also regulate itself and can in most cases not recover from an attack with an update.
+Applications written in Solidity deserve special security considerations for several reasons.
+Unlike classical applications, code for transactions runs on every node in the network and any user can call any method. Therefore it is necessary to implement proper access control for each method.
 
-In addition to that, the language Solidity aims to have a syntax similar to JavaScript and is therefore quite loose with enforcing the correct type. External static code analysis tools such as Solium \cite{Solium} do not yet have as many rules included as comparable tools for more mature languages.
+The source code of smart contracts usually is made public after the deployment of it to allow users to verify the behavior of the contract before they interact with it. This increases the chance of bugs being found. Examples of it are TheDAO contract and the Parity multisig wallet, both of which were hacked because a vulnerability was found in the source code \cite{DAO} \cite{MultisigHack}.
 
-In this section, some common mistakes that can lead to security exploits will be explained, partially taken from a list compiled by the co-founder of Ethereum \cite{ThinkingAboutSmartContractSecurity} and based on real-word vulnerabilities.
+All data stored in the smart contract has to be considered public. A rock-paper-scissor contract which people used for gambling turned out to have a trivial flaw where the first move could be extracted from the blockchain - rock would have the value \texttt{0x60689557} and scissor and paper would have a different one \cite{ThinkingAboutSmartContractSecurity}.
 
-\subsection{Constructor naming exploit}
-Simple human mistakes can lead to the contract being vulnerable. The 'Rubixi' contract has a different constructor name than contract name. Therefore the constructor does not get called on deployment, but can be called as a transaction. If done so, the caller of the transaction becomes the owner of the contract. Because of more unfortunate design of the contract, the bug became not immediately apparent and the Solidity contract was correct.
+The main takeaway for the contracts described in this contract is that the stored IP addresses will be public (although maybe obfuscated) to everybody. Even attackers can determine the list of IPs that are blocked if they know the contract address.
 
-\input{snippets/rubixi.tex}
+The creator of Solidity, Christian Reitwiessner, advocates for implementing a 'fail safe' mode that can be activated in case of a hack that will turn the contract into a read-only, withdraw-only mode \cite{FailsafeMode}.
 
-\subsection{Public data}
-A misconception is that stored data can be made private on the blockchain. A rock-paper-scissor contract which people used for gambling turned out to have a trivial flaw where the first move could be seen - rock would have the value \texttt{0x60689557} and scissor and paper have a different one.
+The creator of Ethereum, Vitalik Buterin, has compiled a list of vulnerabilities based on real-world exploits. To be safe against the most common vulnerabilities, the following practices should be followed \cite{ThinkingAboutSmartContractSecurity}:
 
-The main takeaway is that the stored IP addresses will be public (although maybe obfuscated) to everybody. Even attackers can determine the list of IPs that are blocked. The contract should be created in a way that minimises the usefulness for attackers, for example the pattern of the IPs should not make the way how IPs are being blocked predictable.
+\begin{description}
+    \item[Constructor naming] The constructor needs to have the same name as the contract. If by mistake, the constructor has a different name, it is not called on deployment, but can be called as a transaction. In many contracts, including the variants in this thesis, calling the constructor makes the caller the owner of the contract. The 'Rubixi' contract suffered from this bug and led to a takeover vulnerability \cite{ThinkingAboutSmartContractSecurity}.
+    \item[Loops] Loops are susceptible to gas limit failures and can be stalled. Therefore, the number of iterations in a loop should not be controlled by transaction parameters. Additionally, the \texttt{var} keyword should not be used within a \texttt{for} statement, as \texttt{var} is interpreted as \texttt{uint8}, which would lead to an overflow if the loop exceeds 256 iterations.
+    \item[Call stack depth] The 'call stack depth' describes the amount of nested function calls \textemdash\ it increases when a function calls another function, and if a function returns, the call stack depth decreases. A long call stack can be produced by excessive recursion. Solidity has a 1024 call stack depth limit \textemdash\  this means that Solidity could for example not compute the 1025th fibonacci number using recursion. This limit is an attack vector. An attacker could craft a function that calls itself 1023 times and on the 1024th time calls another, vulnerable function, that stops execution as soon as a subfunction is called, because the maximum call stack size is reached. Therefore contracts must be designed to not expose vulnerabilities when a function that is susceptible to a call stack depth attack gets only partially executed. The core development team of Ethereum proposes to solve this problem on a language-level in EIP \#150 \cite{EIP150}.
 
-\subsection{Loops}
-The section "Security Considerations" of the Solidity documentation warns about loops that have a non-fixed amount of iterations. With a high number of iterations, the block gas limit could be reached and according to the Solidity documentations "cause the complete contract to be stalled at a certain point".
-
-In the reference contract, the function \texttt{blockIPv4()} has a loop whose amount of iterations are dependant of a transaction argument. The contract has to be tested with a big payload and a solution needs to be developed.
-
-Furthermore, even for constant functions (which are executed locally and have no gas limit), there can be bugs. If, in the reference contract there would be a slight change:
-
-\input{snippets/loop-bug.tex}
-
-a bug would be introduced. \texttt{var} would be interpreted as \texttt{uint8}, if there are more than 255 entries in the \texttt{drop\_src\_ipv4} array, an overflow leading to an infinite loop would happen.
-This bug can be avoided by disallowing \texttt{var} in the code or by being aware of the issue.
-
-\subsection{Re-Entry bugs using .call()}
-
-The \texttt{.call()} method in Solidity is dangerous as it can execute code from external contracts. This weakness was first exploited in the DAO smart contract, which had over 50 million USD stored in it. The takeaway from the incident is that \texttt{.call()} can call any public function, even the function from which it was called from, leading to recursion.
-The following example is not safe:
-
-\input{snippets/reentry-bug.tex}
-
-For illustrating the vulnerability, consider that the balance of an account is 10 and that account calls the withdraw method. The account can execute arbitrary code when \texttt{msg.sender.call()} is called on line 3, so \texttt{withdraw()} can also be called again before line 4 of the above snippet is reached. An attacker could withdraw more than what its balance is. The vulnerability could be mitigated by using \texttt{.send()} instead of \texttt{.call()} in the example above.
-
-\subsection{Call stack depth attack}
-
-The call stack depth gets increased when a function calls another function, and if a function returns, the call stack depth gets decreased. A long call stack can be produced by excessive recursion. Solidity has a 1024 call stack depth limit - this means that Solidity could for example not compute the 1025th fibonacci number using recursion.
-
-The deterministic depth limit of Solidity proves to be an attack vector. An attacker could craft a function that calls itself 1023 times and on the 1024th time calls another, vulnerable function, that stops execution as soon as a subfunction is called, because the maximum call stack size is reached. 
-
-An attacker might force a function to only partially execute, which is a problem, if for example a withdraw function is composited of a subfunction that sends funds and a function that decreases the users balance.
-The core development team of Ethereum wants to solve this problem on a language-level in EIP \#150 \cite{EIP150} soon, therefore it will not be further discussed here.
+\end{description}

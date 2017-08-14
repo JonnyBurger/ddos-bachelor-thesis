@@ -4,8 +4,8 @@ mapping (address => Pointer) public pointers;
 struct Pointer {
     uint expirationDate;
     string url;
-    uint128 ip;
-    uint8 mask;
+    uint128 destinationIp;
+    uint8 destinationMask;
     bytes32 _hash;
 }
 
@@ -39,8 +39,8 @@ function setPointer(string url, uint128 subnetIp, uint8 subnetMask, uint expirat
     pointers[msg.sender] = Pointer({
         expirationDate: expirationDate,
         url: url,
-        ip: subnetIp,
-        mask: subnetMask,
+        destinationIp: subnetIp,
+        destinationMask: subnetMask,
         _hash: _hash
     });
 }

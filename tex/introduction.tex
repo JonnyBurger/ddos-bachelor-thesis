@@ -5,38 +5,42 @@
 A Blockchain is a decentralized database consisting of a chain of cryptographically secured units, called 'blocks'. Each block references the previous block and cannot be modified without breaking the subsequent blocks. A blockchain is continuously growing, as new data is inserted at the end of the chain.
 The most popular application for blockchains are digital cryptocurrencies, the most widely used implementation is Bitcoin. With Bitcoin, which had its breakthrough in 2008, network users can exchange tokens securely over a completely decentralized protocol. This technology is deemed so useful that users are trading Bitcoin tokens on digital exchanges and that its market capitalization of Bitcoin is over 60 billion USD as of August 2017 \cite{BitcoinMarketCap}.
  
-Ethereum \cite{Ethereum} is a blockchain protocol that is inspired by Bitcoin, but not only allows for sending and receiving of tokens, but also offers a scripting language called Solidity, which allows anyone to write programs which can be run on the blockchain. Examples for applications that could run on Ethereum are games like Tic-Tac-Toe or Poker, finance applications like venture capital funds and Initial Coin Offerings (a company raising funds by selling shares of it to investors).
+Ethereum \cite{Ethereum} is a blockchain protocol that is inspired by Bitcoin, but not only allows for sending and receiving of tokens, but also offers a scripting language called Solidity, which allows anyone to write programs which can be run on the blockchain. Examples of applications that could run on Ethereum are games like Tic-Tac-Toe or Poker, finance applications like venture capital funds and Initial Coin Offerings (a company raising funds by selling shares of it to investors).
 
-Smart contracts are contracts expressed in code that can automatically enforce the terms of the contract. Ethereum smart contracts allows for storage of arbitrary information and makes it possible for users to send transactions that mutate the storage. By writing the proper code, the creator of the smart contract can control the permissions of the users and the conditions and behaviors of the mutations. Ethereum enables turing-complete programming on the blockchain, which enables a wide variety of possible applications, including a collaborative DDoS mitigation solution, which this thesis is about.
+Smart contracts are contracts expressed in code that can automatically enforce the terms of the contract. Ethereum smart contracts allow for storage of arbitrary information and makes it possible for users to send transactions that mutate the storage. By writing the proper code, the creator of the smart contract can control the permissions of the users and the conditions and behaviors of the mutations. Ethereum enables turing-complete programming on the blockchain, which enables a wide variety of possible applications, including a collaborative DDoS mitigation solution, which this thesis is about.
 
 \section{Denial of Service and DDoS}
 
-A Denial of Service (DoS) is when a machine or network resource that should be online is being disrupted \cite{USCERT}. An attacker can either force a DoS by crafting a request payload causing a lot of computational work on the target machine or by flooding the target with requests. The motivation behind a DoS attack is that the attacker sees benefit in the victim's service being disrupted, be that disagreement with the service offered (activist attack), that the service is from a competitor, or that taking down a service brings pleasure to the victim \cite{DDoSOverview}.
+A Denial of Service (DoS) is the scenario where a machine or network resource that should be online is being disrupted \cite{USCERT}. An attacker can either force a DoS by crafting a request payload causing a lot of computational work on the target machine or by flooding the target with requests. The motivation behind a DoS attack is that the attacker sees benefit in the victim's service being disrupted, be that disagreement with the service offered (activist attack), that the service is from a competitor, or that taking down a service brings pleasure to the victim \cite{DDoSOverview}.
 
-A Distributed Denial of Service (DDoS) attack is a DoS attack where the requests are coming from many different sources. By distributing the requests, a denial of service attack can reach much higher magnitudes in terms of traffic and can become much harder to control.
+A Distributed Denial of Service (DDoS) attack is a DoS attack where the requests are coming from many different sources. By distributing the requests, a Denial of Service attack can reach much higher magnitudes in terms of traffic and can become much harder to control.
 Usually, an attacker takes control of as many internet-connected devices as possible by spreading malware, and then directing these devices to attack the victim.
+
+A DDoS attack can be stopped by blocking the traffic from the attacker. Each traffic package contains information about the source, including an identifier called the IP (Internet Protocol) address. By filtering the traffic based on the source IP address, the attack can be mitigated.
+
+Victims of DDoS attacks can receive help by identifying the source IP addresses of attackers and notifying the upstream providers, so that they can block traffic before it reaches the victims infrastructure.
 
 \section{Motivation}
 
-The amount and intensity of DDoS attacks globally is on the rise \cite{DDoSRise} and mitigation is happening only with limited success. 
-DDoS protection is a burden for most organizations and requires a lot of human and financial resources, such that it is hard to justify for many organizations to invest in DDoS protection. A standard tool for signaling DDoS attacks that can be used collaboratively would lower the investment needed to prepare for DDoS attacks.
-The Ethereum blockchain is a database that is already available and that can not be taken down \cite{Ethereum}. With Solidity, the blockchain is scriptable and interfaces for storing and retrieving IP addresses can be programmed. With Ethereum being an readily available infrastructure independent from web services, it opens up an opportunity for storing signals of IP addresses.
+The amount and intensity of DDoS attacks globally is on the rise and mitigation is happening only with limited success \cite{DDoSRise}. 
+DDoS protection is a burden for organizations and requires a lot of human and financial resources, such that many organizations are hesitant to invest in protection for theoretical DDoS attacks. A standard tool for signaling DDoS attacks that can be used collaboratively would lower the investment needed to prepare for DDoS attacks.
+The Ethereum blockchain is a decentralized database that is readily available and that can not be taken down \cite{Ethereum}. With Solidity, the blockchain is scriptable and interfaces for storing and retrieving IP addresses can be programmed. With Ethereum being an infrastructure independent from web services, it is an interesting candidate for signaling IP addresses.
 
-Existing DDoS signaling systems such as described in \cite{IETFDraft} send messages about attack information in key-value form using server infrastructure. The Ethereum blockchain allows to signal messages that have a similar format. This presents a chance to decrease the infrastructure
+Existing DDoS signaling systems such as \cite{IETFDraft} send messages about attack information in key-value form using classical server infrastructure. The Ethereum blockchain allows to send messages in a similar format, but requires no additional infrastructure and will not be affected in case of a DDoS attack.
 
 \section{Description of Work}
 
-The paper {"}A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN{"} \cite{OriginalPaper} proposes to use the Ethereum blockchain as a registry for IP addresses from which attacks are originating from. The data can then be read by other parties like ISPs who can filter out the malicious packets before they reach the victim of the attack. This eliminates the need for additional architecture.
+The paper {"}A Blockchain-based Architecture for Collaborative DDoS Mitigation with Smart Contracts and SDN{"} \cite{OriginalPaper} proposes to use the Ethereum blockchain as a registry for IP addresses from which attacks are originating from. The data can then be read by other parties like Internet Service Providers (ISPs) who can filter out the malicious packets before they reach the victim of the attack.
 
-In this thesis, three variants of a smart contract will be developed and compared to each other. Each smart contract serves the same purpose, the storage of a list of IP addresses plus relevant metadata. All variants accept the input of IP addresses and allow to read from it, although the storage of the information differs.
+In this thesis, three variants of a smart contract will be developed and compared to each other. Each smart contract serves the same purpose, the storage and retrieval of a list of IP addresses plus relevant metadata. All variants do accept the input of IP addresses and allow to read from it, although the storage of the information differs.
 
 The three variants are:
 
 1. A smart contract that stores a list of all IP addresses on the blockchain in an ordinary array, similar to the contract shown in the original paper \cite{OriginalPaper} (Listing 1-3).
 
-2. A contract that stores a URL pointing to a static web resource containing all the information. This will also include the design of the additional infrastructure needed for this variant of the contract.
+2. A contract that stores an URL pointing to a static web resource containing all the information.
 
-3. A contract that implements a bloom filter as a mean of reducing cost and space.
+3. A contract that implements a bloom filter for the sake of reducing cost and space.
 
 All contracts should support both whitelists and blacklists.
 A whitelist, in this case, is a list of IP addresses that are explicitly allowed to access the server, while a blacklist is a list of IP addresses that are explicitly disallowed to access the service.
@@ -46,15 +50,13 @@ It should be made as easy as possible to modify the list. Additionally, the cont
 
 The smart contracts will be benchmarked for speed and cost. In addition to that, other characteristics will be compared such as accuracy and ease of use. 
 
-Based on the benchmarks and general observations, the best contract is chosen and a statement is made whether the experiment was positive. A look into the future, including further work needed and the development of the Ethereum ecosystem is given.
+Based on the benchmarks and general observations, the best contract is chosen and a statement is made whether the experiment was positive overall. A look into the future, including further work needed and the development of the Ethereum ecosystem is given.
 
 \section{Thesis Outline}
 
-\textbf{Chapter 1:} Discusses related work. 
+\textbf{Chapter 2:} Discusses related work. 
 
-\textbf{Chapter 2} The characteristics of Ethereum smart contracts and their implications on our implementation are discussed, as well as the properties and mechanics of our solution and a look at security risks.
-
-\textbf{Chapter 3:} The smart contracts based on the planning in chapter 2 are being implemented. The chapter describes the implementation technique, development process, testing strategy and documents the established protocols.
+\textbf{Chapter 3:} The smart contracts are being specified and developed. The chapter describes the implementation technique, development process, testing strategy, security considerations and documents the established protocols.
 
 \textbf{Chapter 4:} A generic cost model for smart contracts is being introduced to enable the estimation of costs for the developed smart contracts. This chapter also discusses the pricing mechanism of Ethereum and covers how transaction speed is related to cost.
 

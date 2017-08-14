@@ -24,7 +24,7 @@
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://coinmarketcap.com/}}
-      \field{note}{(Last visited 08/12/2017)}
+      \field{note}{Last visited 08/12/2017}
       \field{title}{CryptoCurrency Market Capitalizations}
     \endentry
     \entry{Ethereum}{online}{}
@@ -273,6 +273,22 @@
       \verb https://github.com/ethereum/solidity
       \endverb
     \endentry
+    \entry{web3}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://github.com/ethereum/web3.js/}}
+      \field{note}{Last visited 07/30/2017}
+      \field{title}{ethereum/web3.js: Ethereum JavaScript API}
+    \endentry
+    \entry{EthereumBlockchainSize}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.reddit.com/r/ethereum/comments/6kvzvp/what_is_the_data_size_of_the_ethereum_blockchain/}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{What is the data size of the Ethereum blockchain? : ethereum}
+    \endentry
     \entry{IPv4Exhaustion}{article}{}
       \name{author}{1}{}{%
         {{hash=9029d6b9ce9dc3d580bdd4ff31ab0a3c}{%
@@ -294,6 +310,42 @@
       \verb https://www.ripe.net/publications/ipv6-info-centre/about-ipv6/ipv4-exhaustion
       \endverb
     \endentry
+    \entry{RFC3493}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=87467095b157d8311ec6625a93c8ff54}{%
+           family={Gilligan},
+           family_i={G\bibinitperiod},
+           given={R.},
+           given_i={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{87467095b157d8311ec6625a93c8ff54}
+      \strng{fullhash}{87467095b157d8311ec6625a93c8ff54}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://curl.haxx.se/rfc/rfc3493.txt}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{https://curl.haxx.se/rfc/rfc3493.txt}
+    \endentry
+    \entry{IPv6Wiki16}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{IPv6 readiness \- IPv6 \- Wikipedia}
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/IPv6#IPv6_readiness
+      \endverb
+    \endentry
+    \entry{Testnet}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://ethdocs.org/en/latest/network/test-networks.html}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{Test Networks. Ethereum Homestead 0.1 documentation}
+    \endentry
     \entry{TestRPC}{misc}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
@@ -302,13 +354,37 @@
       \field{note}{Last visited 07/30/2017}
       \field{title}{ethereumjs/testrpc: Fast Ethereum RPC client for testing and development}
     \endentry
-    \entry{web3}{misc}{}
+    \entry{Remix}{misc}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://github.com/ethereum/web3.js/}}
-      \field{note}{Last visited 07/30/2017}
-      \field{title}{ethereum/web3.js: Ethereum JavaScript API}
+      \field{howpublished}{\url{https://github.com/ethereum/remix}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{ethereum/remix: Ethereum IDE and tools for the web}
+    \endentry
+    \entry{ava}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://github.com/avajs/ava}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{avajs/ava: Futuristic JavaScript test runner}
+    \endentry
+    \entry{Mist}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://github.com/ethereum/mist}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{ethereum/mist: Mist. Browse and use Dapps on the Ethereum network.}
+    \endentry
+    \entry{IpAddressNpm}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.npmjs.com/package/ip-address}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{ip-address}
     \endentry
     \entry{ParsingJSON}{online}{}
       \name{author}{1}{}{%
@@ -492,6 +568,26 @@
       \verb https://www.quora.com/Why-do-bloom-filters-have-multiple-hash-functions/answer/John-Kurlak
       \endverb
     \endentry
+    \entry{BlockGasLimit}{online}{}
+      \name{author}{1}{}{%
+        {{hash=3d07cb491afa3e6321f8f4c6284d2846}{%
+           family={Wisniowiecki},
+           family_i={W\bibinitperiod},
+           given={Xawery},
+           given_i={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{3d07cb491afa3e6321f8f4c6284d2846}
+      \strng{fullhash}{3d07cb491afa3e6321f8f4c6284d2846}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Last visited 08/08/2017}
+      \field{title}{What is Gas Limit in Ethereum?}
+      \verb{url}
+      \verb https://bitcoin.stackexchange.com/a/42629
+      \endverb
+    \endentry
     \entry{RFC4291I66}{misc}{}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
@@ -499,6 +595,14 @@
       \field{howpublished}{\url{https://tools.ietf.org/html/rfc4291}}
       \field{note}{Last visited 08/02/2017}
       \field{title}{RFC 4291 - IP Version 6 Addressing Architecture}
+    \endentry
+    \entry{IPSource38}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://www.bcp38.info/index.php/IP_Source_Address_Spoofing}}
+      \field{note}{Last visited 08/13/2017}
+      \field{title}{IP Source Address Spoofing \- BCP38}
     \endentry
     \entry{BaselineRequirements}{online}{}
       \field{sortinit}{0}
@@ -566,15 +670,29 @@
       \verb https://github.com/ethereum/EIPs/issues/74
       \endverb
     \endentry
-    \entry{Solium}{online}{}
+    \entry{DAO}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           family_i={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Last visited 08/08/2017}
-      \field{title}{Solium Framework}
+      \field{title}{The DAO (Organization)}
       \verb{url}
-      \verb https://github.com/duaraghav8/Solium
+      \verb https://en.wikipedia.org/wiki/The_DAO_(organization)
       \endverb
+    \endentry
+    \entry{MultisigHack}{misc}{}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{howpublished}{\url{Ethereum\x{fffd}\x{fffd}\x{fffd}s Parity Users Lose Millions in a Multi-Sig Hack}}
+      \field{note}{Last visited 08/14/2017}
     \endentry
     \entry{ThinkingAboutSmartContractSecurity}{online}{}
       \name{author}{1}{}{%
@@ -595,6 +713,26 @@
       \field{year}{2016}
       \verb{url}
       \verb https://blog.ethereum.org/2016/06/19/thinking-smart-contract-security
+      \endverb
+    \endentry
+    \entry{FailsafeMode}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=85fc47f1f0978aa2d3f5ffc40a9cb22f}{%
+           family={Harben},
+           family_i={H\bibinitperiod},
+           given={Russ},
+           given_i={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{85fc47f1f0978aa2d3f5ffc40a9cb22f}
+      \strng{fullhash}{85fc47f1f0978aa2d3f5ffc40a9cb22f}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Last visited 08/14/2017}
+      \field{title}{Smart Contract Security in Ethereum: Lessons learned from The DAO and the future of safe smart contracts}
+      \verb{url}
+      \verb https://docs.google.com/presentation/d/1kS9mVOQNieloYByGQw3P-Yyup2BYE5tg7jOItMNnR0A/edit#slide=id.g15480448e8_0_185
       \endverb
     \endentry
     \entry{EIP150}{online}{}
@@ -683,6 +821,26 @@
       \verb https://medium.com/@ethgasstation/the-safe-low-gas-price-fb44fdc85b91
       \endverb
     \endentry
+    \entry{ETHGasStationCalc}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f556cbcfa6b9ea1078ebb7ad45b30155}{%
+           family={Station},
+           family_i={S\bibinitperiod},
+           given={ETH\bibnamedelima Gas},
+           given_i={E\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{f556cbcfa6b9ea1078ebb7ad45b30155}
+      \strng{fullhash}{f556cbcfa6b9ea1078ebb7ad45b30155}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Last visited 08/14/2017}
+      \field{title}{Gas Time Calculator}
+      \verb{url}
+      \verb http://ethgasstation.info/calculator.php
+      \endverb
+    \endentry
     \entry{Coinbase}{online}{}
       \name{author}{1}{}{%
         {{hash=28d13ddddf18afba2c3727253ba0d42f}{%
@@ -701,24 +859,6 @@
       \verb https://www.coinbase.com
       \endverb
     \endentry
-    \entry{DAO}{online}{}
-      \name{author}{1}{}{%
-        {{hash=9c677286866aad38f8e9b660f5411814}{%
-           family={Wikipedia},
-           family_i={W\bibinitperiod}}}%
-      }
-      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
-      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Last visited 08/08/2017}
-      \field{title}{The DAO (Organization)}
-      \verb{url}
-      \verb https://en.wikipedia.org/wiki/The_DAO_(organization)
-      \endverb
-    \endentry
     \entry{EthereumCent}{online}{}
       \name{author}{1}{}{%
         {{hash=aa11677d237b2c2b435fd7decac0d7ad}{%
@@ -735,26 +875,6 @@
       \field{title}{Ethereum briefly crashed from \$319 to 10 cents in seconds on one exchange after multimillion dollar trade}
       \verb{url}
       \verb http://www.cnbc.com/2017/06/22/ethereum-price-crash-10-cents-gdax-exchange-after-multimillion-dollar-trade.html
-      \endverb
-    \endentry
-    \entry{BlockGasLimit}{online}{}
-      \name{author}{1}{}{%
-        {{hash=3d07cb491afa3e6321f8f4c6284d2846}{%
-           family={Wisniowiecki},
-           family_i={W\bibinitperiod},
-           given={Xawery},
-           given_i={X\bibinitperiod}}}%
-      }
-      \strng{namehash}{3d07cb491afa3e6321f8f4c6284d2846}
-      \strng{fullhash}{3d07cb491afa3e6321f8f4c6284d2846}
-      \field{sortinit}{0}
-      \field{sortinithash}{990108227b3316c02842d895999a0165}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Last visited 08/08/2017}
-      \field{title}{What is Gas Limit in Ethereum?}
-      \verb{url}
-      \verb https://bitcoin.stackexchange.com/a/42629
       \endverb
     \endentry
     \entry{BloomfilterAccuracy}{misc}{}

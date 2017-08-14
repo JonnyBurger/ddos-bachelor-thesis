@@ -2,7 +2,7 @@
 
 Define the set of operations that a transaction executes as $ \sigma = (\sigma_1, ..., \sigma_n) $.
 
-The corresponding fees are $ f = (f_1, ..., f_n), \forall f_i \in G $, where $ G $ is the fee schedule defined in the Ethereum Yellow paper. The amount of gas a transaction consumes is shown in Equation \ref{eq:TransactionGasConsumption}:
+The corresponding fees are $ f = (f_1, ..., f_n), \forall f_i \in G $, where $ G $ is the fee schedule defined in the Ethereum Yellow Paper \cite{YellowPaper}. The amount of gas a transaction consumes is shown in Equation \ref{eq:TransactionGasConsumption}:
 
 \begin{equation}
 C = \sum_{i = 1}^n \sigma_i \cdot f_i
@@ -18,7 +18,7 @@ A transaction uses at least 21'000 gas and the maximum amount of gas that can be
     \label{eq:CostCondition}
 \end{equation}
 
-The price is denoted as the variable $ \alpha $. Since according to ethgasstation.info, there are 3 possible speeds, constants are defined for them representing the minimum cost to pay in order to get that speed (Equations \ref{eq:GasPriceCheap} - \ref{eq:GasPriceFast}).
+The gas price is denoted as the variable $ \alpha $. Since according to ethgasstation.info (Figure 4.1, \cite{ETHGasStationCalc}), there are 3 possible speeds, constants are defined for them representing the minimum cost to pay in order to get that speed (Equations \ref{eq:GasPriceCheap} - \ref{eq:GasPriceFast}).
 \begin{equation}
     \alpha_{cheap} = 2 \cdot 10^{-9} Ether
     \label{eq:GasPriceCheap}
@@ -38,9 +38,9 @@ Multiplying these values together results in the total cost (Equation \ref{eq:To
 \begin{equation}
  C \cdot \alpha \cdot ETH
  \label{eq:TotalCost}
-\end{equation}  For example, a contract that costs 500'000 gas to deploy and is priced at $ \alpha = \alpha_{average} $ per gas, with the price for Ether being \$50, the cost to deploy that contract is \$0.025 (Equation \ref{eq:CostExample}).
+\end{equation}  For example, a contract that costs 500'000 gas to deploy and is priced at $ \alpha = \alpha_{average} $ per gas, with the price for Ether being $ ETH = \$50 $, the cost to deploy that contract is \$0.05 (Equation \ref{eq:CostExample}).
 
 \begin{equation}
-    500'000 \cdot 10^{-9} \cdot \$50 = \$0.025
+    500'000 \cdot 30 \cdot 10^{-9} \cdot \$50 = \$0.05
     \label{eq:CostExample}
 \end{equation}

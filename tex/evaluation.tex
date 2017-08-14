@@ -4,7 +4,7 @@
 
 This section aims to provide a rough guidance on expected cost for each variant of the smart contract.
 
-Actual costs will vary over time as the Ether-to-USD exchange rate as well as the network gas price will change. It is also dependant of the desired transaction confirmation speed. To avoid this section becoming inaccurate in the future, only the amount of gas consumed is benchmarked. The actual cost can be calculated using the cost model described in chapter 5.
+Actual costs will vary over time as the Ether-to-USD exchange rate as well as the network gas price will change. It is also dependent of the desired transaction confirmation speed. To avoid this section becoming inaccurate in the future, only the amount of gas consumed is benchmarked. The actual cost can be calculated using the cost model described in chapter 4.
 
 \subsection{Variant 1}
 For variant 1, a benchmark script was created\footnote{The source code can be found under \texttt{v1-gas-benchmark.js}. The benchmark can be executed with \texttt{node index v1-gas-benchmark --count=5}.}. The benchmark calculates the cumulative gas spent on contract creation and IP address insertion. Two cases were calculated: For the worst case, each IP address was inserted in a separate transaction. For the best case, reports were bundled into one transaction. The benchmark was executed in both cases for 1 IP address, then 2 IP addresses and so forth up to 20 IP addresses. The resulting costs are displayed in Figure \ref{fig:v1-gas-cost}.
@@ -19,14 +19,17 @@ For variant 1, a benchmark script was created\footnote{The source code can be fo
 For only a few reports, the major cost is the initial deployment of the contract, costing approximately 858'000 gas. Adding reports costs approximately 150'000 - 200'000 gas each.
 It can be observed that bundling reports into one transaction can save 24\% of the gas cost beyond the initial cost (this is however not always practical, as new reports have to be accumulated before they can be bundled, which might make the insertion slower).
 
-Even in the best case, the costs grow linearly ($\mathcal{O}(n)$) as new reports are added. This makes variant 1, as predicted, expensive and unsuitable for big amounts of IP addresses.
+Even in the best case, the costs grow linearly ($\mathcal{O}(n)$) as new reports are added.
+Assuming 20 reports, and ranges of $ \alpha = [2, 28]$ and $ ETH = [\$100,\ \$300] $, the amount of gas consumed corresponds to real-money costs between \$0.45 and \$18.83 according to the cost model, however linearly increasing with the amount of reports.
 
 \subsection{Variant 2}
 For variant 2 (web resource pointer), the cost benchmark of the Solidity contract is trivial, however additional infrastructure is needed whose cost is hard to quantify.
 
-For the gas cost, the \texttt{estimate-gas} script\footnote{The script can be executed using the command \texttt{node index estimate-gas IpPointerContract}} was used to estimate the deploy cost. For the transaction cost a benchmark script was created\footnote{The source code can be found under \texttt{v2-gas-benchmark.js}. The benchmark can be executed with \texttt{node index v2-gas-benchmark}.}. For the deployment, 600'000 gas is consumed and per update 150'000 gas. This makes variant 2 the cheapest contract in terms of gas.
+For the gas cost, the \texttt{estimate-gas} script\footnote{The script can be executed using the command \texttt{node index estimate-gas IpPointerContract}} was used to estimate the deploy cost. For the transaction cost a benchmark script was created\footnote{The source code can be found under \texttt{v2-gas-benchmark.js}. The benchmark can be executed with \texttt{node index v2-gas-benchmark}.}. For the deployment, 600'000 gas is consumed and per update 150'000 gas is consumed. This makes variant 2 the cheapest contract in terms of gas. Using the same values for the number of reports, $ \alpha $ and $ ETH $ as for the calculation in variant 1, the real-world costs are between \$0.15 and \$6.3, however they do not increase with the amount of IP addresses stored.
 
 The cost of the additional infrastructure cannot be measured as the specification only requires some format contraints to be fulfilled and leaves many implementation details up to the user, including which hosting solution to use. However, this should not be a significant cost, as many providers such as Amazon S3, Github pages or \url{now.sh} allow easy deployment of static files for free or for just a few cents.
+
+\subsection{Variant 3}
 
 \begin{figure}[H]
 \centering
@@ -35,27 +38,28 @@ The cost of the additional infrastructure cannot be measured as the specificatio
 \label{fig:v3-gas-cost}
 \end{figure}
 
-\subsection{Variant 3}
 For variant 3 (bloom filter variant), another benchmark script was created\footnote{The source code can be found under \texttt{v3-gas-benchmark.js}. The benchmark can be executed with \texttt{node index v3-gas-benchmark --count=5}.}. Like in variant 1, a worst case and a best case scenario was tested, where in the worst case one report gets added at a time, while in the best case, reports could be bundled into one transaction to save gas.
 
 This variant was expected to perform better than variant 1, as less storage is required to store all IP addresses. However, the benchmark does not confirm the expectation. The bloom filter does actually incur more gas costs than storing a full-sized array of IP addresses. 
 
 For adding one report, approximately 290'000 gas is consumed, which is almost three times more than in variant 1 (105'000 gas). There are also no economies of scale, as the cost goes up linearly after the first report. Bundling reports into one transaction does save approximately 40'000 gas per report (13\%), but is less effective than it is for variant 1. Also, it is not possible to add more than 17 reports in one transaction, as the block gas limit is reached.
 
+Using the worse case (since 20 IPs cannot be stored using just 1 transaction) and the same values and methodology as in variant 1 and 2 of, the real-world costs are between \$1.58 and \$66.33. This cost is also linearly growing with the amount of IP addresses inserted.
+
 It becomes clear that Solidity charges more heavily for expensive computation like hashing than it does for storage.
 In addition to much higher costs, the bloom filter variant can also give false positives, and metadata like expiration date, whitelist/blacklist etc. has to be stored separately.
 
-If less required storage space does not result in lower prices, then there is no advantage in it at all. The whole blockchain, multiple gigabytes needs to be downloaded to a client anyway \textemdash {} the only reason to optimize for storage is to get cheaper costs.
+If less required storage space does not result in lower prices, then there is no advantage in it at all. The whole blockchain, which has a size of multiple gigabytes \cite{EthereumBlockchainSize}, needs to be downloaded to a client anyway \textemdash {} the only reason to optimize for storage is to get cheaper costs.
 
 \section{Speed}
 
-This thesis does pass on a speed benchmark. Current speed is dependant on several network parameter and can change over time. Additionally, by tweaking the amount of gas provided to a transaction the speed inserting reports is modifiable.
+Current speed is dependent on several network parameter and can change over time. Additionally, by tweaking the amount of gas provided to a transaction the speed of inserting reports is modifiable.
 
-These factors make speed hard to quantify without some  assumptions about the network and the user preference. Instead, chapter 4 can be used as a reference for estimating the speed given assumptions. At the time of writing, the range of speeds that are possible is between 30 and 120 seconds. All Ethereum transactions fall inbetween these transaction times, therefore all variants are equally fast.
+These factors make speed hard to quantify without some  assumptions about the network and the user preference. In chapter 4, the range of possible speeds is calculated and mapped to the range of prices. The range of speeds at the time of writing is 30 seconds to 120 second and is visualized in Figure 4.1. All Ethereum transactions fall inbetween these transaction times, therefore all variants are equally fast on average given the same gas price offered.
 
 \section{Accuracy}
 
-Variant 1 and 2 store the reports and the IP addresses in a lossless format, guaranteeing perfect accuracy. Variant 3 however does lose accuracy because of the bloomfilter, the exact amount of which is calculated in this section.
+Variant 1 and 2 store the reports and the IP addresses in a lossless format, guaranteeing perfect accuracy in that the retrieved data is identical with the inserted data. Variant 3 however does lose accuracy because of the bloomfilter, the exact amount of which is calculated in this section.
 
 Given a number of items that are indexed, and a number of hash functions, the ideal array size and number of hash functions for a bloom filter can be calculated. According to \cite{BloomfilterAccuracy}, given $n$ = number of items in the filter and $p =$ probability of false positives, the number of bits in the filter $m$ can be calculated using equation \ref{eq:m} and the number of hash functions $k$ using equation \ref{eq:k}. 
 
@@ -78,7 +82,7 @@ p = e^{\frac{{m \cdot ln(\frac{1}{2^{ln(2)}})}}{n}}
 \label{eq:p}
 \end{equation}
 
-The probability of at least one false positive is shown in table \ref{table:Probability} and figure 5.3. It assumes the number of \textbf{bits} in the filter is 4'096 ($512\ bytes \cdot 8$).
+The probability of at least one false positive is shown in table \ref{table:Probability} and figure 5.3. It assumes the number of \textbf{bits} in the filter is 4'096 ($512\ bytes \cdot 8$) as it is in variant 2 of the contract.
 
 \begin{table}[ht]
 \begin{minipage}[b]{.45\textwidth}
@@ -105,7 +109,7 @@ The probability of at least one false positive is shown in table \ref{table:Prob
 \end{minipage}
 \end{table}
 
-The bloom filter does have a false positive chance of under 1\% for up to 425 IP addresses. Inserting more IP addresses after that decreases the accuracy of the bloom filter dramatically. With 1'000 insertions, variant 3 would lead to 14\% of legimitate traffic being blocked. With 3'000 insertions, over half of the legitimate traffic would be falsly blocked.
+The bloom filter does have a chance of a false positive of under 1\% for up to 425 IP addresses. Inserting more IP addresses after that decreases the accuracy of the bloom filter dramatically. With 1'000 insertions, variant 3 would lead to 14\% of legimitate traffic being blocked. With 3'000 insertions, over half of the legitimate traffic would be falsly blocked.
 
-With the gas limit constaint in place and the probabilities in mind, it is recommended to use more than one contract if the probability of false positives would be higher than acceptable otherwise. The acceptable probability of false positives is individual for each user.
+With the gas limit constraint in place and the probabilities in mind, it is recommended to use more than one contract if the probability of false positives would be higher than acceptable otherwise. The acceptable probability of false positives is individual for each user.
 

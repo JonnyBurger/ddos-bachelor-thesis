@@ -1,0 +1,4 @@
+Attacks like Distributed Denial-of-Service (DDoS) pose a growing threat to computer networks and internet services.
+Existing strategies for mitigating DDoS attacks are inefficient because of lacking resources and inflexibility.
+Blockchains like Ethereum enable new ways to fight DDoS attacks: Using smart contracts, IP addresses of attackers can be singalized without additional infrastructure.
+This work documents the development of multiple smart contracts for signalisation of DDoS attacks and compares them, describes the Ethereum environment and its effect on the smart contract architecture, gives information and advice about the performance and costs and evaluates the overall feasability and effectivity of a blockchain-based solution for fighting DDoS attacks.

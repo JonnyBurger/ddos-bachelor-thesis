@@ -1,19 +1,25 @@
 \section{Workflow considerations}
-Developing a smart contract requires a compiler and a blockchain on which the developer can execute the smart contract. Additional tools can be used to improve development speed, code quality and developer experience.
+Developing a smart contract requires a compiler and a blockchain on which the developer can execute the smart contract. Additional tools can be used to improve development speed, code quality and developer experience. This section describes the tools and the workflow used during development.
 
-\subsection{Environment}
+\subsection{Blockchain}
 
-The main Ethereum blockchain is unsuitable for validating the correctness of the code manually. There are significant costs to deploy a contract to the main blockchain, also it is not possible for a developer to get immediate feedback because of transaction processing times. It is also insensitive to use the main blockchain for testing purposes, as all network participants need to download all blocks.
+The main Ethereum blockchain is unsuitable for manual testing during development. There are significant costs for deploying a contract to the main blockchain, also it is not possible for a developer to get immediate feedback because of transaction processing times. It is also insensitive to use the main blockchain for testing purposes, as all network participants need to download all blocks.
 
-The 'Testnet' is a separate Ethereum blockchain for testing purposes. The Ether needed to deploy contracts is not traded on exchanges and was mined with a much lower difficulty level, so usage of the Testnet is basically free. However, the Testnet is also a globally shared blockchain with confirmation times and is not perfect for development. 
+The 'Testnet' is a separate Ethereum blockchain for testing purposes \cite{Testnet}. The Ether needed to deploy contracts is not traded on exchanges and was mined with a much lower difficulty level, so costs of using the Testnet are not a concern. However, the Testnet is also a globally shared blockchain with confirmation times and is not perfect for development either. 
 
 \texttt{TestRPC} \cite{TestRPC} is a library that makes it possible to set up a local blockchain for testing purposes. Using \texttt{TestRPC}, it is possible to simulate deployments and transactions of smart contracts with no confirmation delay. Out of the box, \texttt{TestRPC} sets up multiple Ethereum accounts, making it simple to switch the message sender address and test whether the access control features of the developed smart contract are working as intended. This makes \texttt{TestRPC} the ideal blockchain for developing.
 
+\subsection{Compiler}
+
+solc \cite{Solc} is the compiler that comes with the Solidity language itself. Because no specific requirements forbid it, the reference compiler was chosen. 
+
+Other compilers exists, such as Remix \cite{Remix}, a compiler which runs in the browser.
+
 \subsection{Testing}
 
-A compiler, such as solc \cite{Solc}, will warn about syntax errors and does not compile invalid Solidity code, indicating to the developer that there is an error in the code.
+A compiler such as solc will warn about syntax errors and does not compile invalid Solidity code, indicating to the developer that there is an error in the code.
 
-\texttt{solc} does refuse to compile code that has operations of incompatible types, invalid variable redeclarations, invalid return types and incorrect syntax. 
+solc for example does refuse to compile code that has operations of incompatible types, invalid variable redeclarations, invalid return types and incorrect syntax. 
 It does however not give an error for unused variables, dead code, missing arguments and does not completely protect against runtime errors or gas limit errors.
 
 While compilers provide a first layer of assurance by only compiling valid contracts with valid syntax, it is still possible to write code with bugs and security vulnerabilities.
@@ -24,7 +30,7 @@ Cases that can be tested in the Ethereum context to improve robustness are: Inte
 
 A robust contract should include unit tests validating that normal use of the contract features result in correct behavior, as well as tests for edge cases and abuse of the contract features.
 
-Usually testing frameworks are written in the language that they are made for testing. There is no testing framework in  Solidity, however there is \texttt{web3.js} \cite{web3}, which exposes a Javascript interface for creating contracts, reading from contracts, and calling transactions. This makes it possible to select from an array of available Javascript testing frameworks. In this section, it is described how to test Solidity code with the \texttt{ava} framework. However, this choice is arbitrary,testing with another framework will work similarly.
+Usually testing frameworks are written in the language that they are made for testing. There is no testing framework in  Solidity, however there is \texttt{web3.js} \cite{web3}, which exposes a Javascript interface for creating contracts, reading from contracts, and calling transactions. This makes it possible to select from an array of available Javascript testing frameworks. In this section, it is described how to test Solidity code with the \texttt{ava} \cite{ava} framework. However, this choice is arbitrary, testing with another framework will work similarly.
 
 With a macro function, it is possible to create an isolated blockchain for each test scenario. The header for each test file is:
 
@@ -32,7 +38,7 @@ With a macro function, it is possible to create an isolated blockchain for each 
 
 The dependencies \texttt{ava}, \texttt{web3}, \texttt{ethereumjs-testrpc} are imported at the top of the file. \footnote{They need to be installed first using the command \texttt{npm install ava web3 ethereumjs-testrpc}, assuming node.js is installed on the computer.}. The function \texttt{makeBlockchain} creates a testing blockchain using \texttt{TestRPC}, and returns an interface for interacting with it, as well as a list of Ethereum account addresses that were generated. 2 accounts were created in this instance, which is sufficient to test from the perspective of a contract owner and an non-provileged user.
 
-For each test, \texttt{makeBlockchain()} is called beforehand, which generates a separate blockchain interface and list of addresses. This prevents test cases from interfering with each other.
+For each test, \texttt{makeBlockchain()} is called beforehand, which does generate a separate blockchain interface and list of addresses. This prevents test cases from interfering with each other \textemdash{} with \texttt{ava} it is even possible to run tests in parallel.
 
 Consider the 'Hello World' contract from the beginning of this chapter. A simple test would be to create an instance of the contract and test if the \texttt{greet()} function would return the string that was passed to the constructor as the first argument. This test can be implemented in \texttt{ava} with the following code:
 
@@ -42,13 +48,15 @@ At first, the contract code gets read from a file and compiled. The compiler, \t
 
 Then, the contract gets instantiated with a 'Hello!' string as the first argument. The address from which this transaction is sent, the bytecode and the amount of gas also has to be specified.
 In normal circumstances, a password for the address also has to be provided, but in a \texttt{TestRPC} environment, it can be disabled.
-The provided gas in this example is hard-coded for simplicity \textendash{} a more sensible solution would be to estimate gas using the \texttt{estimateGas} helper function provided by \texttt{web3}\footnote{In the project files, a helper function is defined under \texttt{lib/estimate-gas.js}, which handles gas estimation for the whole project.}.
+The provided gas in this example is hard-coded to 1'000'000 for simplicity \textendash{} a more sensible solution would be to estimate gas using the \texttt{estimateGas} helper function provided by \texttt{web3}\footnote{In the project files, a helper function is defined under \texttt{lib/estimate-gas.js}, which handles gas estimation for the whole project.}.
 
 The final argument is a 'callback function'. \texttt{web3} provides a non-blocking asynchronous interface, which means instead of returning a value, a user-defined function is called\footnote{By using 'Promises', a syntactic sugar language feature in Javascript, callback functions can be avoided. Promises are used in  the actual project, however in this example classic callback functions are used to avoid confusion.}.
 \texttt{web3} oddly calls the callback function twice \textendash{} only after the second time it is safe to assume the transaction is committed to the blockchain.
 
-Once the contract instance is created and on the blockchain, methods of the contract can be called. \texttt{myContract.greet()} takes another callback function which is called with the return value of the method. The return value in this case is expected to be 'Hello!'. If this assumption is not true, \texttt{ava} would throw an error here.
+Once the contract instance is created and on the blockchain, methods of the contract can be called. The method \texttt{myContract.greet()} takes another callback function which is called with the return value of the method. The return value in this case is expected to be 'Hello!'. If this assumption is not true, \texttt{ava} would throw an error here and indicate to the developer that the code does not behave as expected.
 
-When running the test\footnote{Run the test using \texttt{./node\_modules/ava/cli.js test/greeter.js} in the project}, the test framework should give \texttt{1 passed} as the output and exit with code 0 to indicate that all tests passed. Exit code 1 is use to signalize that there is at least one problem.
+When running the test\footnote{Run the test using \texttt{./node\_modules/ava/cli.js test/greeter.js} in the project.}, the test framework should give \texttt{1 passed} as the output and exit with code 0 to indicate that all tests passed. Exit code 1 is used if there is at least one problem.
+
+During the development of the smart contracts, 20 test cases were written\footnote{See Installation instructions in the appendix to run all tests.}, testing the normal use and edge cases of the contracts using dummy data. In addition, 3 tests were intentionally marked as known failures to demonstrate that a certain approach did not work. These failed tests cover code that was not used in the final contracts.
 
 In addition to testing, critical contracts should be audited by computer security professionals before being deployed. As this thesis does not yet aim to provide a production-ready platform, no external audits were performed.

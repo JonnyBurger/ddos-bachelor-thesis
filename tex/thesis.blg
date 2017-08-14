@@ -1,58 +1,89 @@
 [0] Config.pm:343> INFO - This is Biber 2.5
 [0] Config.pm:346> INFO - Logfile is 'thesis.blg'
-[72] biber-darwin:290> INFO - === Sa Aug 12, 2017, 18:09:23
-[102] Biber.pm:351> INFO - Reading 'thesis.bcf'
-[223] Biber.pm:776> INFO - Found 43 citekeys in bib section 0
-[236] Biber.pm:3493> INFO - Processing section 0
-[265] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
-[269] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
-[271] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
-[323] Utils.pm:149> WARN - The field 'author' in entry 'BitcoinMarketCap' cannot be null, deleting it
-[323] Utils.pm:149> WARN - The field 'month' in entry 'BitcoinMarketCap' cannot be null, deleting it
-[324] Utils.pm:149> WARN - The field 'year' in entry 'BitcoinMarketCap' cannot be null, deleting it
-[324] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
-[324] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
-[325] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
-[325] Utils.pm:149> WARN - The field 'month' in entry 'IETFDraft' cannot be null, deleting it
-[325] Utils.pm:149> WARN - The field 'year' in entry 'IETFDraft' cannot be null, deleting it
-[327] Utils.pm:149> WARN - The field 'author' in entry 'TestRPC' cannot be null, deleting it
-[329] Utils.pm:149> WARN - The field 'month' in entry 'TestRPC' cannot be null, deleting it
-[329] Utils.pm:149> WARN - The field 'year' in entry 'TestRPC' cannot be null, deleting it
-[329] Utils.pm:149> WARN - The field 'author' in entry 'web3' cannot be null, deleting it
-[329] Utils.pm:149> WARN - The field 'month' in entry 'web3' cannot be null, deleting it
-[330] Utils.pm:149> WARN - The field 'year' in entry 'web3' cannot be null, deleting it
-[330] Utils.pm:149> WARN - The field 'author' in entry 'WikipediaBloomfilter' cannot be null, deleting it
-[330] Utils.pm:149> WARN - The field 'month' in entry 'WikipediaBloomfilter' cannot be null, deleting it
-[330] Utils.pm:149> WARN - The field 'year' in entry 'WikipediaBloomfilter' cannot be null, deleting it
-[330] Utils.pm:149> WARN - The field 'author' in entry 'BloomfilterTutorial' cannot be null, deleting it
-[331] Utils.pm:149> WARN - The field 'month' in entry 'BloomfilterTutorial' cannot be null, deleting it
-[331] Utils.pm:149> WARN - The field 'year' in entry 'BloomfilterTutorial' cannot be null, deleting it
-[331] Utils.pm:149> WARN - The field 'author' in entry 'imurmur' cannot be null, deleting it
-[331] Utils.pm:149> WARN - The field 'month' in entry 'imurmur' cannot be null, deleting it
-[331] Utils.pm:149> WARN - The field 'year' in entry 'imurmur' cannot be null, deleting it
-[332] Utils.pm:149> WARN - The field 'author' in entry 'bloomfilterjs' cannot be null, deleting it
-[332] Utils.pm:149> WARN - The field 'month' in entry 'bloomfilterjs' cannot be null, deleting it
-[332] Utils.pm:149> WARN - The field 'year' in entry 'bloomfilterjs' cannot be null, deleting it
-[332] Utils.pm:149> WARN - The field 'author' in entry 'SimpleBloomFilter' cannot be null, deleting it
-[332] Utils.pm:149> WARN - The field 'month' in entry 'SimpleBloomFilter' cannot be null, deleting it
-[332] Utils.pm:149> WARN - The field 'year' in entry 'SimpleBloomFilter' cannot be null, deleting it
-[333] Utils.pm:149> WARN - The field 'author' in entry 'RFC4291I66' cannot be null, deleting it
-[333] Utils.pm:149> WARN - The field 'month' in entry 'RFC4291I66' cannot be null, deleting it
-[333] Utils.pm:149> WARN - The field 'year' in entry 'RFC4291I66' cannot be null, deleting it
-[333] Utils.pm:149> WARN - The field 'author' in entry 'httpscca67' cannot be null, deleting it
-[333] Utils.pm:149> WARN - The field 'month' in entry 'httpscca67' cannot be null, deleting it
-[334] Utils.pm:149> WARN - The field 'year' in entry 'httpscca67' cannot be null, deleting it
-[334] Utils.pm:149> WARN - The field 'author' in entry 'Database95' cannot be null, deleting it
-[334] Utils.pm:149> WARN - The field 'month' in entry 'Database95' cannot be null, deleting it
-[334] Utils.pm:149> WARN - The field 'year' in entry 'Database95' cannot be null, deleting it
-[335] Utils.pm:149> WARN - The field 'author' in entry 'BloomfilterAccuracy' cannot be null, deleting it
-[335] Utils.pm:149> WARN - The field 'month' in entry 'BloomfilterAccuracy' cannot be null, deleting it
-[335] Utils.pm:149> WARN - The field 'year' in entry 'BloomfilterAccuracy' cannot be null, deleting it
-[371] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[371] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[371] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
-[371] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
-[401] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
-[424] Utils.pm:149> WARN - The entry 'Database95' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
-[432] bbl.pm:619> INFO - Output to thesis.bbl
-[432] Biber.pm:108> INFO - WARNINGS: 42
+[59] biber-darwin:290> INFO - === Mo Aug 14, 2017, 12:24:44
+[81] Biber.pm:351> INFO - Reading 'thesis.bcf'
+[181] Biber.pm:776> INFO - Found 54 citekeys in bib section 0
+[197] Biber.pm:3493> INFO - Processing section 0
+[218] Biber.pm:3657> INFO - Looking for bibtex format file 'citations.bib' for section 0
+[222] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[227] bibtex.pm:1048> INFO - Found BibTeX data source 'citations.bib'
+[274] Utils.pm:149> WARN - The field 'author' in entry 'BitcoinMarketCap' cannot be null, deleting it
+[275] Utils.pm:149> WARN - The field 'month' in entry 'BitcoinMarketCap' cannot be null, deleting it
+[275] Utils.pm:149> WARN - The field 'year' in entry 'BitcoinMarketCap' cannot be null, deleting it
+[275] Utils.pm:149> WARN - The field 'note' in entry 'DDoSOverview' cannot be null, deleting it
+[275] Utils.pm:149> WARN - The field 'number' in entry 'DDoSOverview' cannot be null, deleting it
+[276] Utils.pm:149> WARN - The field 'note' in entry 'DDoSRise' cannot be null, deleting it
+[276] Utils.pm:149> WARN - The field 'month' in entry 'IETFDraft' cannot be null, deleting it
+[276] Utils.pm:149> WARN - The field 'year' in entry 'IETFDraft' cannot be null, deleting it
+[276] Utils.pm:149> WARN - The field 'author' in entry 'web3' cannot be null, deleting it
+[276] Utils.pm:149> WARN - The field 'month' in entry 'web3' cannot be null, deleting it
+[277] Utils.pm:149> WARN - The field 'year' in entry 'web3' cannot be null, deleting it
+[277] Utils.pm:149> WARN - The field 'author' in entry 'EthereumBlockchainSize' cannot be null, deleting it
+[277] Utils.pm:149> WARN - The field 'month' in entry 'EthereumBlockchainSize' cannot be null, deleting it
+[277] Utils.pm:149> WARN - The field 'year' in entry 'EthereumBlockchainSize' cannot be null, deleting it
+[277] Utils.pm:149> WARN - The field 'month' in entry 'RFC3493' cannot be null, deleting it
+[277] Utils.pm:149> WARN - The field 'year' in entry 'RFC3493' cannot be null, deleting it
+[278] Utils.pm:149> WARN - The field 'author' in entry 'IPv6Wiki16' cannot be null, deleting it
+[278] Utils.pm:149> WARN - The field 'month' in entry 'IPv6Wiki16' cannot be null, deleting it
+[278] Utils.pm:149> WARN - The field 'year' in entry 'IPv6Wiki16' cannot be null, deleting it
+[278] Utils.pm:149> WARN - The field 'author' in entry 'Testnet' cannot be null, deleting it
+[278] Utils.pm:149> WARN - The field 'month' in entry 'Testnet' cannot be null, deleting it
+[278] Utils.pm:149> WARN - The field 'year' in entry 'Testnet' cannot be null, deleting it
+[284] Utils.pm:149> WARN - The field 'author' in entry 'TestRPC' cannot be null, deleting it
+[284] Utils.pm:149> WARN - The field 'month' in entry 'TestRPC' cannot be null, deleting it
+[284] Utils.pm:149> WARN - The field 'year' in entry 'TestRPC' cannot be null, deleting it
+[284] Utils.pm:149> WARN - The field 'author' in entry 'Remix' cannot be null, deleting it
+[284] Utils.pm:149> WARN - The field 'month' in entry 'Remix' cannot be null, deleting it
+[284] Utils.pm:149> WARN - The field 'year' in entry 'Remix' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'author' in entry 'ava' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'month' in entry 'ava' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'year' in entry 'ava' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'author' in entry 'Mist' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'month' in entry 'Mist' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'year' in entry 'Mist' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'author' in entry 'IpAddressNpm' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'month' in entry 'IpAddressNpm' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'year' in entry 'IpAddressNpm' cannot be null, deleting it
+[285] Utils.pm:149> WARN - The field 'author' in entry 'WikipediaBloomfilter' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'month' in entry 'WikipediaBloomfilter' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'year' in entry 'WikipediaBloomfilter' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'author' in entry 'BloomfilterTutorial' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'month' in entry 'BloomfilterTutorial' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'year' in entry 'BloomfilterTutorial' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'author' in entry 'imurmur' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'month' in entry 'imurmur' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'year' in entry 'imurmur' cannot be null, deleting it
+[286] Utils.pm:149> WARN - The field 'author' in entry 'bloomfilterjs' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'month' in entry 'bloomfilterjs' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'year' in entry 'bloomfilterjs' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'author' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'month' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'year' in entry 'SimpleBloomFilter' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'author' in entry 'RFC4291I66' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'month' in entry 'RFC4291I66' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'year' in entry 'RFC4291I66' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'author' in entry 'IPSource38' cannot be null, deleting it
+[287] Utils.pm:149> WARN - The field 'month' in entry 'IPSource38' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'year' in entry 'IPSource38' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'author' in entry 'httpscca67' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'month' in entry 'httpscca67' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'year' in entry 'httpscca67' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'author' in entry 'Database95' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'month' in entry 'Database95' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'year' in entry 'Database95' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'author' in entry 'MultisigHack' cannot be null, deleting it
+[288] Utils.pm:149> WARN - The field 'month' in entry 'MultisigHack' cannot be null, deleting it
+[289] Utils.pm:149> WARN - The field 'title' in entry 'MultisigHack' cannot be null, deleting it
+[289] Utils.pm:149> WARN - The field 'year' in entry 'MultisigHack' cannot be null, deleting it
+[289] Utils.pm:149> WARN - The field 'author' in entry 'BloomfilterAccuracy' cannot be null, deleting it
+[289] Utils.pm:149> WARN - The field 'month' in entry 'BloomfilterAccuracy' cannot be null, deleting it
+[289] Utils.pm:149> WARN - The field 'year' in entry 'BloomfilterAccuracy' cannot be null, deleting it
+[321] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[321] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[321] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-DE'
+[321] Biber.pm:3310> INFO - No sort tailoring available for locale 'de-DE'
+[351] bbl.pm:526> INFO - Writing 'thesis.bbl' with encoding 'ascii'
+[357] Utils.pm:149> WARN - The entry 'Database95' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
+[358] Utils.pm:149> WARN - The entry 'MultisigHack' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
+[360] bbl.pm:619> INFO - Output to thesis.bbl
+[360] Biber.pm:108> INFO - WARNINGS: 73
